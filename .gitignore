@@ -1,0 +1,15 @@
+.venv/
+.DS_Store
+__pycache__/
+*.egg-info/
+.pytest_cache/
+node_modules/
+runtimes/layaair3/example/vendor/
+runtimes/layaair3/example/dist/
+out/
+laya-project/temp/
+laya-project/library/
+laya-project/local/
+laya-project/release/
+laya-project/bin/
+

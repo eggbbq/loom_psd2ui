@@ -1,0 +1,9 @@
+{
+  "version": "3.4.1",
+  "sha256": {
+    "laya.core.js": "07ee4f5ed73a8498f1a850eacc1fcae59faecae983a2cf07b15420c15e8be4f3",
+    "laya.webgl_2D.js": "729b8cebe148ec7b7e850c2b3e1331ff386f3fb2825557d58ad63b9b3804cf73",
+    "laya.opengl_2D.js": "c2bb3068994d12c6852fd435c80fcf1e56e5dda6b4e6ee9a13886938f84a7e19",
+    "LayaAir.d.ts": "0d3f0c78cef662e8af5cc58cee026116874c61fb794f212912627d4167e984cd"
+  }
+}

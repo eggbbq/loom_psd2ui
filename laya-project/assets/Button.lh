@@ -1,0 +1,106 @@
+{
+  "_$ver": 1,
+  "_$id": "qj18tyvp",
+  "_$type": "GButton",
+  "name": "Root",
+  "width": 120,
+  "height": 32,
+  "controllers": {
+    "_$type": "Record",
+    "button": {
+      "_$type": "Controller",
+      "pages": [
+        "up",
+        "down",
+        "over",
+        "selectedOver"
+      ]
+    }
+  },
+  "titleWidget": {
+    "_$ref": "7w6s3cxa"
+  },
+  "iconWidget": {
+    "_$ref": "50i5rnh6"
+  },
+  "downEffect": 1,
+  "_$child": [
+    {
+      "_$id": "5ir8lwb1",
+      "_$type": "GImage",
+      "name": "img",
+      "width": 120,
+      "height": 32,
+      "relations": [
+        {
+          "_$type": "Relation",
+          "target": {
+            "_$ref": "qj18tyvp"
+          },
+          "data": [
+            1,
+            0,
+            2,
+            0
+          ]
+        }
+      ],
+      "src": "res://00000000-0000-0000-0001-000000000000",
+      "autoSize": false,
+      "color": "#d16221"
+    },
+    {
+      "_$id": "50i5rnh6",
+      "_$type": "GLoader",
+      "name": "icon",
+      "x": 4,
+      "y": 4,
+      "width": 112,
+      "height": 24,
+      "relations": [
+        {
+          "_$type": "Relation",
+          "target": {
+            "_$ref": "qj18tyvp"
+          },
+          "data": [
+            1,
+            0,
+            2,
+            0
+          ]
+        }
+      ],
+      "shrinkOnly": true
+    },
+    {
+      "_$id": "7w6s3cxa",
+      "_$type": "GTextField",
+      "name": "title",
+      "x": 4,
+      "y": 4,
+      "width": 112,
+      "height": 24,
+      "relations": [
+        {
+          "_$type": "Relation",
+          "target": {
+            "_$ref": "qj18tyvp"
+          },
+          "data": [
+            1,
+            0,
+            2,
+            0
+          ]
+        }
+      ],
+      "text": "Title",
+      "fontSize": 20,
+      "align": "center",
+      "valign": "middle",
+      "overflow": "hidden",
+      "letterSpacing": 0
+    }
+  ]
+}

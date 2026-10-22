@@ -1,0 +1,17 @@
+{
+  "name": "psd2ui-layaair3-example",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "esbuild example/main.ts --bundle --format=iife --global-name=PsdUiDemo --outfile=example/dist/demo.js",
+    "test": "node tests/integration.mjs",
+    "test:native": "node tests/native_project.mjs"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "esbuild": "0.25.12",
+    "playwright": "1.56.1"
+  }
+}
+

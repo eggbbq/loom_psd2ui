@@ -1,0 +1,71 @@
+{
+  "_$ver": 1,
+  "_$id": "zog3j9p4",
+  "_$type": "GProgressBar",
+  "width": 200,
+  "height": 20,
+  "_hBar": {
+    "_$ref": "h5xp7bu3"
+  },
+  "_titleWidget": {
+    "_$ref": "p4upqgcf"
+  },
+  "_$child": [
+    {
+      "_$id": "f14tl9ir",
+      "_$type": "GImage",
+      "name": "bg",
+      "width": 200,
+      "height": 20,
+      "relations": [
+        {
+          "_$type": "Relation",
+          "target": {
+            "_$ref": "zog3j9p4"
+          },
+          "data": [
+            1,
+            0,
+            2,
+            0
+          ]
+        }
+      ],
+      "src": "res://00000000-0000-0000-0001-000000000002",
+      "autoSize": false
+    },
+    {
+      "_$id": "h5xp7bu3",
+      "_$type": "GImage",
+      "name": "bar",
+      "width": 200,
+      "height": 20,
+      "relations": [
+        {
+          "_$type": "Relation",
+          "target": {
+            "_$ref": "zog3j9p4"
+          },
+          "data": [
+            2,
+            0
+          ]
+        }
+      ],
+      "src": "res://00000000-0000-0000-0001-000000000000",
+      "autoSize": false
+    },
+    {
+      "_$id": "p4upqgcf",
+      "_$type": "GTextField",
+      "name": "title",
+      "x": 70,
+      "width": 60,
+      "height": 24,
+      "text": "100%",
+      "fontSize": 20,
+      "align": "center",
+      "letterSpacing": 0
+    }
+  ]
+}

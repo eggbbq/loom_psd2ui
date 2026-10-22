@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "psd2ui"
+version = "1.0.0"
+description = "Photoshop-free layered PSD/PSB exporter for LayaAir 3"
+requires-python = ">=3.11"
+dependencies = ["psd-tools[composite]==1.17.4", "Pillow>=10.3,<14"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10"]
+
+[project.scripts]
+psd2ui = "psd2ui.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
