@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "runId": "20261022T065407-3498c133d1a2",
+  "kind": "build",
+  "status": "committed",
+  "files": [
+    {
+      "path": ".ninegrid/manifest.json",
+      "existed": true,
+      "beforeSha256": "e971ed56ffb64ff130232c34f525fc977b858b1c97be5d86d15a5b96c0ef7557",
+      "afterSha256": "38e5473b566c8bd3c383b973e7f6fac20163627c5f4665d4f5fcb65694e8672f"
+    },
+    {
+      "path": ".ninegrid/report.json",
+      "existed": true,
+      "beforeSha256": "d0460f39f4cf8a0bcd12a2040b0fe450f925038443ef7b95afa0c858912b2a88",
+      "afterSha256": "c02f570c51016699e274efcde3988c0881946218914858b8718d7d52aeb3de43"
+    },
+    {
+      "path": ".ninegrid/report.md",
+      "existed": true,
+      "beforeSha256": "e78f183dacd13fdb7e7dc83c4a152a7abd3a7e089aa2ba7e1a3348f13825f3ec",
+      "afterSha256": "ff2864e47b990cf565203a77bcc0fc3cb7f2b23578fde8f8d028e8cefe15e132"
+    },
+    {
+      "path": "assets/ninegrid_auto/ui/商城_给程序/切的/图层 68.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "d91152396a5e45f094203f9ddbfb2c5b7343c4fd6588cd25923a8c5fd3dd0f13"
+    },
+    {
+      "path": "assets/ninegrid_auto/ui/商城_给程序/切的/图层 68.png.meta",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "1d569370f1eea341e4f60505942daa7c27b9b859f6bdfaaf7847f8b09be64666"
+    },
+    {
+      "path": "assets/ninegrid_auto/ui/商城_给程序/切的/组 24/组 23.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "2ee830401d27ae7dedaa1e9e4ac2410b913ce1aa13da2e5e1326189e43bff80c"
+    },
+    {
+      "path": "assets/ninegrid_auto/ui/商城_给程序/切的/组 24/组 23.png.meta",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "872bcb4489c6b2dfd33fb769c07b02317afaf4ba65c1e0574083889c00fb5dfc"
+    },
+    {
+      "path": "assets/ninegrid_auto/ui/商城_给程序/切的/组 37.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "08c49ff83a10866e83e1c5d4f884975964196e57123e194d9b24d3a85ca9f408"
+    },
+    {
+      "path": "assets/ninegrid_auto/ui/商城_给程序/切的/组 37.png.meta",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "d6e3da4136494bb20f81d20f2e55b887f5a6635dad1d35f12a45a5997523c798"
+    }
+  ],
+  "details": {}
+}

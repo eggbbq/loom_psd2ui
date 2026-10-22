@@ -1,0 +1,456 @@
+{
+  "items": [
+    {
+      "source": "assets/ui/商城_给程序/切的/图层 68.png",
+      "sourceSha256": "dca45387a5ed8ddab48cf47c77de937f33788b7964f4decb14f6610c038b433b",
+      "status": "built",
+      "reason": null,
+      "sourceMetadata": {
+        "uuid": "87a319ea-b9a3-59d2-8081-8bf7236c3111",
+        "importer": {
+          "textureType": 2,
+          "sRGB": true,
+          "generateMipmap": false,
+          "npot": 0,
+          "maxSize": 0,
+          "usePng8": false
+        }
+      },
+      "sourceFilterMode": 1,
+      "atlasConfigurations": [
+        {
+          "file": "assets/ui/AutoAtlas.atlascfg",
+          "sha256": "7567e08175a0bffc4432ccf024341db0e975a68d3855ffb2e54e9a54352c87c2"
+        }
+      ],
+      "warnings": [
+        "source_auto_atlas_present_originals_preserved"
+      ],
+      "sourceSize": [
+        575,
+        172
+      ],
+      "cpuQuality": {
+        "equal": false,
+        "differentPixels": 9565,
+        "firstDifferentPixel": [
+          30,
+          0
+        ],
+        "meanError": 0.47268199920654297,
+        "badPixelRatio": 0.008169868554095046,
+        "maxVisualChannelError": 88.0,
+        "maxRawChannelError": 255,
+        "pixelErrorThreshold": 32,
+        "metric": "premultiplied_rgba",
+        "accepted": true,
+        "qualityLimits": {
+          "maxMeanError": 1.0,
+          "maxBadPixelRatio": 0.01,
+          "pixelErrorThreshold": 32,
+          "edgeTolerancePixels": 2
+        }
+      },
+      "qualityLimits": {
+        "maxMeanError": 1.0,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "mode": "visual",
+      "outputSize": [
+        70,
+        82
+      ],
+      "sizeGrid": {
+        "top": 37,
+        "right": 31,
+        "bottom": 37,
+        "left": 31,
+        "repeat": 0
+      },
+      "layaSizeGrid": "37,31,37,31,0",
+      "columnBand": [
+        30,
+        545
+      ],
+      "rowBand": [
+        36,
+        136
+      ],
+      "sourceCenterX": [
+        67,
+        75
+      ],
+      "sourceCenterY": [
+        53,
+        61
+      ],
+      "samplingGuard": 1,
+      "retainedCenterSize": [
+        8,
+        8
+      ],
+      "removedColumns": {
+        "start": 30,
+        "length": 505
+      },
+      "removedRows": {
+        "start": 36,
+        "length": 90
+      },
+      "sliceMode": "nine_slice",
+      "pixelAreaSavedRatio": 0.9419615773508595,
+      "output": "assets/ninegrid_auto/ui/商城_给程序/切的/图层 68.png",
+      "references": [
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psd253d950f11ebd",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            1
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null
+        },
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psdd939926f05444",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            2
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null
+        },
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psd0d7f0e3361660",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            3
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null
+        }
+      ],
+      "safeReferences": 3,
+      "outputSha256": "7d11f431930e713200fc5bddc6bdde87c7e7b1ff2af0761fa99144349212e3e9",
+      "outputUuid": "524267c6-7a5b-5061-9c3a-209020df77aa"
+    },
+    {
+      "source": "assets/ui/商城_给程序/切的/组 24/组 23.png",
+      "sourceSha256": "df7ce9c2a42cfe58aad67926e60b455ed9abefe89c549fecc136de809db2f1ba",
+      "status": "built",
+      "reason": null,
+      "sourceMetadata": {
+        "uuid": "a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+        "importer": {
+          "textureType": 2,
+          "sRGB": true,
+          "generateMipmap": false,
+          "npot": 0,
+          "maxSize": 0,
+          "usePng8": false
+        }
+      },
+      "sourceFilterMode": 1,
+      "atlasConfigurations": [
+        {
+          "file": "assets/ui/AutoAtlas.atlascfg",
+          "sha256": "7567e08175a0bffc4432ccf024341db0e975a68d3855ffb2e54e9a54352c87c2"
+        }
+      ],
+      "warnings": [
+        "source_auto_atlas_present_originals_preserved"
+      ],
+      "sourceSize": [
+        141,
+        63
+      ],
+      "cpuQuality": {
+        "equal": false,
+        "differentPixels": 301,
+        "firstDifferentPixel": [
+          93,
+          0
+        ],
+        "meanError": 0.43656423687934875,
+        "badPixelRatio": 0.00990656309805246,
+        "maxVisualChannelError": 155.0,
+        "maxRawChannelError": 255,
+        "pixelErrorThreshold": 32,
+        "metric": "premultiplied_rgba",
+        "accepted": true,
+        "qualityLimits": {
+          "maxMeanError": 1.0,
+          "maxBadPixelRatio": 0.01,
+          "pixelErrorThreshold": 32,
+          "edgeTolerancePixels": 2
+        }
+      },
+      "qualityLimits": {
+        "maxMeanError": 1.0,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "mode": "visual",
+      "outputSize": [
+        107,
+        46
+      ],
+      "sizeGrid": {
+        "top": 19,
+        "right": 43,
+        "bottom": 19,
+        "left": 56,
+        "repeat": 0
+      },
+      "layaSizeGrid": "19,43,19,56,0",
+      "columnBand": [
+        55,
+        99
+      ],
+      "rowBand": [
+        18,
+        45
+      ],
+      "sourceCenterX": [
+        77,
+        85
+      ],
+      "sourceCenterY": [
+        34,
+        42
+      ],
+      "samplingGuard": 1,
+      "retainedCenterSize": [
+        8,
+        8
+      ],
+      "removedColumns": {
+        "start": 55,
+        "length": 34
+      },
+      "removedRows": {
+        "start": 18,
+        "length": 17
+      },
+      "sliceMode": "nine_slice",
+      "pixelAreaSavedRatio": 0.4459079139930203,
+      "output": "assets/ninegrid_auto/ui/商城_给程序/切的/组 24/组 23.png",
+      "references": [
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psd4471c4b2a2c82",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            7,
+            "_$child",
+            0
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null
+        },
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psd642da2afc2bfe",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            7,
+            "_$child",
+            1
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null
+        },
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psd4422af4114f85",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            7,
+            "_$child",
+            2
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null
+        }
+      ],
+      "safeReferences": 3,
+      "outputSha256": "4b8e399b812f35ecab830aef6cf3a25d4f079288d0db07630ecce0884d47311d",
+      "outputUuid": "658b6b90-1d1c-518a-917d-562a372b16ca"
+    },
+    {
+      "source": "assets/ui/商城_给程序/切的/组 37.png",
+      "sourceSha256": "27877066ed189eb354b91ff1519d7cfca210803d85db31f41b653394c1cf548e",
+      "status": "built",
+      "reason": null,
+      "sourceMetadata": {
+        "uuid": "dbe4a9e8-1564-587e-a479-fe51d8d0ea74",
+        "importer": {
+          "textureType": 2,
+          "sRGB": true,
+          "generateMipmap": false,
+          "npot": 0,
+          "maxSize": 0,
+          "usePng8": false
+        }
+      },
+      "sourceFilterMode": 1,
+      "atlasConfigurations": [
+        {
+          "file": "assets/ui/AutoAtlas.atlascfg",
+          "sha256": "7567e08175a0bffc4432ccf024341db0e975a68d3855ffb2e54e9a54352c87c2"
+        }
+      ],
+      "warnings": [
+        "source_auto_atlas_present_originals_preserved"
+      ],
+      "sourceSize": [
+        738,
+        1078
+      ],
+      "cpuQuality": {
+        "equal": false,
+        "differentPixels": 15291,
+        "firstDifferentPixel": [
+          10,
+          394
+        ],
+        "meanError": 0.13511595129966736,
+        "badPixelRatio": 0.002957650170193724,
+        "maxVisualChannelError": 255.0,
+        "maxRawChannelError": 255,
+        "pixelErrorThreshold": 32,
+        "metric": "premultiplied_rgba",
+        "accepted": true,
+        "qualityLimits": {
+          "maxMeanError": 1.0,
+          "maxBadPixelRatio": 0.01,
+          "pixelErrorThreshold": 32,
+          "edgeTolerancePixels": 2
+        }
+      },
+      "qualityLimits": {
+        "maxMeanError": 1.0,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "mode": "visual",
+      "outputSize": [
+        738,
+        592
+      ],
+      "sizeGrid": {
+        "top": 395,
+        "right": 0,
+        "bottom": 189,
+        "left": 0,
+        "repeat": 0
+      },
+      "layaSizeGrid": "395,0,189,0,0",
+      "columnBand": null,
+      "rowBand": [
+        394,
+        890
+      ],
+      "sourceCenterX": null,
+      "sourceCenterY": [
+        624,
+        632
+      ],
+      "samplingGuard": 1,
+      "retainedCenterSize": [
+        738,
+        8
+      ],
+      "removedColumns": null,
+      "removedRows": {
+        "start": 394,
+        "length": 486
+      },
+      "sliceMode": "vertical_three_slice",
+      "pixelAreaSavedRatio": 0.45083487940630795,
+      "output": "assets/ninegrid_auto/ui/商城_给程序/切的/组 37.png",
+      "references": [
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psd18d6e1cac2a8a",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            0
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://dbe4a9e8-1564-587e-a479-fe51d8d0ea74",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null
+        }
+      ],
+      "safeReferences": 1,
+      "outputSha256": "08c49ff83a10866e83e1c5d4f884975964196e57123e194d9b24d3a85ca9f408",
+      "outputUuid": "0bb4132e-ba42-5de8-9a19-f08ace1aaabb"
+    }
+  ],
+  "schemaVersion": 1,
+  "projectVersion": "3.4.1",
+  "settings": {
+    "output": "assets/ninegrid_auto",
+    "inputs": [
+      "assets/ui"
+    ],
+    "minSaving": 0.2,
+    "mode": "visual",
+    "algorithmVersion": 2,
+    "qualityLimits": {
+      "maxMeanError": 1.0,
+      "maxBadPixelRatio": 0.01,
+      "pixelErrorThreshold": 32,
+      "edgeTolerancePixels": 2
+    },
+    "centerSize": 8,
+    "axis": "auto"
+  }
+}

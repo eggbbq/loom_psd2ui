@@ -9,8 +9,8 @@
 ## 导出并移入 Laya 工程（macOS / Linux）
 
 ```bash
-./start.sh
-PSD2UI_REEXPORT=1 ./start.sh  # 强制重新导出
+./run_export.sh
+PSD2UI_REEXPORT=1 ./run_export.sh  # 强制重新导出
 ```
 
 脚本自动准备 Python 环境，读取参数数组中 `--input` 指定的 PSD，先导出到仓库根目录下的同名文件夹，成功后整体 `mv` 到 `laya-project/assets/ui/<PSD 文件名>/`。当前配置为 `商城_给程序.psd`，最终位置：
@@ -24,19 +24,31 @@ psd2ui/laya-project/assets/ui/商城_给程序/
 └── PSD 分组目录/…PNG 与 .png.meta
 ```
 
-PNG 与预制体共用一套资源，目录按 PSD 分组结构保存，没有额外的 `assets` 层。预制体文件名取 PSD 文件名（不含扩展名）。`start.sh` 最后移动整个目录到 Laya 工程，保留已有 `.meta`，重复运行不会嵌套同名目录。它不修改场景、工程设置，不构建或启动浏览器；无需安装 LayaAir CLI。首次安装 Python 依赖需要网络。
+PNG 与预制体共用一套资源，目录按 PSD 分组结构保存，没有额外的 `assets` 层。预制体文件名取 PSD 文件名（不含扩展名）。`run_export.sh` 最后移动整个目录到 Laya 工程，保留已有 `.meta`，重复运行不会嵌套同名目录。它不修改场景、工程设置，不构建或启动浏览器；无需安装 LayaAir CLI。首次安装 Python 依赖需要网络。
 
-`start.sh` 只保留 `args=(...)` 参数配置和对 `start.py` 的调用，环境准备、缓存、导出、生成预制体及移动目录均由 `start.py` 实现。`--flat-assets` 取消 `assets` 层，`--dedupe-images 0.99` 启用去重，注释去重行可关闭。修改参数、源 PSD、导出代码，或检测到布局被外部改写、图片缺失时，会自动重新导出；缓存保存在输出目录的 `.start-export.json` 中。
+`run_export.sh` 只保留 `args=(...)` 参数配置和对 `run_export.py` 的调用，环境准备、缓存、导出、生成预制体及移动目录均由 `run_export.py` 实现。`--flat-assets` 取消 `assets` 层，`--dedupe-images 0.99` 启用去重，注释去重行可关闭。修改参数、源 PSD、导出代码，或检测到布局被外部改写、图片缺失时，会自动重新导出；缓存保存在输出目录的 `.start-export.json` 中。
 
 可以在命令行覆盖参数，或直接使用 Python 入口。相对路径均基于仓库目录：
 
 ```bash
-./start.sh --input test.psd --reexport
-./start.sh --help
-python3 start.py --input test.psd --dedupe-images 0.99
+./run_export.sh --input test.psd --reexport
+./run_export.sh --help
+python3 run_export.py --input test.psd --dedupe-images 0.99
 ```
 
 在 IDE 中打开 `assets/ui/商城_给程序/商城_给程序.lh` 即可编辑。需要放入预览场景时，可手动拖入，或使用下面的同步脚本。
+
+## 目录批量九宫格处理
+
+`run_9grid.sh` / `run_9grid.py` 是独立入口，不会启动 PSD 导出。修改 sh 中 `--search-dir` 配置即可递归处理目录内全部 PNG；默认生成优化资源、通过引擎验证后回写 Laya，再检查资源完整性。
+
+```bash
+./run_9grid.sh --search-dir assets/ui --dry-run  # 项目零写入预演
+./run_9grid.sh --search-dir assets/ui            # 完整执行
+./run_9grid.sh --search-dir assets/ui --build-only  # 仅生成 PNG 和参数
+```
+
+搜索路径以 `--project` 指定的 Laya 工程为基准，默认工程为 `laya-project`。**输入、输出目录相同会自动原地写回 PNG，保留路径与 UUID；不同目录则另存优化图。** 原地写回先备份和验证，支持撤销。sh 已配置视觉近似模式，允许预算内的少量像素变化；加 `--mode strict` 切回严格无损。Python / 底层 CLI 的默认模式仍为 strict。每张图都会被检查，不满足当前模式条件的图按原因跳过。详细参数、跳过规则与撤销方式见 [九宫格使用说明](ninegrid/README.md)。
 
 ## 安装与转换
 
@@ -73,7 +85,7 @@ python scripts/validate_export.py --output out/test-dedup \
 
 ## 命名与输出
 
-下面示例为导出 CLI 默认路径；`start.sh` 启用 `--flat-assets`，会移除路径开头的 `assets/`。
+下面示例为导出 CLI 默认路径；`run_export.sh` 启用 `--flat-assets`，会移除路径开头的 `assets/`。
 
 ```text
 PSD 图层面板（上 → 下）                 输出
@@ -101,6 +113,7 @@ Settings      隐藏分组                  assets/Settings/Background.png
 - **分组自身存在像素蒙版或矢量蒙版时，也强制整体合成图片**，把蒙版应用到整个组再导出，内部节点不再单独输出。默认使用 `GImage`；显式按钮等组件保留外层和单个合成图片子节点。停用的蒙版仍触发整体导出，但合成时遵循其停用状态；剪贴蒙版不是这一规则的触发条件。
 - 特效总开关关闭、所有效果都禁用时，不触发自动合成。只在子图层或子组上设置效果，不会使无效果的祖先组一起压平；仅设置普通混合模式也不触发此规则。无法保真的效果仍有诊断，严格模式失败。
 - 普通隐藏图层仍导出；没有启用效果且未标 `img_` 的分组保留层级。独立顶层分组就是 panel。
+- 空分组不导出：没有子节点、递归只含空分组，或子节点均被 `#` 排除时，不生成 layout 节点、PNG、目录或预制体节点；类型前缀、图层样式也不会保留空分组。普通隐藏分组有可导出内容时仍保留。
 - 组名对应目录，图层名对应文件名。中文、空格保留；路径分隔符、非法字符、`..`、Windows 保留名做安全规范化。空名称报错。规范化冲突和同名都按底 → 顶遍历顺序后写覆盖，不加后缀。
 - 同路径覆盖后，所有引用使用最后 PNG；相关节点的 `size` 及裁剪偏移同步为最终 PNG 的值，位置按各节点原始合成原点加最终 PNG 裁剪偏移计算，父容器边界重新计算。
 
@@ -141,7 +154,7 @@ Settings      隐藏分组                  assets/Settings/Background.png
 
 ## LayaAir 原生预制体
 
-`start.sh` 已在生成预制体后移入 Laya 工程。仅重新生成预制体及 `.meta`，无需再次解析 PSD：
+`run_export.sh` 已在生成预制体后移入 Laya 工程。仅重新生成预制体及 `.meta`，无需再次解析 PSD：
 
 ```bash
 .venv/bin/python scripts/generate_asset_bundle.py laya-project/assets/ui/商城_给程序/layout.json
@@ -178,7 +191,7 @@ Settings      隐藏分组                  assets/Settings/Background.png
 
 ## 独立 Loader 示例（可选）
 
-`runtimes/layaair3/example` 保留早期的 Sprite/Text JSON Loader 示例供独立集成使用。当前 `laya-project` 和 `start.sh` 使用上面的 New UI 静态预制体流程。
+`runtimes/layaair3/example` 保留早期的 Sprite/Text JSON Loader 示例供独立集成使用。当前 `laya-project` 和 `run_export.sh` 使用上面的 New UI 静态预制体流程。
 
 使用实际 LayaAir **3.4.1** 的运行库和 `LayaAir.d.ts` 编译验证。其他 3.x 版本尚未验证，不能保证 API 相同。引擎准备脚本会检查版本；本次验证的文件哈希记录在 [engine-lock.json](runtimes/layaair3/engine-lock.json)。引擎源码可从 [LayaAir 官方仓库](https://github.com/layabox/LayaAir) 获取，构建产物需要有 `build/libs`、`build/types`。也可使用本机已有的相同版本源码构建目录：
 
@@ -260,4 +273,4 @@ psd-tools 不等于 Photoshop 渲染器。当前锁定 `psd-tools[composite]==1.
 - CMYK/LAB/高位深文件输出会转换为 8 位 RGBA 并警告；不保证印刷色彩匹配。
 - 用户样例包含大量上述效果、7 处多样式文本、6 次同名路径覆盖。因此普通导出可用，严格导出应失败，画面有明确记录的差异；完整视觉保真验收未通过。
 
-未包含九宫格、自动识别、Atlas、压缩或响应式布局。
+PSD 导出器本身未接入九宫格、Atlas、压缩或响应式布局；九宫格优化通过上面的独立入口运行。

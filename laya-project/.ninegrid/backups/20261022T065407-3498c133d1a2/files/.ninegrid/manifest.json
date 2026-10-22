@@ -1,0 +1,12 @@
+{
+  "items": [],
+  "schemaVersion": 1,
+  "projectVersion": "3.4.1",
+  "settings": {
+    "output": "assets/ninegrid_auto",
+    "inputs": [
+      "assets/ui"
+    ],
+    "minSaving": 0.2
+  }
+}

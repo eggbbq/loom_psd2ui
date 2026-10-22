@@ -53,14 +53,18 @@ def test_uneven_spacing_uses_mean_and_reports_loss(tmp_path):
 
 
 @pytest.mark.parametrize("count", [0, 1])
-def test_empty_or_single_child_layout_uses_zero_gap(tmp_path, count):
+def test_empty_layout_is_omitted_and_single_child_uses_zero_gap(tmp_path, count):
     psd = PSDImage.new("RGBA", (40, 40))
     parent = group(psd, "vbox_Items")
     if count:
         pixel(parent, "Only", "red", (10, 10))
     source = tmp_path / "small.psd"
     psd.save(source)
-    assert export_psd(source, tmp_path / "out")["children"][0]["gap"] == 0
+    children = export_psd(source, tmp_path / "out")["children"]
+    if count:
+        assert children[0]["gap"] == 0
+    else:
+        assert children == []
 
 
 def test_overlapping_items_keep_negative_gap(tmp_path):

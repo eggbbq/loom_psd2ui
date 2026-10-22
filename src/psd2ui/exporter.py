@@ -26,6 +26,13 @@ def union(boxes):
             max(b[2] for b in boxes), max(b[3] for b in boxes))
 
 
+def has_exportable_content(layer):
+    """Hidden leaves remain exportable; empty groups and # subtrees do not."""
+    if "#" in layer.name:
+        return False
+    return any(has_exportable_content(child) for child in layer) if layer.is_group() else True
+
+
 def visual_warnings(layer, diagnostics, path, flattened=False):
     reasons = []
     if layer.blend_mode not in (BlendMode.NORMAL, BlendMode.PASS_THROUGH):
@@ -53,6 +60,8 @@ def visual_warnings(layer, diagnostics, path, flattened=False):
 
 def included(layer, target):
     """Ignore only target visibility; descendants retain local visibility and # filtering."""
+    if layer.is_group() and not has_exportable_content(layer):
+        return False
     current = layer
     while current is not target:
         if current is None or not hasattr(current, "name") or "#" in current.name or not current.visible:
@@ -134,7 +143,7 @@ class Exporter:
 
     def node(self, layer, folders=(), ancestry=(), title_context=False):
         raw = layer.name
-        if "#" in raw:
+        if "#" in raw or layer.is_group() and not has_exportable_content(layer):
             return None
         path = "/".join((*ancestry, raw))
         component = tag_component(raw)
@@ -156,7 +165,6 @@ class Exporter:
         if layer.is_group() and not flattened:
             if not self.asset_prefix and not folders and name == "layout.json":
                 self.diagnostics.fail("INVALID_EXPORT_NAME", path, "Group name conflicts with layout.json")
-            inside(self.output, "/".join((*self.asset_prefix, *folders, name))).mkdir(parents=True, exist_ok=True)
             children = []
             # psd-tools >=1.7 iterates background -> foreground. Do NOT reverse.
             for child in layer:
@@ -164,6 +172,9 @@ class Exporter:
                                  title_context or component in ("GButton", "GProgressBar"))
                 if item is not None:
                     children.append(item)
+            if not children:
+                return None
+            inside(self.output, "/".join((*self.asset_prefix, *folders, name))).mkdir(parents=True, exist_ok=True)
             node.update(type="container", children=children)
             if component:
                 node["component"] = component
@@ -171,7 +182,7 @@ class Exporter:
                 node["layout"] = layout
             if layer.opacity != 255:
                 node["opacity"] = layer.opacity / 255
-            # Empty groups have a real record origin; no visible-only group bbox is used.
+            # Nonempty groups derive their final bounds from exported children.
             node["_box"] = (layer._record.left, layer._record.top, layer._record.right, layer._record.bottom)
         elif layer.kind == "type" and not flattened:
             box = text_bounds(layer, self.diagnostics, path)
@@ -185,6 +196,8 @@ class Exporter:
                         visual_warnings(child, self.diagnostics, path + "/" + child.name, True)
             box = render_bounds(layer, layer)
             if box is None:
+                if layer.is_group():
+                    return None
                 # PNG cannot represent 0x0. Preserve the empty layer, don't invent a 1x1 asset.
                 raw_box = (layer._record.left, layer._record.top, layer._record.right, layer._record.bottom)
                 if raw_box[2] != raw_box[0] or raw_box[3] != raw_box[1]:
@@ -337,7 +350,7 @@ def export_psd(source, output, diagnostics=None, *, dedupe_images=None, flat_ass
             destination = destinations[asset]
             destination.parent.mkdir(parents=True, exist_ok=True)
             inside(Path(stage), asset).replace(destination)
-        # Preserve ordinary group directories, including empty ones.
+        # Preserve directories for retained groups, including text-only groups.
         for directory in sorted(Path(stage).rglob("*")):
             if directory.is_dir():
                 inside(output, directory.relative_to(stage).as_posix()).mkdir(parents=True, exist_ok=True)

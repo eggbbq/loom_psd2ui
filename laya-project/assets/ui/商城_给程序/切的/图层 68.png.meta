@@ -6,6 +6,13 @@
     "generateMipmap": false,
     "npot": 0,
     "maxSize": 0,
-    "usePng8": false
+    "usePng8": false,
+    "sizeGrid": [
+      37,
+      31,
+      37,
+      31,
+      0
+    ]
   }
 }

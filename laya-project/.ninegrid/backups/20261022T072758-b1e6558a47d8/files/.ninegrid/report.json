@@ -1,0 +1,700 @@
+{
+  "schemaVersion": 1,
+  "projectVersion": "3.4.1",
+  "settings": {
+    "output": "assets/ui",
+    "inputs": [
+      "assets/ui"
+    ],
+    "minSaving": 0.2,
+    "mode": "visual",
+    "algorithmVersion": 2,
+    "qualityLimits": {
+      "maxMeanError": 1.0,
+      "maxBadPixelRatio": 0.01,
+      "pixelErrorThreshold": 32,
+      "edgeTolerancePixels": 2
+    },
+    "centerSize": 8,
+    "axis": "auto",
+    "overwriteSource": true
+  },
+  "items": [
+    {
+      "source": "assets/ui/商城_给程序/切的/图层 68.png",
+      "sourceSha256": "dca45387a5ed8ddab48cf47c77de937f33788b7964f4decb14f6610c038b433b",
+      "status": "candidate",
+      "reason": null,
+      "sourceMetadata": {
+        "uuid": "87a319ea-b9a3-59d2-8081-8bf7236c3111",
+        "importer": {
+          "textureType": 2,
+          "sRGB": true,
+          "generateMipmap": false,
+          "npot": 0,
+          "maxSize": 0,
+          "usePng8": false
+        }
+      },
+      "sourceFilterMode": 1,
+      "sourceSize": [
+        575,
+        172
+      ],
+      "cpuQuality": {
+        "equal": false,
+        "differentPixels": 9565,
+        "firstDifferentPixel": [
+          30,
+          0
+        ],
+        "meanError": 0.47268199920654297,
+        "badPixelRatio": 0.008169868554095046,
+        "maxVisualChannelError": 88.0,
+        "maxRawChannelError": 255,
+        "pixelErrorThreshold": 32,
+        "metric": "premultiplied_rgba",
+        "accepted": true,
+        "qualityLimits": {
+          "maxMeanError": 1.0,
+          "maxBadPixelRatio": 0.01,
+          "pixelErrorThreshold": 32,
+          "edgeTolerancePixels": 2
+        }
+      },
+      "qualityLimits": {
+        "maxMeanError": 1.0,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "mode": "visual",
+      "outputSize": [
+        70,
+        82
+      ],
+      "sizeGrid": {
+        "top": 37,
+        "right": 31,
+        "bottom": 37,
+        "left": 31,
+        "repeat": 0
+      },
+      "layaSizeGrid": "37,31,37,31,0",
+      "columnBand": [
+        30,
+        545
+      ],
+      "rowBand": [
+        36,
+        136
+      ],
+      "sourceCenterX": [
+        67,
+        75
+      ],
+      "sourceCenterY": [
+        53,
+        61
+      ],
+      "samplingGuard": 1,
+      "retainedCenterSize": [
+        8,
+        8
+      ],
+      "removedColumns": {
+        "start": 30,
+        "length": 505
+      },
+      "removedRows": {
+        "start": 36,
+        "length": 90
+      },
+      "sliceMode": "nine_slice",
+      "pixelAreaSavedRatio": 0.9419615773508595,
+      "output": "assets/ui/商城_给程序/切的/图层 68.png",
+      "references": [
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psd253d950f11ebd",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            1
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null,
+          "newSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+          "newSizeGrid": "37,31,37,31,0",
+          "gridLocation": "texture.importer.sizeGrid"
+        },
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psdd939926f05444",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            2
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null,
+          "newSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+          "newSizeGrid": "37,31,37,31,0",
+          "gridLocation": "texture.importer.sizeGrid"
+        },
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psd0d7f0e3361660",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            3
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null,
+          "newSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+          "newSizeGrid": "37,31,37,31,0",
+          "gridLocation": "texture.importer.sizeGrid"
+        }
+      ],
+      "safeReferences": 3,
+      "overwriteSource": true,
+      "previousOutput": "assets/ninegrid_auto/ui/商城_给程序/切的/图层 68.png",
+      "previousGrid": "37,31,37,31,0"
+    },
+    {
+      "source": "assets/ui/商城_给程序/切的/图层 986.png",
+      "sourceSha256": "450800c89cc42dec715566b6b794e1df0c13da33d3e022fe67de4ecf1e2c4b2a",
+      "status": "skipped",
+      "reason": "no_visual_candidate_within_budget",
+      "sourceMetadata": {
+        "uuid": "9b5b07f3-225e-50bb-95c2-f25fccc7fa5f",
+        "importer": {
+          "textureType": 2,
+          "sRGB": true,
+          "generateMipmap": false,
+          "npot": 0,
+          "maxSize": 0,
+          "usePng8": false
+        }
+      },
+      "sourceFilterMode": 1,
+      "sourceSize": [
+        106,
+        168
+      ],
+      "cpuQuality": {
+        "reason": "no_visual_candidate_within_budget",
+        "accepted": false,
+        "qualityLimits": {
+          "maxMeanError": 1.0,
+          "maxBadPixelRatio": 0.01,
+          "pixelErrorThreshold": 32,
+          "edgeTolerancePixels": 2
+        }
+      },
+      "qualityLimits": {
+        "maxMeanError": 1.0,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "references": [
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psd52e90ae243265",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            8
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://9b5b07f3-225e-50bb-95c2-f25fccc7fa5f",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null
+        }
+      ],
+      "safeReferences": 1
+    },
+    {
+      "source": "assets/ui/商城_给程序/切的/组 24/椭圆 7.png",
+      "sourceSha256": "ac4188c21e4b0d474669b4fe67ff42e2734bcd1159659693a98bef93d48dd908",
+      "status": "skipped",
+      "reason": "no_visual_candidate_within_budget",
+      "sourceMetadata": {
+        "uuid": "ea7b88bf-76d5-5ae6-bcd6-e887e5a7b2d3",
+        "importer": {
+          "textureType": 2,
+          "sRGB": true,
+          "generateMipmap": false,
+          "npot": 0,
+          "maxSize": 0,
+          "usePng8": false
+        }
+      },
+      "sourceFilterMode": 1,
+      "sourceSize": [
+        27,
+        31
+      ],
+      "cpuQuality": {
+        "reason": "no_visual_candidate_within_budget",
+        "accepted": false,
+        "qualityLimits": {
+          "maxMeanError": 1.0,
+          "maxBadPixelRatio": 0.01,
+          "pixelErrorThreshold": 32,
+          "edgeTolerancePixels": 2
+        }
+      },
+      "qualityLimits": {
+        "maxMeanError": 1.0,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "references": [
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psd1d581e0230939",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            7,
+            "_$child",
+            3
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://ea7b88bf-76d5-5ae6-bcd6-e887e5a7b2d3",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null
+        },
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psd8f6f8db9b926b",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            7,
+            "_$child",
+            4
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://ea7b88bf-76d5-5ae6-bcd6-e887e5a7b2d3",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null
+        },
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psdd6bde3e714379",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            7,
+            "_$child",
+            5
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://ea7b88bf-76d5-5ae6-bcd6-e887e5a7b2d3",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null
+        }
+      ],
+      "safeReferences": 3
+    },
+    {
+      "source": "assets/ui/商城_给程序/切的/组 24/组 23.png",
+      "sourceSha256": "df7ce9c2a42cfe58aad67926e60b455ed9abefe89c549fecc136de809db2f1ba",
+      "status": "candidate",
+      "reason": null,
+      "sourceMetadata": {
+        "uuid": "a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+        "importer": {
+          "textureType": 2,
+          "sRGB": true,
+          "generateMipmap": false,
+          "npot": 0,
+          "maxSize": 0,
+          "usePng8": false
+        }
+      },
+      "sourceFilterMode": 1,
+      "sourceSize": [
+        141,
+        63
+      ],
+      "cpuQuality": {
+        "equal": false,
+        "differentPixels": 301,
+        "firstDifferentPixel": [
+          93,
+          0
+        ],
+        "meanError": 0.43656423687934875,
+        "badPixelRatio": 0.00990656309805246,
+        "maxVisualChannelError": 155.0,
+        "maxRawChannelError": 255,
+        "pixelErrorThreshold": 32,
+        "metric": "premultiplied_rgba",
+        "accepted": true,
+        "qualityLimits": {
+          "maxMeanError": 1.0,
+          "maxBadPixelRatio": 0.01,
+          "pixelErrorThreshold": 32,
+          "edgeTolerancePixels": 2
+        }
+      },
+      "qualityLimits": {
+        "maxMeanError": 1.0,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "mode": "visual",
+      "outputSize": [
+        107,
+        46
+      ],
+      "sizeGrid": {
+        "top": 19,
+        "right": 43,
+        "bottom": 19,
+        "left": 56,
+        "repeat": 0
+      },
+      "layaSizeGrid": "19,43,19,56,0",
+      "columnBand": [
+        55,
+        99
+      ],
+      "rowBand": [
+        18,
+        45
+      ],
+      "sourceCenterX": [
+        77,
+        85
+      ],
+      "sourceCenterY": [
+        34,
+        42
+      ],
+      "samplingGuard": 1,
+      "retainedCenterSize": [
+        8,
+        8
+      ],
+      "removedColumns": {
+        "start": 55,
+        "length": 34
+      },
+      "removedRows": {
+        "start": 18,
+        "length": 17
+      },
+      "sliceMode": "nine_slice",
+      "pixelAreaSavedRatio": 0.4459079139930203,
+      "output": "assets/ui/商城_给程序/切的/组 24/组 23.png",
+      "references": [
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psd4471c4b2a2c82",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            7,
+            "_$child",
+            0
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null,
+          "newSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+          "newSizeGrid": "19,43,19,56,0",
+          "gridLocation": "texture.importer.sizeGrid"
+        },
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psd642da2afc2bfe",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            7,
+            "_$child",
+            1
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null,
+          "newSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+          "newSizeGrid": "19,43,19,56,0",
+          "gridLocation": "texture.importer.sizeGrid"
+        },
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psd4422af4114f85",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            7,
+            "_$child",
+            2
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null,
+          "newSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+          "newSizeGrid": "19,43,19,56,0",
+          "gridLocation": "texture.importer.sizeGrid"
+        }
+      ],
+      "safeReferences": 3,
+      "overwriteSource": true,
+      "previousOutput": "assets/ninegrid_auto/ui/商城_给程序/切的/组 24/组 23.png",
+      "previousGrid": "19,43,19,56,0"
+    },
+    {
+      "source": "assets/ui/商城_给程序/切的/组 37.png",
+      "sourceSha256": "27877066ed189eb354b91ff1519d7cfca210803d85db31f41b653394c1cf548e",
+      "status": "candidate",
+      "reason": null,
+      "sourceMetadata": {
+        "uuid": "dbe4a9e8-1564-587e-a479-fe51d8d0ea74",
+        "importer": {
+          "textureType": 2,
+          "sRGB": true,
+          "generateMipmap": false,
+          "npot": 0,
+          "maxSize": 0,
+          "usePng8": false
+        }
+      },
+      "sourceFilterMode": 1,
+      "sourceSize": [
+        738,
+        1078
+      ],
+      "cpuQuality": {
+        "equal": false,
+        "differentPixels": 15291,
+        "firstDifferentPixel": [
+          10,
+          394
+        ],
+        "meanError": 0.13511595129966736,
+        "badPixelRatio": 0.002957650170193724,
+        "maxVisualChannelError": 255.0,
+        "maxRawChannelError": 255,
+        "pixelErrorThreshold": 32,
+        "metric": "premultiplied_rgba",
+        "accepted": true,
+        "qualityLimits": {
+          "maxMeanError": 1.0,
+          "maxBadPixelRatio": 0.01,
+          "pixelErrorThreshold": 32,
+          "edgeTolerancePixels": 2
+        }
+      },
+      "qualityLimits": {
+        "maxMeanError": 1.0,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "mode": "visual",
+      "outputSize": [
+        738,
+        592
+      ],
+      "sizeGrid": {
+        "top": 395,
+        "right": 0,
+        "bottom": 189,
+        "left": 0,
+        "repeat": 0
+      },
+      "layaSizeGrid": "395,0,189,0,0",
+      "columnBand": null,
+      "rowBand": [
+        394,
+        890
+      ],
+      "sourceCenterX": null,
+      "sourceCenterY": [
+        624,
+        632
+      ],
+      "samplingGuard": 1,
+      "retainedCenterSize": [
+        738,
+        8
+      ],
+      "removedColumns": null,
+      "removedRows": {
+        "start": 394,
+        "length": 486
+      },
+      "sliceMode": "vertical_three_slice",
+      "pixelAreaSavedRatio": 0.45083487940630795,
+      "output": "assets/ui/商城_给程序/切的/组 37.png",
+      "references": [
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psd18d6e1cac2a8a",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            0
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://dbe4a9e8-1564-587e-a479-fe51d8d0ea74",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null,
+          "newSkin": "res://dbe4a9e8-1564-587e-a479-fe51d8d0ea74",
+          "newSizeGrid": "395,0,189,0,0",
+          "gridLocation": "texture.importer.sizeGrid"
+        }
+      ],
+      "safeReferences": 1,
+      "overwriteSource": true,
+      "previousOutput": "assets/ninegrid_auto/ui/商城_给程序/切的/组 37.png",
+      "previousGrid": "395,0,189,0,0"
+    },
+    {
+      "source": "assets/ui/商城_给程序/切的/组 9.png",
+      "sourceSha256": "3a4b7f12a4d97b80236cd6f758862f85d4b870704d7000350b0fd43369a42651",
+      "status": "skipped",
+      "reason": "no_visual_candidate_within_budget",
+      "sourceMetadata": {
+        "uuid": "d691d9ff-6182-5d05-9bfd-46135fa03de9",
+        "importer": {
+          "textureType": 2,
+          "sRGB": true,
+          "generateMipmap": false,
+          "npot": 0,
+          "maxSize": 0,
+          "usePng8": false
+        }
+      },
+      "sourceFilterMode": 1,
+      "sourceSize": [
+        115,
+        114
+      ],
+      "cpuQuality": {
+        "reason": "no_visual_candidate_within_budget",
+        "accepted": false,
+        "qualityLimits": {
+          "maxMeanError": 1.0,
+          "maxBadPixelRatio": 0.01,
+          "pixelErrorThreshold": 32,
+          "edgeTolerancePixels": 2
+        }
+      },
+      "qualityLimits": {
+        "maxMeanError": 1.0,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "references": [
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psdf70b94aeb67de",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            4
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://d691d9ff-6182-5d05-9bfd-46135fa03de9",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null
+        },
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psdbd82a28b1f088",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            5
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://d691d9ff-6182-5d05-9bfd-46135fa03de9",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null
+        },
+        {
+          "file": "assets/ui/商城_给程序/商城_给程序.lh",
+          "nodeId": "psd8f854692d8bc8",
+          "pointer": [
+            "_$child",
+            1,
+            "_$child",
+            6
+          ],
+          "type": "GImage",
+          "property": "src",
+          "oldSkin": "res://d691d9ff-6182-5d05-9bfd-46135fa03de9",
+          "oldSizeGrid": null,
+          "eligible": true,
+          "reason": null
+        }
+      ],
+      "safeReferences": 3
+    }
+  ],
+  "summary": {
+    "scanned": 6,
+    "candidates": 3,
+    "safeReferences": 14
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "schemaVersion": 1,
+  "runId": "20261022T072754-55af04d0db5b",
+  "kind": "apply_inplace",
+  "status": "committed",
+  "files": [
+    {
+      "path": ".ninegrid/apply-report.json",
+      "existed": true,
+      "beforeSha256": "931e8b1efa3546d359c1a360369092cffb0425f57977895a135aeeacf76ad3f6",
+      "afterSha256": "f7b5eb925d9f800cc77a7ad58325758313f6fad1f8bb3115cc389e27a46c4976"
+    },
+    {
+      "path": ".ninegrid/manifest.json",
+      "existed": true,
+      "beforeSha256": "df049e86fa468ed31193379cfaebf2f829bd4d53614ad23fb262761969f5590c",
+      "afterSha256": "0a76a295ba1a07c25c452b21383ebb37f5147bfd985a6d3afd9cdcb82324442f"
+    },
+    {
+      "path": "assets/ui/商城_给程序/切的/图层 68.png",
+      "existed": true,
+      "beforeSha256": "dca45387a5ed8ddab48cf47c77de937f33788b7964f4decb14f6610c038b433b",
+      "afterSha256": "7d11f431930e713200fc5bddc6bdde87c7e7b1ff2af0761fa99144349212e3e9"
+    },
+    {
+      "path": "assets/ui/商城_给程序/切的/图层 68.png.meta",
+      "existed": true,
+      "beforeSha256": "127932466b95b19dd03de1d9eda6915520a0d49b2e4d38661fd5d0c111145dd0",
+      "afterSha256": "becd34e2cca92a8cf33211433cc97e4115cf96dbc30f231196eafff6fe43e1d2"
+    },
+    {
+      "path": "assets/ui/商城_给程序/切的/组 24/组 23.png",
+      "existed": true,
+      "beforeSha256": "df7ce9c2a42cfe58aad67926e60b455ed9abefe89c549fecc136de809db2f1ba",
+      "afterSha256": "4b8e399b812f35ecab830aef6cf3a25d4f079288d0db07630ecce0884d47311d"
+    },
+    {
+      "path": "assets/ui/商城_给程序/切的/组 24/组 23.png.meta",
+      "existed": true,
+      "beforeSha256": "129c6a38ba2e3a68504015008a54830b8c24a332fadd0758eb74fea5f3e20a35",
+      "afterSha256": "f170c841c48995222d08638666231fe6dc5c50e37ac30c5eddb781bf6100d325"
+    },
+    {
+      "path": "assets/ui/商城_给程序/切的/组 37.png",
+      "existed": true,
+      "beforeSha256": "27877066ed189eb354b91ff1519d7cfca210803d85db31f41b653394c1cf548e",
+      "afterSha256": "08c49ff83a10866e83e1c5d4f884975964196e57123e194d9b24d3a85ca9f408"
+    },
+    {
+      "path": "assets/ui/商城_给程序/切的/组 37.png.meta",
+      "existed": true,
+      "beforeSha256": "3a88b089153d8ca39c5136ea0a798566f759576e31f4d7549e370656a05f878c",
+      "afterSha256": "8bdcb19dda43d554d13b372a2a6acc9a39ea46490d434ca6742459ee97d59205"
+    }
+  ],
+  "details": {
+    "references": [
+      {
+        "file": "assets/ui/商城_给程序/商城_给程序.lh",
+        "nodeId": "psd253d950f11ebd",
+        "pointer": [
+          "_$child",
+          1,
+          "_$child",
+          1
+        ],
+        "type": "GImage",
+        "property": "src",
+        "oldSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+        "oldSizeGrid": null,
+        "eligible": true,
+        "reason": null,
+        "newSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+        "newSizeGrid": "37,31,37,31,0",
+        "gridLocation": "texture.importer.sizeGrid",
+        "applied": true
+      },
+      {
+        "file": "assets/ui/商城_给程序/商城_给程序.lh",
+        "nodeId": "psdd939926f05444",
+        "pointer": [
+          "_$child",
+          1,
+          "_$child",
+          2
+        ],
+        "type": "GImage",
+        "property": "src",
+        "oldSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+        "oldSizeGrid": null,
+        "eligible": true,
+        "reason": null,
+        "newSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+        "newSizeGrid": "37,31,37,31,0",
+        "gridLocation": "texture.importer.sizeGrid",
+        "applied": true
+      },
+      {
+        "file": "assets/ui/商城_给程序/商城_给程序.lh",
+        "nodeId": "psd0d7f0e3361660",
+        "pointer": [
+          "_$child",
+          1,
+          "_$child",
+          3
+        ],
+        "type": "GImage",
+        "property": "src",
+        "oldSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+        "oldSizeGrid": null,
+        "eligible": true,
+        "reason": null,
+        "newSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+        "newSizeGrid": "37,31,37,31,0",
+        "gridLocation": "texture.importer.sizeGrid",
+        "applied": true
+      },
+      {
+        "file": "assets/ui/商城_给程序/商城_给程序.lh",
+        "nodeId": "psd4471c4b2a2c82",
+        "pointer": [
+          "_$child",
+          1,
+          "_$child",
+          7,
+          "_$child",
+          0
+        ],
+        "type": "GImage",
+        "property": "src",
+        "oldSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+        "oldSizeGrid": null,
+        "eligible": true,
+        "reason": null,
+        "newSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+        "newSizeGrid": "19,43,19,56,0",
+        "gridLocation": "texture.importer.sizeGrid",
+        "applied": true
+      },
+      {
+        "file": "assets/ui/商城_给程序/商城_给程序.lh",
+        "nodeId": "psd642da2afc2bfe",
+        "pointer": [
+          "_$child",
+          1,
+          "_$child",
+          7,
+          "_$child",
+          1
+        ],
+        "type": "GImage",
+        "property": "src",
+        "oldSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+        "oldSizeGrid": null,
+        "eligible": true,
+        "reason": null,
+        "newSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+        "newSizeGrid": "19,43,19,56,0",
+        "gridLocation": "texture.importer.sizeGrid",
+        "applied": true
+      },
+      {
+        "file": "assets/ui/商城_给程序/商城_给程序.lh",
+        "nodeId": "psd4422af4114f85",
+        "pointer": [
+          "_$child",
+          1,
+          "_$child",
+          7,
+          "_$child",
+          2
+        ],
+        "type": "GImage",
+        "property": "src",
+        "oldSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+        "oldSizeGrid": null,
+        "eligible": true,
+        "reason": null,
+        "newSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+        "newSizeGrid": "19,43,19,56,0",
+        "gridLocation": "texture.importer.sizeGrid",
+        "applied": true
+      },
+      {
+        "file": "assets/ui/商城_给程序/商城_给程序.lh",
+        "nodeId": "psd18d6e1cac2a8a",
+        "pointer": [
+          "_$child",
+          1,
+          "_$child",
+          0
+        ],
+        "type": "GImage",
+        "property": "src",
+        "oldSkin": "res://dbe4a9e8-1564-587e-a479-fe51d8d0ea74",
+        "oldSizeGrid": null,
+        "eligible": true,
+        "reason": null,
+        "newSkin": "res://dbe4a9e8-1564-587e-a479-fe51d8d0ea74",
+        "newSizeGrid": "395,0,189,0,0",
+        "gridLocation": "texture.importer.sizeGrid",
+        "applied": true
+      }
+    ]
+  }
+}

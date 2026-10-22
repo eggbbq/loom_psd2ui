@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "runId": "20261022T072751-030e89504755",
+  "kind": "build_inplace",
+  "status": "committed",
+  "files": [
+    {
+      "path": ".ninegrid/manifest.json",
+      "existed": true,
+      "beforeSha256": "60ffa3e5d50d7c464f8bc3f4aa2ce093be7521963be88e67e553648e92ae6d6d",
+      "afterSha256": "df049e86fa468ed31193379cfaebf2f829bd4d53614ad23fb262761969f5590c"
+    },
+    {
+      "path": ".ninegrid/originals/27877066ed189eb354b91ff1519d7cfca210803d85db31f41b653394c1cf548e.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "27877066ed189eb354b91ff1519d7cfca210803d85db31f41b653394c1cf548e"
+    },
+    {
+      "path": ".ninegrid/originals/dca45387a5ed8ddab48cf47c77de937f33788b7964f4decb14f6610c038b433b.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "dca45387a5ed8ddab48cf47c77de937f33788b7964f4decb14f6610c038b433b"
+    },
+    {
+      "path": ".ninegrid/originals/df7ce9c2a42cfe58aad67926e60b455ed9abefe89c549fecc136de809db2f1ba.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "df7ce9c2a42cfe58aad67926e60b455ed9abefe89c549fecc136de809db2f1ba"
+    },
+    {
+      "path": ".ninegrid/report.json",
+      "existed": true,
+      "beforeSha256": "613660c7f9d90cface11a5f21a4b20e60094c0babba5868840a31233de4dcc0b",
+      "afterSha256": "129a361fabad4ed951826eb25702d31b912bd73f2bf75670a4de6aa31f9e5263"
+    },
+    {
+      "path": ".ninegrid/staged/ui/商城_给程序/切的/图层 68.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "7d11f431930e713200fc5bddc6bdde87c7e7b1ff2af0761fa99144349212e3e9"
+    },
+    {
+      "path": ".ninegrid/staged/ui/商城_给程序/切的/组 24/组 23.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "4b8e399b812f35ecab830aef6cf3a25d4f079288d0db07630ecce0884d47311d"
+    },
+    {
+      "path": ".ninegrid/staged/ui/商城_给程序/切的/组 37.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "08c49ff83a10866e83e1c5d4f884975964196e57123e194d9b24d3a85ca9f408"
+    }
+  ],
+  "details": {}
+}

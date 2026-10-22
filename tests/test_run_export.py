@@ -7,7 +7,7 @@ import sys
 import pytest
 from psd_tools import PSDImage
 
-import start
+import run_export
 from tests.fixture_factory import group, pixel
 
 
@@ -19,9 +19,9 @@ def pipeline(tmp_path, monkeypatch):
     psd.save(source)
     script = tmp_path / "scripts/generate_asset_bundle.py"
     script.parent.mkdir()
-    shutil.copy2(start.ROOT / "scripts/generate_asset_bundle.py", script)
-    monkeypatch.setattr(start, "ensure_python", lambda root: Path(sys.executable))
-    args = start.parser().parse_args(["--input", source.name, "--dedupe-images", "0.99"])
+    shutil.copy2(run_export.ROOT / "scripts/generate_asset_bundle.py", script)
+    monkeypatch.setattr(run_export, "ensure_python", lambda root: Path(sys.executable))
+    args = run_export.parser().parse_args(["--input", source.name, "--dedupe-images", "0.99"])
     target = tmp_path / "laya-project/assets/ui" / source.stem
     return tmp_path, args, source, target
 
@@ -33,7 +33,7 @@ def contents(directory):
 
 def test_pipeline_moves_bundle_and_reuses_cache_and_project_metadata(pipeline, capsys):
     root, args, source, target = pipeline
-    start.run(args, root)
+    run_export.run(args, root)
     assert (target / (source.stem + ".lh")).is_file()
     assert (target / "Shop/Picture.png").is_file()
     assert not (root / source.stem).exists()
@@ -45,7 +45,7 @@ def test_pipeline_moves_bundle_and_reuses_cache_and_project_metadata(pipeline, c
     meta_path.write_text(json.dumps(meta))
     before = contents(target)
     capsys.readouterr()
-    start.run(args, root)
+    run_export.run(args, root)
     assert f"导出 {args.input}（" not in capsys.readouterr().out
     # The generator normalizes JSON formatting; the existing importer is intact.
     assert json.loads(meta_path.read_text()) == meta
@@ -59,7 +59,7 @@ def test_pipeline_moves_bundle_and_reuses_cache_and_project_metadata(pipeline, c
 @pytest.mark.parametrize("change", ["missing_png", "layout", "parameters", "force"])
 def test_pipeline_reexports_when_cached_output_is_no_longer_valid(pipeline, capsys, change):
     root, args, source, target = pipeline
-    start.run(args, root)
+    run_export.run(args, root)
     if change == "missing_png":
         (target / "Shop/Picture.png").unlink()
     elif change == "layout":
@@ -71,7 +71,7 @@ def test_pipeline_reexports_when_cached_output_is_no_longer_valid(pipeline, caps
     else:
         args.reexport = True
     capsys.readouterr()
-    start.run(args, root)
+    run_export.run(args, root)
     assert f"导出 {args.input}（" in capsys.readouterr().out
     assert json.loads((target / "layout.json").read_text())["size"] == [60, 80]
     assert (target / "Shop/Picture.png").is_file()
@@ -79,11 +79,11 @@ def test_pipeline_reexports_when_cached_output_is_no_longer_valid(pipeline, caps
 
 def test_export_failure_preserves_previous_laya_bundle(pipeline):
     root, args, source, target = pipeline
-    start.run(args, root)
+    run_export.run(args, root)
     before = contents(target)
     args.report = Path(source.stem) / "Shop/Picture.png"
     with pytest.raises(subprocess.CalledProcessError):
-        start.run(args, root)
+        run_export.run(args, root)
     assert contents(target) == before
 
 
@@ -104,7 +104,7 @@ def test_failed_move_restores_target_and_keeps_staged_output(tmp_path, monkeypat
 
     monkeypatch.setattr(Path, "rename", fail_output)
     with pytest.raises(OSError, match="simulated move failure"):
-        start.move_bundle(output, target, tmp_path / "backups")
+        run_export.move_bundle(output, target, tmp_path / "backups")
     assert (output / "new").read_text() == "new"
     assert target.exists() == existing
     if existing:
@@ -120,7 +120,7 @@ def test_invalid_staging_directory_is_rejected_before_environment_setup(pipeline
     def forbidden(root):
         pytest.fail("Invalid paths must be rejected before environment setup")
 
-    monkeypatch.setattr(start, "ensure_python", forbidden)
+    monkeypatch.setattr(run_export, "ensure_python", forbidden)
     with pytest.raises(ValueError):
-        start.run(args, root)
+        run_export.run(args, root)
     assert not target.exists()

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "runId": "20261022T070214-4160be348fff",
+  "kind": "build",
+  "status": "committed",
+  "files": [
+    {
+      "path": ".ninegrid/manifest.json",
+      "existed": true,
+      "beforeSha256": "38e5473b566c8bd3c383b973e7f6fac20163627c5f4665d4f5fcb65694e8672f",
+      "afterSha256": "8ca1e74d760ab1d65ed7334920e1df411a6d2a5c2c424bbfa1898888bbdd412b"
+    },
+    {
+      "path": ".ninegrid/report.json",
+      "existed": true,
+      "beforeSha256": "c02f570c51016699e274efcde3988c0881946218914858b8718d7d52aeb3de43",
+      "afterSha256": "c11f176b7f8e9c3b092af9699c27a23d091da51d845794c416335cd2f4ad520d"
+    },
+    {
+      "path": ".ninegrid/report.md",
+      "existed": true,
+      "beforeSha256": "ff2864e47b990cf565203a77bcc0fc3cb7f2b23578fde8f8d028e8cefe15e132",
+      "afterSha256": "afb0c82e016e4c3ea265950df0e05a87b0806ea784e2b36cf59ff30a735fd331"
+    },
+    {
+      "path": "assets/ninegrid_auto/ui/商城_给程序/切的/图层 68.png",
+      "existed": true,
+      "beforeSha256": "d91152396a5e45f094203f9ddbfb2c5b7343c4fd6588cd25923a8c5fd3dd0f13",
+      "afterSha256": "7d11f431930e713200fc5bddc6bdde87c7e7b1ff2af0761fa99144349212e3e9"
+    },
+    {
+      "path": "assets/ninegrid_auto/ui/商城_给程序/切的/图层 68.png.meta",
+      "existed": true,
+      "beforeSha256": "1d569370f1eea341e4f60505942daa7c27b9b859f6bdfaaf7847f8b09be64666",
+      "afterSha256": "00599edefd649eb8198106e35acdad33ef897351cb0f7259debd114f8f74879a"
+    },
+    {
+      "path": "assets/ninegrid_auto/ui/商城_给程序/切的/组 24/组 23.png",
+      "existed": true,
+      "beforeSha256": "2ee830401d27ae7dedaa1e9e4ac2410b913ce1aa13da2e5e1326189e43bff80c",
+      "afterSha256": "4b8e399b812f35ecab830aef6cf3a25d4f079288d0db07630ecce0884d47311d"
+    },
+    {
+      "path": "assets/ninegrid_auto/ui/商城_给程序/切的/组 24/组 23.png.meta",
+      "existed": true,
+      "beforeSha256": "872bcb4489c6b2dfd33fb769c07b02317afaf4ba65c1e0574083889c00fb5dfc",
+      "afterSha256": "6ff42284b8c26389ab1f50ce530c29edf11574763b018126d859db238ec83cdb"
+    }
+  ],
+  "details": {}
+}
