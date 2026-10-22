@@ -47,6 +47,7 @@ def inputs(tmp_path):
 def test_native_hierarchy_text_and_texture_refs(inputs):
     source, project, layout = inputs
     result = generate_prefab(source / "layout.json", project)
+    assert Path(result["prefab"]).name == "UI.lh"
     prefab = json.loads(Path(result["prefab"]).read_text())
     assert result["textures"] == 1 and result["nodes"] == 6
     assert prefab["_$ver"] == 1 and prefab["_$type"] == "GWidget"
@@ -59,7 +60,7 @@ def test_native_hierarchy_text_and_texture_refs(inputs):
     assert images[0]["_$id"] != images[1]["_$id"]
     assert not images[1]["visible"]
     assert "alpha" not in images[0]
-    texture = project / "assets/PSD2UI/test/icon.png"
+    texture = project / "assets/PSD2UI/UI/icon.png"
     meta = json.loads(texture.with_suffix(".png.meta").read_text())
     assert images[0]["src"] == "res://" + meta["uuid"]
     assert texture.read_bytes() == (source / "icon.png").read_bytes()
@@ -99,7 +100,7 @@ def test_scene_instance_overrides_are_preserved(inputs):
 def test_stable_ids_and_existing_meta_are_preserved(inputs):
     source, project, _ = inputs
     generate_prefab(source / "layout.json", project)
-    meta_path = project / "assets/PSD2UI/test/icon.png.meta"
+    meta_path = project / "assets/PSD2UI/UI/icon.png.meta"
     meta = json.loads(meta_path.read_text())
     meta["importer"]["filterMode"] = 0
     meta["uuid"] = str(uuid.uuid4())

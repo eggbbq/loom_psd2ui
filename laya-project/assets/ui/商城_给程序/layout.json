@@ -1,0 +1,566 @@
+{
+  "version": 1,
+  "name": "商城_给程序",
+  "type": "root",
+  "position": [
+    0,
+    0
+  ],
+  "size": [
+    720,
+    1280
+  ],
+  "visible": true,
+  "children": [
+    {
+      "name": "图层 1",
+      "visible": true,
+      "type": "container",
+      "children": [],
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "切的",
+      "visible": true,
+      "type": "container",
+      "children": [
+        {
+          "name": "组 37",
+          "visible": true,
+          "type": "image",
+          "asset": "切的/组 37.png",
+          "component": "GImage",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            738,
+            1078
+          ]
+        },
+        {
+          "name": "图层 68",
+          "visible": true,
+          "type": "image",
+          "asset": "切的/图层 68.png",
+          "position": [
+            79,
+            269
+          ],
+          "size": [
+            575,
+            172
+          ]
+        },
+        {
+          "name": "图层 68",
+          "visible": true,
+          "type": "image",
+          "asset": "切的/图层 68.png",
+          "position": [
+            79,
+            452
+          ],
+          "size": [
+            575,
+            172
+          ]
+        },
+        {
+          "name": "图层 68",
+          "visible": true,
+          "type": "image",
+          "asset": "切的/图层 68.png",
+          "position": [
+            79,
+            635
+          ],
+          "size": [
+            575,
+            172
+          ]
+        },
+        {
+          "name": "组 9",
+          "visible": true,
+          "type": "image",
+          "asset": "切的/组 9.png",
+          "component": "GImage",
+          "position": [
+            108,
+            301
+          ],
+          "size": [
+            115,
+            114
+          ]
+        },
+        {
+          "name": "组 9 拷贝",
+          "visible": true,
+          "type": "image",
+          "asset": "切的/组 9.png",
+          "component": "GImage",
+          "position": [
+            108,
+            483
+          ],
+          "size": [
+            115,
+            114
+          ]
+        },
+        {
+          "name": "组 9 拷贝 2",
+          "visible": true,
+          "type": "image",
+          "asset": "切的/组 9.png",
+          "component": "GImage",
+          "position": [
+            108,
+            667
+          ],
+          "size": [
+            115,
+            114
+          ]
+        },
+        {
+          "name": "组 24",
+          "visible": true,
+          "type": "container",
+          "children": [
+            {
+              "name": "组 23",
+              "visible": true,
+              "type": "image",
+              "asset": "切的/组 24/组 23.png",
+              "position": [
+                0,
+                0
+              ],
+              "size": [
+                141,
+                63
+              ]
+            },
+            {
+              "name": "组 23",
+              "visible": true,
+              "type": "image",
+              "asset": "切的/组 24/组 23.png",
+              "position": [
+                0,
+                183
+              ],
+              "size": [
+                141,
+                63
+              ]
+            },
+            {
+              "name": "组 23",
+              "visible": true,
+              "type": "image",
+              "asset": "切的/组 24/组 23.png",
+              "position": [
+                0,
+                366
+              ],
+              "size": [
+                141,
+                63
+              ]
+            },
+            {
+              "name": "椭圆 7",
+              "visible": true,
+              "type": "image",
+              "asset": "切的/组 24/椭圆 7.png",
+              "position": [
+                26,
+                11
+              ],
+              "size": [
+                27,
+                31
+              ]
+            },
+            {
+              "name": "椭圆 7",
+              "visible": true,
+              "type": "image",
+              "asset": "切的/组 24/椭圆 7.png",
+              "position": [
+                26,
+                194
+              ],
+              "size": [
+                27,
+                31
+              ]
+            },
+            {
+              "name": "椭圆 7",
+              "visible": true,
+              "type": "image",
+              "asset": "切的/组 24/椭圆 7.png",
+              "position": [
+                26,
+                377
+              ],
+              "size": [
+                27,
+                31
+              ]
+            }
+          ],
+          "position": [
+            483,
+            342
+          ],
+          "size": [
+            141,
+            429
+          ]
+        },
+        {
+          "name": "图层 986",
+          "visible": true,
+          "type": "image",
+          "asset": "切的/图层 986.png",
+          "position": [
+            599,
+            96
+          ],
+          "size": [
+            106,
+            168
+          ]
+        }
+      ],
+      "position": [
+        -6,
+        105
+      ],
+      "size": [
+        738,
+        1078
+      ]
+    },
+    {
+      "name": "字",
+      "visible": true,
+      "type": "container",
+      "children": [
+        {
+          "name": "text",
+          "visible": true,
+          "type": "text",
+          "text": "x10",
+          "align": "left",
+          "outline": 2.0,
+          "font": "MicrosoftYaHei-Bold",
+          "fontSize": 20.0,
+          "color": "#FFFFFF",
+          "outlineColor": "#000000",
+          "position": [
+            0.0,
+            250.0
+          ],
+          "size": [
+            38.15889999999999,
+            22.441400000000044
+          ]
+        },
+        {
+          "name": "text",
+          "visible": true,
+          "type": "text",
+          "text": "钻石",
+          "align": "left",
+          "outline": 0,
+          "font": "MicrosoftYaHei-Bold",
+          "fontSize": 25.0,
+          "color": "#4F4444",
+          "position": [
+            53.172200000000004,
+            194.69830000000002
+          ],
+          "size": [
+            51.34960000000001,
+            28.051699999999983
+          ]
+        },
+        {
+          "name": "text",
+          "visible": true,
+          "type": "text",
+          "text": "一颗一颗一颗一颗",
+          "align": "left",
+          "outline": 0,
+          "font": "MicrosoftYaHei-Bold",
+          "fontSize": 22.0,
+          "color": "#7C5959",
+          "position": [
+            53.172200000000004,
+            235.27930000000003
+          ],
+          "size": [
+            180.7507,
+            24.685600000000022
+          ]
+        },
+        {
+          "name": "text",
+          "visible": true,
+          "type": "text",
+          "text": "拥有：1111",
+          "align": "left",
+          "outline": 0,
+          "font": "MicrosoftYaHei-Bold",
+          "fontSize": 20.0,
+          "color": "#4F4444",
+          "position": [
+            325.1563,
+            183.0
+          ],
+          "size": [
+            113.13079999999997,
+            22.441400000000044
+          ]
+        },
+        {
+          "name": "text",
+          "visible": true,
+          "type": "text",
+          "text": "分享",
+          "align": "left",
+          "outline": 2.0,
+          "font": "MicrosoftYaHei-Bold",
+          "fontSize": 23.9189,
+          "color": "#FFFFFF",
+          "outlineColor": "#000000",
+          "position": [
+            372.6404,
+            226.85680000000002
+          ],
+          "size": [
+            49.45519999999999,
+            26.838700000000017
+          ]
+        },
+        {
+          "name": "text",
+          "visible": true,
+          "type": "text",
+          "text": "x10",
+          "align": "left",
+          "outline": 2.0,
+          "font": "MicrosoftYaHei-Bold",
+          "fontSize": 20.0,
+          "color": "#FFFFFF",
+          "outlineColor": "#000000",
+          "position": [
+            0.0,
+            435.0
+          ],
+          "size": [
+            38.15889999999999,
+            22.441400000000044
+          ]
+        },
+        {
+          "name": "text",
+          "visible": true,
+          "type": "text",
+          "text": "钻石",
+          "align": "left",
+          "outline": 0,
+          "font": "MicrosoftYaHei-Bold",
+          "fontSize": 25.0,
+          "color": "#4F4444",
+          "position": [
+            53.172200000000004,
+            377.6983
+          ],
+          "size": [
+            51.34960000000001,
+            28.051699999999983
+          ]
+        },
+        {
+          "name": "text",
+          "visible": true,
+          "type": "text",
+          "text": "一颗一颗一颗一颗",
+          "align": "left",
+          "outline": 0,
+          "font": "MicrosoftYaHei-Bold",
+          "fontSize": 22.0,
+          "color": "#7C5959",
+          "position": [
+            53.172200000000004,
+            418.27930000000003
+          ],
+          "size": [
+            180.7507,
+            24.685600000000022
+          ]
+        },
+        {
+          "name": "text",
+          "visible": true,
+          "type": "text",
+          "text": "拥有：1111",
+          "align": "left",
+          "outline": 0,
+          "font": "MicrosoftYaHei-Bold",
+          "fontSize": 20.0,
+          "color": "#4F4444",
+          "position": [
+            325.1563,
+            366.0
+          ],
+          "size": [
+            113.13079999999997,
+            22.441400000000044
+          ]
+        },
+        {
+          "name": "text",
+          "visible": true,
+          "type": "text",
+          "text": "分享",
+          "align": "left",
+          "outline": 2.0,
+          "font": "MicrosoftYaHei-Bold",
+          "fontSize": 23.9189,
+          "color": "#FFFFFF",
+          "outlineColor": "#000000",
+          "position": [
+            372.6404,
+            409.8568
+          ],
+          "size": [
+            49.45519999999999,
+            26.838700000000017
+          ]
+        },
+        {
+          "name": "text",
+          "visible": true,
+          "type": "text",
+          "text": "x10",
+          "align": "left",
+          "outline": 2.0,
+          "font": "MicrosoftYaHei-Bold",
+          "fontSize": 20.0,
+          "color": "#FFFFFF",
+          "outlineColor": "#000000",
+          "position": [
+            1.1722000000000037,
+            68.0
+          ],
+          "size": [
+            36.36709999999999,
+            22.441400000000044
+          ]
+        },
+        {
+          "name": "text",
+          "visible": true,
+          "type": "text",
+          "text": "钻石",
+          "align": "left",
+          "outline": 0,
+          "font": "MicrosoftYaHei-Bold",
+          "fontSize": 25.0,
+          "color": "#4F4444",
+          "position": [
+            53.172200000000004,
+            11.698300000000017
+          ],
+          "size": [
+            51.34960000000001,
+            28.051699999999983
+          ]
+        },
+        {
+          "name": "text",
+          "visible": true,
+          "type": "text",
+          "text": "一颗一颗一颗一颗",
+          "align": "left",
+          "outline": 0,
+          "font": "MicrosoftYaHei-Bold",
+          "fontSize": 22.0,
+          "color": "#7C5959",
+          "position": [
+            53.172200000000004,
+            52.279300000000035
+          ],
+          "size": [
+            180.7507,
+            24.685599999999965
+          ]
+        },
+        {
+          "name": "text",
+          "visible": true,
+          "type": "text",
+          "text": "拥有：1111",
+          "align": "left",
+          "outline": 0,
+          "font": "MicrosoftYaHei-Bold",
+          "fontSize": 20.0,
+          "color": "#4F4444",
+          "position": [
+            325.1563,
+            0.0
+          ],
+          "size": [
+            113.13079999999997,
+            22.441400000000044
+          ]
+        },
+        {
+          "name": "text",
+          "visible": true,
+          "type": "text",
+          "text": "分享",
+          "align": "left",
+          "outline": 2.0,
+          "font": "MicrosoftYaHei-Bold",
+          "fontSize": 23.9189,
+          "color": "#FFFFFF",
+          "outlineColor": "#000000",
+          "position": [
+            372.6404,
+            43.85680000000002
+          ],
+          "size": [
+            49.45519999999999,
+            26.838700000000017
+          ]
+        }
+      ],
+      "position": [
+        166.7569,
+        416.7759
+      ],
+      "size": [
+        438.2871,
+        457.44140000000004
+      ]
+    }
+  ]
+}

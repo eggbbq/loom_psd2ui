@@ -126,10 +126,11 @@ def capture_library_warnings(diagnostics, path):
 
 
 class Exporter:
-    def __init__(self, output, diagnostics=None):
+    def __init__(self, output, diagnostics=None, *, flat_assets=False):
         self.output = Path(output)
         self.diagnostics = diagnostics if diagnostics is not None else Diagnostics()
         self.asset_nodes = {}
+        self.asset_prefix = () if flat_assets else ("assets",)
 
     def node(self, layer, folders=(), ancestry=(), title_context=False):
         raw = layer.name
@@ -142,17 +143,20 @@ class Exporter:
             name = ("title" if title_context else "text") if text_fallback else export_name(raw)
         except ValueError as exc:
             self.diagnostics.fail("INVALID_EXPORT_NAME", path, str(exc))
-        # Group layer styles operate on the composed group, so bake the whole
-        # group just like img_. Disabled styles do not change its structure.
+        # Group masks and styles operate on the composed group, so bake the
+        # whole group just like img_ instead of losing masks on GWidget nodes.
         tag = layer_tag(raw)
         layout = component_layout(raw.partition("_")[0]) if tag else None
         flattened = component in ("GImage", "GLoader") or (
-            layer.is_group() and layer.effects.enabled and any(effect.enabled for effect in layer.effects)
+            layer.is_group() and (layer.has_mask() or layer.has_vector_mask() or
+                                 layer.effects.enabled and any(effect.enabled for effect in layer.effects))
         )
         visual_warnings(layer, self.diagnostics, path, flattened)
         node = {"name": name, "visible": bool(layer.visible)}
         if layer.is_group() and not flattened:
-            inside(self.output, "/".join(("assets", *folders, name))).mkdir(parents=True, exist_ok=True)
+            if not self.asset_prefix and not folders and name == "layout.json":
+                self.diagnostics.fail("INVALID_EXPORT_NAME", path, "Group name conflicts with layout.json")
+            inside(self.output, "/".join((*self.asset_prefix, *folders, name))).mkdir(parents=True, exist_ok=True)
             children = []
             # psd-tools >=1.7 iterates background -> foreground. Do NOT reverse.
             for child in layer:
@@ -219,7 +223,7 @@ class Exporter:
                 # there is no nonempty crop, and PNG cannot represent 0x0.
             except Exception as exc:
                 self.diagnostics.fail("COMPOSITE_FAILED", path, f"{type(exc).__name__}: {exc}")
-            asset = "/".join(("assets", *folders, name + ".png"))
+            asset = "/".join((*self.asset_prefix, *folders, name + ".png"))
             destination = inside(self.output, asset)
             destination.parent.mkdir(parents=True, exist_ok=True)
             node.update(type="image", asset=asset, _box=box, _render_origin=render_origin)
@@ -308,7 +312,7 @@ class Exporter:
             self.validate(child)
 
 
-def export_psd(source, output, diagnostics=None, *, dedupe_images=None):
+def export_psd(source, output, diagnostics=None, *, dedupe_images=None, flat_assets=False):
     """Stage a complete export before publishing layout.json (the success marker).
 
     Only paths produced by this export are replaced or, when deduplication is
@@ -319,7 +323,7 @@ def export_psd(source, output, diagnostics=None, *, dedupe_images=None):
     output = Path(output).resolve()
     output.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=".psd2ui-", dir=output) as stage:
-        exporter = Exporter(stage, diagnostics)
+        exporter = Exporter(stage, diagnostics, flat_assets=flat_assets)
         root = exporter.build(source)
         duplicates = deduplicate_images(root, stage, dedupe_images) if dedupe_images is not None else {}
         # Validate rewritten references and resolve every destination before publishing.

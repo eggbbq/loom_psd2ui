@@ -18,14 +18,18 @@ def main(argv=None):
     command.add_argument("--report", type=Path, help="Write a JSON array of diagnostics")
     command.add_argument("--dedupe-images", type=similarity_threshold, metavar="X",
                          help="Deduplicate same-size RGBA images at similarity >= X (0..1; 1 is exact; default off)")
+    command.add_argument("--flat-assets", action="store_true",
+                         help="Write PSD folders and PNGs directly under output, without an assets directory")
     args = parser.parse_args(argv)
     diagnostics = Diagnostics()
     success = False
     try:
         if args.report and (args.report.resolve() in {args.source.resolve(), (args.output / "layout.json").resolve()} or
-                            args.report.resolve().is_relative_to((args.output / "assets").resolve())):
+                            args.report.resolve().is_relative_to((args.output / "assets").resolve()) or
+                            args.report.resolve().is_relative_to(args.output.resolve()) and args.report.suffix.lower() == ".png"):
             diagnostics.fail("INVALID_REPORT_PATH", str(args.report), "Report cannot overwrite input, layout.json or PNG assets")
-        export_psd(args.source, args.output, diagnostics, dedupe_images=args.dedupe_images)
+        export_psd(args.source, args.output, diagnostics, dedupe_images=args.dedupe_images,
+                   flat_assets=args.flat_assets)
         success = True
     except ExportError:
         pass
@@ -34,7 +38,9 @@ def main(argv=None):
             "EXPORT_FAILED", "error", str(args.source), f"{type(exc).__name__}: {exc}"))
     if args.report:
         try:
-            if args.report.resolve() in {args.source.resolve(), (args.output / "layout.json").resolve()} or args.report.resolve().is_relative_to((args.output / "assets").resolve()):
+            if (args.report.resolve() in {args.source.resolve(), (args.output / "layout.json").resolve()} or
+                    args.report.resolve().is_relative_to((args.output / "assets").resolve()) or
+                    args.report.resolve().is_relative_to(args.output.resolve()) and args.report.suffix.lower() == ".png"):
                 raise ValueError("Report path would overwrite input or layout")
             args.report.parent.mkdir(parents=True, exist_ok=True)
             args.report.write_text(json.dumps([d.to_dict() for d in diagnostics.items], ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

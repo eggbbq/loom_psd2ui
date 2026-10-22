@@ -11,7 +11,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("layout", type=Path, nargs="?", default=root / "out/test/layout.json")
     parser.add_argument("--project", type=Path, default=root / "laya-project")
-    parser.add_argument("--output", default="assets/PSD2UI/test.lh", help="Prefab path relative to the project")
+    parser.add_argument("--output", help="Prefab path relative to the project (default: assets/PSD2UI/<PSD name>.lh)")
     parser.add_argument("--scene", help="Optional existing .ls to place a prefab instance in (project-relative)")
     args = parser.parse_args()
     try:

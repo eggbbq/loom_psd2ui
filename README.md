@@ -6,23 +6,37 @@
 
 `test.psd` 使用 Git LFS 保存。首次克隆后，请安装 [Git LFS](https://git-lfs.com/)，运行 `git lfs install` 和 `git lfs pull`，确保下载到完整 PSD 后再执行导出。
 
-## 一键浏览器预览（macOS / Linux）
+## 导出并移入 Laya 工程（macOS / Linux）
 
 ```bash
 ./start.sh
+PSD2UI_REEXPORT=1 ./start.sh  # 强制重新导出
 ```
 
-自动准备 Python 虚拟环境、导出发生变化的 `test.psd`、生成 `.lh`、构建原生工程，启动 HTTP 服务并打开浏览器。首次安装 Python 依赖需要网络；需要本机已安装 LayaAir CLI 3.4.1。
+脚本自动准备 Python 环境，读取参数数组中 `--input` 指定的 PSD，先导出到仓库根目录下的同名文件夹，成功后整体 `mv` 到 `laya-project/assets/ui/<PSD 文件名>/`。当前配置为 `商城_给程序.psd`，最终位置：
 
-`start.sh` 使用 Bash；导出参数集中在顶部 `args=(...)`，默认启用 `--dedupe-images 0.99`，注释该行可关闭。预览参数位于 `preview_args=(...)`。修改参数、源 PSD、导出代码，或检测到布局被外部改写、图片缺失时，会自动重新导出；缓存保存在输出目录的 `.start-export.json` 中。
+```text
+psd2ui/laya-project/assets/ui/商城_给程序/
+├── 商城_给程序.lh
+├── 商城_给程序.lh.meta
+├── layout.json
+├── diagnostics.json
+└── PSD 分组目录/…PNG 与 .png.meta
+```
+
+PNG 与预制体共用一套资源，目录按 PSD 分组结构保存，没有额外的 `assets` 层。预制体文件名取 PSD 文件名（不含扩展名）。`start.sh` 最后移动整个目录到 Laya 工程，保留已有 `.meta`，重复运行不会嵌套同名目录。它不修改场景、工程设置，不构建或启动浏览器；无需安装 LayaAir CLI。首次安装 Python 依赖需要网络。
+
+`start.sh` 只保留 `args=(...)` 参数配置和对 `start.py` 的调用，环境准备、缓存、导出、生成预制体及移动目录均由 `start.py` 实现。`--flat-assets` 取消 `assets` 层，`--dedupe-images 0.99` 启用去重，注释去重行可关闭。修改参数、源 PSD、导出代码，或检测到布局被外部改写、图片缺失时，会自动重新导出；缓存保存在输出目录的 `.start-export.json` 中。
+
+可以在命令行覆盖参数，或直接使用 Python 入口。相对路径均基于仓库目录：
 
 ```bash
-LAYAAIR_CLI=/path/to/layaair ./start.sh          # 按需指定 CLI 路径
-./start.sh --port 8877 --no-open                # 指定端口，不自动打开浏览器
-PSD2UI_REEXPORT=1 ./start.sh                    # 强制重导出
+./start.sh --input test.psd --reexport
+./start.sh --help
+python3 start.py --input test.psd --dedupe-images 0.99
 ```
 
-终端会打印实际地址（`/laya-project/release/web/`）；默认端口 8765，若占用则自动尝试后面的端口。保持终端运行，按 `Ctrl+C` 停止服务。panel 的可见性可在预制体中编辑。
+在 IDE 中打开 `assets/ui/商城_给程序/商城_给程序.lh` 即可编辑。需要放入预览场景时，可手动拖入，或使用下面的同步脚本。
 
 ## 安装与转换
 
@@ -59,6 +73,8 @@ python scripts/validate_export.py --output out/test-dedup \
 
 ## 命名与输出
 
+下面示例为导出 CLI 默认路径；`start.sh` 启用 `--flat-assets`，会移除路径开头的 `assets/`。
+
 ```text
 PSD 图层面板（上 → 下）                 输出
 ShopPanel                              layout.json
@@ -73,6 +89,7 @@ Settings      隐藏分组                  assets/Settings/Background.png
 
 - 原始名称任意位置有 `#`，整个子树不导出，优先级最高。
 - 名称以 `_` 分隔，第一段为类型，不使用 `$`。例如 `btn_settings_close` → 类型 `GButton`、名称 `settings_close`。New UI 类型名不区分大小写，未知前缀原样保留。`img_` 标在文本上时显式导出 PNG；旧 `$btn_`、`[img]`、`[image]` 等写法不再作为指令。
+- 兼容旧 PSD 的 `.img` 标记：名称任意位置包含 `.img`（不区分大小写）时强制使用 `GImage`，优先于其他类型前缀；导出名移除该标记。例如 `组 9.img 拷贝` → `组 9 拷贝`，`btn_Close.img` → 名为 `Close` 的 `GImage`。分组整体合成单张 PNG，内部节点不再导出；`#` 排除规则仍优先。
 - 没有 `_` 时用完整名称匹配类型，并保留原名，例如 `Button` → 名为 `Button` 的 `GButton`、`icon` → 名为 `icon` 的 `GLoader`。匹配不到时按 PSD 图层类别回退：分组 → `GWidget`，文本 → `GTextField`，图片 → `GImage`。
 - 使用 LayaAir **New UI**：无标签分组 → `GWidget`，普通文本 → `GTextField`，普通图片 → `GImage`。`hbox_` / `vbox_` → `GBox` 横向 / 纵向布局；`panel_` / `pnl_` → `GPanel`，`button_` / `btn_` → `GButton`，`list_` → `GList`，`loader_` / `icon_` / `ico_` → `GLoader`，`progressbar_` / `bar_` → `GProgressBar`。`vhox_` 保留为 `vbox_` 别名。其他 `类型名_` 自动匹配 New UI 的 G 类型，例如 `combobox_` / `gcombobox_` → `GComboBox`。
 - 文本缩写 `txt_` / `text_` / `title_` → `GTextField`；`input_` → `GTextInput`；`img_` → `GImage`，`pnl_` → `GPanel`，`icon_` / `ico_` → `GLoader`。例如 `title_player_name` 的导出名为 `player_name`。
@@ -81,6 +98,7 @@ Settings      隐藏分组                  assets/Settings/Background.png
 - `img_` 分组只输出一张 PNG；排除内部 `#` 子树和隐藏子层。忽略整体自身的隐藏状态生成素材，节点仍保留 `visible: false`。
 - 分组匹配 `icon` / `image` 类型时也强制整体导出图片：例如 `icon`、`icon_头像`、`image`、`image_背景`。只输出一个 image 节点和一张 PNG，内部图层、文字、嵌套分组不产生独立 JSON 节点或 PNG；预制体中也不展开内部层级。`icon` 对应 `GLoader`，`image` 对应 `GImage`。
 - **分组自身有已启用的图层样式（描边、外发光、阴影、颜色叠加等）时，自动按整体图片导出，无须命名 `img_`。** 生成一张同组名 PNG，组内文字也烘焙进整体图片，不展开内部节点或输出各子层 PNG；若分组带按钮等类型标签，则在对应组件下保留一个整体图片子节点。过滤、隐藏状态和透明度规则与 `img_` 分组相同。
+- **分组自身存在像素蒙版或矢量蒙版时，也强制整体合成图片**，把蒙版应用到整个组再导出，内部节点不再单独输出。默认使用 `GImage`；显式按钮等组件保留外层和单个合成图片子节点。停用的蒙版仍触发整体导出，但合成时遵循其停用状态；剪贴蒙版不是这一规则的触发条件。
 - 特效总开关关闭、所有效果都禁用时，不触发自动合成。只在子图层或子组上设置效果，不会使无效果的祖先组一起压平；仅设置普通混合模式也不触发此规则。无法保真的效果仍有诊断，严格模式失败。
 - 普通隐藏图层仍导出；没有启用效果且未标 `img_` 的分组保留层级。独立顶层分组就是 panel。
 - 组名对应目录，图层名对应文件名。中文、空格保留；路径分隔符、非法字符、`..`、Windows 保留名做安全规范化。空名称报错。规范化冲突和同名都按底 → 顶遍历顺序后写覆盖，不加后缀。
@@ -121,18 +139,34 @@ Settings      隐藏分组                  assets/Settings/Background.png
 
 文本的位置/尺寸使用 PSD 文本排版 `bounds` 经 `transform` 转换后的矩形，而非缓存像素的 `layer.bbox`（字形边界）；否则字体自身留白会再次计入，导致偏移。缺失排版框时回退字形边界并报告 `UNREADABLE_TEXT_BOUNDS`，严格模式失败。`状态栏/头像/Lv 10` 已有实际引擎像素回归：文本框原点 `[36,104]`，最终字形边界 `[39,116,119,138]` 与 PSD 相同。
 
-## LayaAir 原生预制体（当前工程使用）
+## LayaAir 原生预制体
 
-使用 LayaAir IDE **3.4.1** 打开 [PSD2UIDemo.laya](laya-project/PSD2UIDemo.laya)，打开 [test.lh](laya-project/assets/PSD2UI/test.lh) 即可查看和编辑全部 panel、图片和文本。`assets/Scene.ls` 通过原生 prefab 引用放置该预制体，直接运行场景即可。
+`start.sh` 已在生成预制体后移入 Laya 工程。仅重新生成预制体及 `.meta`，无需再次解析 PSD：
 
 ```bash
-.venv/bin/python scripts/generate_laya_prefab.py out/test/layout.json \
+.venv/bin/python scripts/generate_asset_bundle.py laya-project/assets/ui/商城_给程序/layout.json
+```
+
+需要同步到本仓库示例工程时，显式执行：
+
+```bash
+.venv/bin/python scripts/sync_laya_project.py --source-output laya-project/assets/ui/商城_给程序
+```
+
+同步输出为 `laya-project/assets/psd2ui/商城_给程序/商城_给程序.lh`，PNG 保持 layout 中的相对目录；同时更新 `assets/Scene.ls` 的预制体引用及 `PlayerSettings.resolution.designWidth/designHeight`，保留其他工程设置、已有资源 UUID、场景实例覆盖属性和手工添加的实例节点。
+
+使用 LayaAir IDE **3.4.1** 打开 [PSD2UIDemo.laya](laya-project/PSD2UIDemo.laya)，打开同步后的同名 `.lh` 编辑节点，运行 `assets/Scene.ls` 预览。重新生成会覆盖生成的预制体内容，手工编辑前请另存副本。
+
+通用脚本也可指定其他目标工程、预制体和场景：
+
+```bash
+.venv/bin/python scripts/generate_laya_prefab.py laya-project/assets/ui/商城_给程序/layout.json \
   --project laya-project \
-  --output assets/PSD2UI/test.lh \
+  --output assets/PSD2UI/商城_给程序.lh \
   --scene assets/Scene.ls
 ```
 
-也可以运行 `.venv/bin/python scripts/sync_laya_project.py`，默认按上述配置重新生成。省略 `--scene` 时只输出预制体和纹理，不改场景。已有资源 `.meta` UUID 保留，重复生成的节点 ID 和文件路径稳定；会覆盖生成的预制体内容，手工编辑前请另存副本。
+省略 `--output` 时使用 `assets/PSD2UI/<PSD 文件名>.lh`；省略 `--scene` 不改场景。通用脚本将纹理复制到预制体同名子目录，不修改设计分辨率。需要保持独立导出的平铺结构时，使用整目录复制或上面的同步脚本。
 
 根节点及无标签分组使用 `Laya.GWidget`，文本使用 `Laya.GTextField`，图片使用 `Laya.GImage`。图片默认使用 `GImage.src`（`autoSize: false`）引用 PNG，`loader_` / `icon_` / `ico_` 使用 `GLoader.src`。目标工程启用 `laya.ui`，并配置 `addons: {"laya.ui": "ui2"}`，示例工程已经选择 New UI。文本显式设置零 padding，保留已验证的 PSD 文字位置。位置、尺寸、可见性、alpha、文本样式和子节点顺序直接写入 `.lh`，运行时不读取 JSON、不动态创建 panel。
 

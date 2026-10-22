@@ -7,8 +7,8 @@
   "top": 0,
   "bottom": 0,
   "name": "PSD2UI",
-  "width": 750,
-  "height": 1624,
+  "width": 720,
+  "height": 1280,
   "_$child": [
     {
       "_$id": "psd401a39d7f072a",

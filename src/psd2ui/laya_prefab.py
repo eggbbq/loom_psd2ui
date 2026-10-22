@@ -98,13 +98,46 @@ def validate_layout(node, root=True):
                 raise ValueError(f"Invalid text {key}: {node['name']}")
 
 
-def generate_prefab(layout_path, project, output="assets/PSD2UI/test.lh", scene=None):
+def bundle_name(layout):
+    name = layout["name"]
+    if not name or name in (".", "..") or "/" in name or "\\" in name or ":" in name:
+        raise ValueError(f"Invalid PSD bundle name: {name}")
+    return name
+
+
+def generate_prefab(layout_path, project, output=None, scene=None, *,
+                    preserve_resource_paths=False, scene_instance_id=None):
+    if output is None:
+        layout = json.loads(Path(layout_path).read_text(encoding="utf-8"))
+        validate_layout(layout)
+        output = f"assets/PSD2UI/{bundle_name(layout)}.lh"
+    return _generate_prefab(layout_path, project, output, scene,
+                            preserve_resource_paths=preserve_resource_paths,
+                            scene_instance_id=scene_instance_id)
+
+
+def generate_asset_bundle(layout_path):
+    """Write a portable prefab beside layout.json; keep PNGs in their PSD folders."""
+    layout_path = Path(layout_path).resolve()
+    layout = json.loads(layout_path.read_text(encoding="utf-8"))
+    validate_layout(layout)
+    name = bundle_name(layout)
+    directory = layout_path.parent
+    return _generate_prefab(layout_path, directory.parent,
+                           (directory.name + "/" + name + ".lh"), None,
+                           assets_root=directory, texture_root=directory)
+
+
+def _generate_prefab(layout_path, project, output, scene, *, assets_root=None, texture_root=None,
+                     preserve_resource_paths=False, scene_instance_id=None):
     layout_path = Path(layout_path).resolve()
     project = Path(project).resolve()
     if not project.is_dir():
         raise ValueError(f"Project does not exist: {project}")
     destination = inside(project, str(output))
-    assets_root = (project / "assets").resolve()
+    if preserve_resource_paths and texture_root is None:
+        texture_root = destination.parent
+    assets_root = (Path(assets_root) if assets_root is not None else project / "assets").resolve()
     if not destination.is_relative_to(assets_root) or destination.suffix != ".lh":
         raise ValueError("Prefab output must be a .lh inside the project's assets directory")
     layout = json.loads(layout_path.read_text(encoding="utf-8"))
@@ -124,7 +157,7 @@ def generate_prefab(layout_path, project, output="assets/PSD2UI/test.lh", scene=
                     sizes[asset] = list(image.size)
             if sizes[asset] != node["size"]:
                 raise ValueError(f"PNG/node size mismatch: {asset}: {sizes[asset]} != {node['size']}")
-            target = inside(destination.with_suffix(""), asset)
+            target = inside(Path(texture_root) if texture_root is not None else destination.with_suffix(""), asset)
             if not target.is_relative_to(assets_root):
                 raise ValueError(f"Texture destination escapes project assets: {asset}")
             meta, data = meta_for(target, project, texture=True)
@@ -135,7 +168,7 @@ def generate_prefab(layout_path, project, output="assets/PSD2UI/test.lh", scene=
 
     prefab_meta, prefab_data = meta_for(destination, project)
     scene_path, scene_data = None, None
-    instance_id = node_id(("instance", destination.relative_to(project).as_posix()))
+    instance_id = scene_instance_id or node_id(("instance", destination.relative_to(project).as_posix()))
     if scene is not None:
         scene_path = inside(project, str(scene))
         if not scene_path.is_relative_to(assets_root) or scene_path.suffix != ".ls":

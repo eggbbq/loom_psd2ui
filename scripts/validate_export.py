@@ -52,6 +52,7 @@ def main():
     assert json.loads(report.read_text(encoding="utf-8")) == [d.to_dict() for d in diagnostics.items]
     psd = PSDImage.open(args.source)
     flattened_groups = []
+    masked_groups = []
     def check_effect_groups(source_group, exported_group, ancestry=()):
         layers = [layer for layer in source_group if "#" not in layer.name]
         if exported_group.get("layout"):
@@ -61,12 +62,16 @@ def main():
             if not layer.is_group():
                 continue
             styled = layer.effects.enabled and any(effect.enabled for effect in layer.effects)
-            if styled:
+            masked = layer.has_mask() or layer.has_vector_mask()
+            if styled or masked:
                 visual = node["children"][0] if node["type"] == "container" else node
                 if node["type"] == "container":
                     assert len(node["children"]) == 1, layer.name
                 assert visual["type"] == "image" and "children" not in visual, layer.name
-                flattened_groups.append("/".join((*ancestry, layer.name)))
+                if styled:
+                    flattened_groups.append("/".join((*ancestry, layer.name)))
+                if masked:
+                    masked_groups.append("/".join((*ancestry, layer.name)))
             elif tag_component(layer.name) not in ("GImage", "GLoader"):
                 assert node["type"] == "container", layer.name
                 check_effect_groups(layer, node, (*ancestry, layer.name))
@@ -77,6 +82,7 @@ def main():
                "nodes": dict(Counter(n["type"] for n in all_nodes)),
                "uniquePngFiles": len(assets),
                "autoFlattenedEffectGroups": len(flattened_groups),
+               "autoFlattenedMaskGroups": len(masked_groups),
                "diagnostics": dict(Counter(d.code for d in diagnostics.items)),
                "repeatableLayoutAndPng": True, "sourceUnchanged": True,
                "strictExitCode": strict.returncode}

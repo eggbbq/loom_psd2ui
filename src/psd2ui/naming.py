@@ -5,6 +5,9 @@ from pathlib import Path
 from .laya_types import new_ui_component
 
 
+LEGACY_IMAGE_MARKER = re.compile(r"\.img", re.IGNORECASE)
+
+
 RESERVED_VARIABLE_NAMES = frozenset("""
 await break case catch class const continue debugger default delete do else enum
 export extends false finally for function if implements import in instanceof
@@ -33,6 +36,10 @@ def layer_tag(raw: str):
 
 
 def tag_component(raw: str):
+    # Older PSD assets use a literal .img marker rather than a type prefix.
+    # It explicitly forces an image even when another type prefix is present.
+    if LEGACY_IMAGE_MARKER.search(raw):
+        return "GImage"
     tag = layer_tag(raw)
     if tag is None:
         return None
@@ -42,6 +49,7 @@ def tag_component(raw: str):
 
 def untagged_name(raw: str) -> str:
     """Logical node name, before filesystem-safe normalization."""
+    raw = LEGACY_IMAGE_MARKER.sub("", raw)
     tag = layer_tag(raw)
     return raw[len(tag):] if tag and "_" in raw else raw
 

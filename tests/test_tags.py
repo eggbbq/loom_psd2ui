@@ -208,3 +208,28 @@ def test_image_groups_export_one_png_without_any_internal_nodes(tmp_path, name, 
     assert result["nodes"] == 2 and result["images"] == 1 and result["texts"] == 0
     native = json.loads(Path(result["prefab"]).read_text())["_$child"][0]
     assert native["_$type"] == component and "_$child" not in native
+
+
+@pytest.mark.parametrize("name,expected_name", [
+    ("Legacy.img", "Legacy"), ("Legacy.IMG", "Legacy"),
+    ("Legacy.img 拷贝 2", "Legacy 拷贝 2"),
+    ("btn_Submit.img", "Submit"), ("icon_Avatar.img", "Avatar"),
+    (".imgLegacy", "Legacy"),
+])
+def test_legacy_dot_img_forces_gimage_and_flattens_group(tmp_path, name, expected_name):
+    psd = PSDImage.new("RGBA", (100, 100))
+    parent = group(psd, name)
+    pixel(parent, "Background", "red", (10, 10), (60, 60))
+    text(parent, "Caption", "Baked", (20, 20))
+    source = tmp_path / "legacy.psd"
+    psd.save(source)
+    output = tmp_path / "out"
+    node = export_psd(source, output)["children"][0]
+    assert node["component"] == "GImage" and node["type"] == "image"
+    assert node["name"] == expected_name and "children" not in node
+    assert node["asset"] == f"assets/{expected_name}.png"
+    project = tmp_path / "project"
+    project.mkdir()
+    result = generate_prefab(output / "layout.json", project)
+    native = json.loads(Path(result["prefab"]).read_text())["_$child"][0]
+    assert native["_$type"] == "GImage" and "_$child" not in native
