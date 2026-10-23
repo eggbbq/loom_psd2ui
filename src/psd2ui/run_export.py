@@ -10,12 +10,20 @@ import sys
 import tempfile
 
 
-ROOT = Path(__file__).resolve().parent
+_SOURCE_ROOT = Path(__file__).resolve().parents[2]
+SOURCE_CHECKOUT = ((_SOURCE_ROOT / "pyproject.toml").is_file() and
+                   (_SOURCE_ROOT / "src/psd2ui/run_export.py").resolve() == Path(__file__).resolve())
+ROOT = _SOURCE_ROOT if SOURCE_CHECKOUT else Path.cwd()
+
+if SOURCE_CHECKOUT and __package__ in (None, ""):
+    sys.path.insert(0, str(ROOT / "src"))
 
 
 def parser():
     result = argparse.ArgumentParser(description="导出 PSD、生成同名预制体，并将整个目录移动到 Laya 工程。")
-    result.add_argument("--input", required=True, type=Path, help="PSD / PSB 路径，相对路径基于本脚本目录")
+    result.add_argument("--input", required=True, type=Path,
+                        help="PSD / PSB 路径；源码模式相对仓库根目录，pip 安装后相对当前工作目录")
+    result.add_argument("--workers", type=workers_value, default=0, help="合成进程数：0 按 CPU 和内存自动选择，1 单进程，或填写如 4/8")
     result.add_argument("--output", type=Path, help="临时导出目录，默认使用 PSD 文件名（不含扩展名）")
     result.add_argument("--laya-assets-dir", type=Path, default=Path("laya-project/assets/ui"),
                         help="Laya 资源父目录，不存在时自动创建")
@@ -29,6 +37,13 @@ def parser():
     return result
 
 
+def workers_value(value):
+    number = int(value)
+    if number < 0:
+        raise argparse.ArgumentTypeError("workers 必须大于等于 0")
+    return number
+
+
 def similarity(value):
     number = float(value)
     if not 0 <= number <= 1:
@@ -38,6 +53,8 @@ def similarity(value):
 
 def ensure_python(root):
     """Bootstrap with stdlib only; all exporter commands use the local venv."""
+    if not SOURCE_CHECKOUT:
+        return Path(sys.executable)
     python = root / ".venv" / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
     if not python.is_file():
         print("创建 Python 虚拟环境…", flush=True)
@@ -69,7 +86,7 @@ def needs_export(source, output, arguments, root, force=False):
         cached = json.loads((output / ".start-export.json").read_text(encoding="utf-8"))
         if cached != cache_settings(layout, arguments):
             return True
-        inputs = [source, *(p for p in (root / "src/psd2ui").glob("*.py") if p.name != "laya_prefab.py")]
+        inputs = [source, *(p for p in Path(__file__).parent.glob("*.py") if p.name != "laya_prefab.py")]
         return any(p.stat().st_mtime > layout.stat().st_mtime for p in inputs)
     except (OSError, ValueError, KeyError, TypeError, AttributeError):
         return True
@@ -150,17 +167,24 @@ def run(args, root=ROOT):
         print(f"导出 {args.input}（复杂效果提示详见 {report_arg}）…", flush=True)
         validation.mkdir(parents=True, exist_ok=True)
         log_path = validation / "start-export.log"
+        command = [str(python), "-u", "-m", "psd2ui", *arguments, "--workers", str(args.workers)]
         with log_path.open("w", encoding="utf-8") as log:
-            result = subprocess.run([str(python), "-m", "psd2ui", *arguments], cwd=root,
-                                    stdout=log, stderr=subprocess.STDOUT)
+            with subprocess.Popen(command, cwd=root, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                                  text=True, encoding="utf-8", errors="replace") as process:
+                for line in process.stdout:
+                    log.write(line)
+                    if line.startswith(("PSD 合成进程：", "[PSD 图片合成]", "[PSD 图片编码]", "EXPORTED:")):
+                        print(line.rstrip(), flush=True)
+                result = subprocess.CompletedProcess(command, process.wait())
         lines = log_path.read_text(encoding="utf-8", errors="replace").splitlines()
-        print("\n".join(lines[-30:] if result.returncode else lines[-1:]), flush=True)
+        if result.returncode:
+            print("\n".join(lines[-30:]), flush=True)
         result.check_returncode()
         save_cache(output, arguments)
 
     print("生成 LayaAir 预制体和资源元数据…", flush=True)
     preserve_metadata(output, target)
-    subprocess.run([str(python), str(root / "scripts/generate_asset_bundle.py"), str(output / "layout.json")],
+    subprocess.run([str(python), "-m", "psd2ui", "bundle", str(output / "layout.json")],
                    cwd=root, check=True)
     move_bundle(output, target, validation)
     print(f"导出并移动完成：{target}/", flush=True)

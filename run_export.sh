@@ -7,7 +7,12 @@ set -euo pipefail
 args=(
     # PSD / PSB 源文件：必填，可写相对路径或绝对路径。
     # 输出目录及预制体名称默认使用文件名（不含扩展名）。
-    --input            "商城_给程序.psd"
+    --input            "test.psd"
+
+    # PSD 图片合成进程数：填非负整数；0 根据 CPU 和内存自动选择，1 单进程，4/8 指定进程数。
+    # 每个进程独立读取 PSD，主进程按原图层顺序写入，保持同名覆盖规则和预制体结果。
+    # 调整进程数不会让仍有效的缓存重新导出；需要重新计时可加 --reexport。
+    --workers          0
 
     # Laya 资源父目录：不存在时自动创建；最终移动到 <此目录>/<PSD文件名>/。
     # 例如本配置最终为 laya-project/assets/ui/商城_给程序/。
@@ -37,4 +42,4 @@ args=(
 )
 
 # 复杂逻辑在 Python 中；命令行追加的同名参数覆盖上面的配置。
-exec python3 "$(dirname -- "$0")/run_export.py" "${args[@]}" "$@"
+exec python3 "$(dirname -- "$0")/src/psd2ui/run_export.py" "${args[@]}" "$@"

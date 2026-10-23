@@ -1,6 +1,11 @@
+import errno
 import json
+import hashlib
+import time
+from io import BytesIO
 import logging
 import math
+import os
 import tempfile
 from contextlib import contextmanager
 from pathlib import Path
@@ -8,13 +13,15 @@ from pathlib import Path
 from PIL import Image
 from psd_tools import PSDImage
 from psd_tools.composite import composite_pil
-from psd_tools.constants import BlendMode, ColorMode, Tag
+from psd_tools.constants import BlendMode, ColorMode, Resource, Tag
 
+from .color import apply_icc
 from .diagnostics import Diagnostics, ExportError
 from .deduplication import deduplicate_images, similarity_threshold
 from .naming import export_name, inside, is_variable_name, layer_tag, tag_component, untagged_name
 from .laya_types import component_layout
 from .layout import layout_gap, ordered_children
+from .rasters import RasterStore, encode_raster
 from .text import text_bounds, text_properties
 
 
@@ -134,14 +141,57 @@ def capture_library_warnings(diagnostics, path):
         logger.removeHandler(handler)
 
 
+def composite_image(layer, box, diagnostics, path):
+    with render_state(layer), capture_library_warnings(diagnostics, path):
+        # RGB composites already contain their alpha. Other color modes keep
+        # the library's deferred-alpha/CMYK processing path unchanged.
+        psd = layer._psd
+        profile = (psd.image_resources.get_data(Resource.ICC_PROFILE)
+                   if psd.color_mode == ColorMode.RGB and Resource.ICC_PROFILE in psd.image_resources else None)
+        image = composite_pil(layer, color=1.0, alpha=0.0, viewport=box,
+                              layer_filter=lambda item: included(item, layer),
+                              force=False, as_layer=True, apply_icc=not bool(profile))
+        if image is not None and profile:
+            image = apply_icc(image, profile)
+    if image is None:
+        raise ValueError("psd-tools returned no composite")
+    image = image.convert("RGBA")
+    if image.size != (box[2] - box[0], box[3] - box[1]):
+        raise ValueError("Composite size differs from requested bounds")
+    # PSD raster caches can contain uneven transparent padding,
+    # including 1px differences between identical vector shapes.
+    # Crop only alpha == 0: retain every antialiased/effect pixel,
+    # and compensate the absolute origin before deriving local
+    # positions and parent bounds. Never round vector geometry or
+    # resize raster pixels to force a particular logical size.
+    ink = image.getchannel("A").getbbox()
+    if ink is not None:
+        image = image.crop(ink)
+        box = (box[0] + ink[0], box[1] + ink[1],
+               box[0] + ink[2], box[1] + ink[3])
+    # An entirely transparent image keeps its original canvas;
+    # there is no nonempty crop, and PNG cannot represent 0x0.
+    return image, box
+
+
 class Exporter:
-    def __init__(self, output, diagnostics=None, *, flat_assets=False):
+    def __init__(self, output, diagnostics=None, *, flat_assets=False, workers=1, progress=None, dedupe_images=None):
         self.output = Path(output)
         self.diagnostics = diagnostics if diagnostics is not None else Diagnostics()
+        from .parallel import worker_count
+        self.workers = worker_count(workers)
+        self.requested_workers = workers
+        self.progress = progress
+        self.render_futures = None
+        self.rendered = 0
+        self.last_progress = time.perf_counter()
         self.asset_nodes = {}
         self.asset_prefix = () if flat_assets else ("assets",)
+        self.dedupe_images = None if dedupe_images is None else similarity_threshold(dedupe_images)
+        self.rasters = None
+        self.duplicates = {}
 
-    def node(self, layer, folders=(), ancestry=(), title_context=False):
+    def node(self, layer, folders=(), ancestry=(), title_context=False, indices=()):
         raw = layer.name
         if "#" in raw or layer.is_group() and not has_exportable_content(layer):
             return None
@@ -167,9 +217,9 @@ class Exporter:
                 self.diagnostics.fail("INVALID_EXPORT_NAME", path, "Group name conflicts with layout.json")
             children = []
             # psd-tools >=1.7 iterates background -> foreground. Do NOT reverse.
-            for child in layer:
+            for index, child in enumerate(layer):
                 item = self.node(child, (*folders, name), (*ancestry, raw),
-                                 title_context or component in ("GButton", "GProgressBar"))
+                                 title_context or component in ("GButton", "GProgressBar"), (*indices, index))
                 if item is not None:
                     children.append(item)
             if not children:
@@ -212,28 +262,31 @@ class Exporter:
                 return node
             render_origin = box[:2]
             try:
-                with render_state(layer), capture_library_warnings(self.diagnostics, path):
-                    image = composite_pil(layer, color=1.0, alpha=0.0, viewport=box,
-                                          layer_filter=lambda item: included(item, layer),
-                                          force=False, as_layer=True)
-                if image is None:
-                    raise ValueError("psd-tools returned no composite")
-                image = image.convert("RGBA")
-                if image.size != (box[2] - box[0], box[3] - box[1]):
-                    raise ValueError("Composite size differs from requested bounds")
-                # PSD raster caches can contain uneven transparent padding,
-                # including 1px differences between identical vector shapes.
-                # Crop only alpha == 0: retain every antialiased/effect pixel,
-                # and compensate the absolute origin before deriving local
-                # positions and parent bounds. Never round vector geometry or
-                # resize raster pixels to force a particular logical size.
-                ink = image.getchannel("A").getbbox()
-                if ink is not None:
-                    image = image.crop(ink)
-                    box = (box[0] + ink[0], box[1] + ink[1],
-                           box[0] + ink[2], box[1] + ink[3])
-                # An entirely transparent image keeps its original canvas;
-                # there is no nonempty crop, and PNG cannot represent 0x0.
+                if self.render_futures is not None and indices in self.render_futures:
+                    result = self.render_futures[indices].result()
+                    self.diagnostics.items.extend(result["diagnostics"])
+                    if "error" in result:
+                        raise ValueError(result["error"])
+                    box = result["box"]
+                    if self.rasters is not None:
+                        raster = result["raster"]
+                    else:
+                        content = result["png"]
+                    self.rendered += 1
+                    now = time.perf_counter()
+                    if self.progress and now-self.last_progress >= 1:
+                        self.progress(f"[PSD 图片合成] {self.rendered}/{len(self.render_futures)}", flush=True)
+                        self.last_progress = now
+                else:
+                    image, box = composite_image(layer, box, self.diagnostics, path)
+                    with image:
+                        if self.rasters is not None:
+                            raster = self.rasters.write(image)
+                        else:
+                            image.info.clear()
+                            stream = BytesIO()
+                            image.save(stream, format="PNG")
+                            content = stream.getvalue()
             except Exception as exc:
                 self.diagnostics.fail("COMPOSITE_FAILED", path, f"{type(exc).__name__}: {exc}")
             asset = "/".join((*self.asset_prefix, *folders, name + ".png"))
@@ -249,13 +302,15 @@ class Exporter:
                 for previous in self.asset_nodes[asset]:
                     x, y = previous["_render_origin"]
                     x, y = x + dx, y + dy
-                    previous["_box"] = (x, y, x + image.width, y + image.height)
+                    previous["_box"] = (x, y, x + box[2]-box[0], y + box[3]-box[1])
             self.asset_nodes.setdefault(asset, []).append(node)
             # composite_pil already converts through the source ICC profile to sRGB.
             # Pillow's generated sRGB ICC includes a creation timestamp. Do not embed
             # that volatile metadata: identical PSDs must produce identical PNG bytes.
-            image.info.clear()
-            image.save(destination, format="PNG")
+            if self.rasters is not None:
+                self.rasters.put(asset, raster)
+            else:
+                destination.write_bytes(content)
         direct_component = (node["type"] == "image" and component in ("GImage", "GLoader") or
                             node["type"] == "text" and component in ("GTextField", "GTextInput"))
         if direct_component:
@@ -296,22 +351,88 @@ class Exporter:
         return node["_box"]
 
     def build(self, source):
+        if self.dedupe_images is None:
+            return self._build(source)
+        self.output.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(prefix=".rgba-", dir=self.output) as directory:
+            self.rasters = RasterStore(directory)
+            try:
+                return self._build(source)
+            finally:
+                self.rasters = None
+
+    def _build(self, source):
         with capture_library_warnings(self.diagnostics, str(source)):
             psd = PSDImage.open(source)
         if psd.color_mode != ColorMode.RGB or psd.depth != 8:
             self.diagnostics.warn("UNSUPPORTED_VISUAL_EFFECT", str(source),
                                   f"Color mode {psd.color_mode.name}/{psd.depth}-bit converted to 8-bit RGBA")
+        jobs = []
+
+        def schedule(layer, indices, ancestry=()):
+            if not has_exportable_content(layer):
+                return
+            component = tag_component(layer.name)
+            flattened = component in ("GImage", "GLoader") or (layer.is_group() and (
+                layer.has_mask() or layer.has_vector_mask() or
+                layer.effects.enabled and any(effect.enabled for effect in layer.effects)))
+            if layer.is_group() and not flattened:
+                for index, child in enumerate(layer):
+                    schedule(child, (*indices, index), (*ancestry, layer.name))
+            elif (layer.kind != "type" or flattened) and render_bounds(layer, layer) is not None:
+                jobs.append((indices, "/".join((*ancestry, layer.name)),
+                             self.rasters.reserve() if self.rasters is not None else None))
+
+        if self.workers > 1:
+            for index, layer in enumerate(psd):
+                schedule(layer, (index,))
         children = []
-        for layer in psd:
-            node = self.node(layer)
-            if node is not None:
-                children.append(node)
-        for child in children:
-            self.finalize(child)
-        root = dict(version=1, name=Path(source).stem, type="root", position=[0, 0],
-                    size=[psd.width, psd.height], visible=True, children=children)
-        self.validate(root)
-        return root
+        executor = None
+        try:
+            if len(jobs) > 1:
+                from .parallel import create_pool, render, render_worker_count
+                count = render_worker_count(source, self.requested_workers, len(jobs))
+                if count > 1:
+                    started = time.perf_counter()
+                    executor = create_pool(Path(source).resolve(), count, len(jobs))
+                    self.render_futures = {job[0]: executor.submit(render, job) for job in jobs}
+                    if self.progress:
+                        self.progress(f"PSD 合成进程：{count}，图片任务：{len(jobs)}", flush=True)
+            for index, layer in enumerate(psd):
+                node = self.node(layer, indices=(index,))
+                if node is not None:
+                    children.append(node)
+            if executor and self.progress:
+                self.progress(f"[PSD 图片合成] {self.rendered}/{len(jobs)}，{time.perf_counter()-started:.2f}s", flush=True)
+            for child in children:
+                self.finalize(child)
+            root = dict(version=1, name=Path(source).stem, type="root", position=[0, 0],
+                        size=[psd.width, psd.height], visible=True, children=children)
+            if self.rasters is not None:
+                self.duplicates = deduplicate_images(root, self.output, self.dedupe_images, rasters=self.rasters)
+                encoded_count = len(self.rasters.entries) - len(self.duplicates)
+                encoding_started = time.perf_counter()
+                encoding = []
+                for asset, record in self.rasters.entries.items():
+                    if asset in self.duplicates:
+                        continue
+                    job = (record, inside(self.output, asset))
+                    if executor:
+                        encoding.append(executor.submit(encode_raster, job))
+                    else:
+                        encode_raster(job)
+                for future in encoding:
+                    future.result()
+                if self.progress:
+                    self.progress(f"[PSD 图片编码] {encoded_count}/{len(self.rasters.entries)}，"
+                                  f"跳过 {len(self.duplicates)} 张重复图片，"
+                                  f"{time.perf_counter()-encoding_started:.2f}s", flush=True)
+            self.validate(root)
+            return root
+        finally:
+            if executor:
+                executor.shutdown(wait=True, cancel_futures=True)
+            self.render_futures = None
 
     def validate(self, node):
         if node["type"] == "image":
@@ -325,20 +446,26 @@ class Exporter:
             self.validate(child)
 
 
-def export_psd(source, output, diagnostics=None, *, dedupe_images=None, flat_assets=False):
+def export_psd(source, output, diagnostics=None, *, dedupe_images=None, flat_assets=False, workers=1, progress=None):
     """Stage a complete export before publishing layout.json (the success marker).
 
-    Only paths produced by this export are replaced or, when deduplication is
-    enabled, deleted. On rendering failure previous output remains valid.
+    Only files produced by this export are replaced or, when deduplication is
+    enabled, deleted. Deduplication also prunes empty output subdirectories.
+    On rendering failure previous output remains valid.
     """
     if dedupe_images is not None:
         dedupe_images = similarity_threshold(dedupe_images)
     output = Path(output).resolve()
     output.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=".psd2ui-", dir=output) as stage:
-        exporter = Exporter(stage, diagnostics, flat_assets=flat_assets)
+        source_hash = hashlib.sha256(Path(source).read_bytes()).digest()
+        exporter = Exporter(stage, diagnostics, flat_assets=flat_assets, workers=workers, progress=progress,
+                            dedupe_images=dedupe_images)
         root = exporter.build(source)
-        duplicates = deduplicate_images(root, stage, dedupe_images) if dedupe_images is not None else {}
+        duplicates = exporter.duplicates
+        if hashlib.sha256(Path(source).read_bytes()).digest() != source_hash:
+            exporter.diagnostics.fail("SOURCE_CHANGED", str(source),
+                                      "Source PSD changed during export; previous output preserved")
         # Validate rewritten references and resolve every destination before publishing.
         exporter.validate(root)
         destinations = {asset: inside(output, asset) for asset in exporter.asset_nodes}
@@ -363,5 +490,17 @@ def export_psd(source, output, diagnostics=None, *, dedupe_images=None, flat_ass
         # Also remove redundant files left by an earlier non-deduplicated export.
         for asset in duplicates:
             (output / asset).unlink(missing_ok=True)
+    if dedupe_images is not None:
+        # The staging directory must be gone before pruning from leaves to root.
+        # Do not follow directory symlinks or remove the output root itself.
+        for directory, _, _ in os.walk(output, topdown=False, followlinks=False):
+            path = Path(directory)
+            if path == output:
+                continue
+            try:
+                path.rmdir()
+            except OSError as exc:
+                if exc.errno not in (errno.ENOTEMPTY, errno.EEXIST, errno.ENOENT):
+                    raise
     return root
 

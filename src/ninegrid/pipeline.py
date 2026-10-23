@@ -1,24 +1,23 @@
 import copy
 import hashlib
-from io import BytesIO
 
-import numpy as np
-from PIL import Image
-
-from .candidate import choose_candidate
-from .crop import png_bytes
-from .manifest import MANIFEST, read_manifest, markdown_report
+from .manifest import MANIFEST, read_active_manifest, markdown_report
 from .paths import inside, relative, sha256, load_json, json_bytes
-from .scan import read_rgba
 from .verify import verify_item, verify_project
 from .laya.adapter import LayaProjectAdapter, source_importer_reason
 from .laya.references import unsafe_reason
 from .laya.patch import commit
-from .visual import choose_visual_candidate, quality_limits
+from .visual import quality_limits
+from .parallel import ImagePool
+from .jobs import analyze_image, encode_image, verify_image
 
 
 def scan(adapter, inputs=None, output="assets/ninegrid_auto", min_saving=0.20, *,
-         mode="strict", quality=None, center_size=8, axis="auto"):
+         mode="strict", quality=None, center_size=8, axis="auto", workers=1, pool=None):
+    if pool is None:
+        with ImagePool(workers) as pool:
+            return scan(adapter, inputs, output, min_saving, mode=mode, quality=quality,
+                        center_size=center_size, axis=axis, pool=pool)
     root = adapter.project.root
     output_path = inside(root, output)
     input_names = list(inputs or ["assets"])
@@ -36,8 +35,9 @@ def scan(adapter, inputs=None, output="assets/ninegrid_auto", min_saving=0.20, *
     quality = quality or quality_limits()
     excluded = [] if overwrite else [output_path, inside(root, "assets/ninegrid_auto")]
     old = inside(root, MANIFEST)
+    retired = []
     if old.exists():
-        old_manifest = read_manifest(root)
+        old_manifest, retired = read_active_manifest(adapter)
         if not overwrite and not old_manifest["settings"].get("overwriteSource"):
             excluded.append(inside(root, old_manifest["settings"]["output"]))
         if overwrite:
@@ -63,7 +63,8 @@ def scan(adapter, inputs=None, output="assets/ninegrid_auto", min_saving=0.20, *
             if source.suffix.lower() != ".png" or any(source.is_relative_to(p) for p in excluded):
                 continue
             files.add(inside(root, source))
-    items = []
+    jobs = []
+    options = dict(mode=mode, minSaving=min_saving, quality=quality, centerSize=center_size, axis=axis)
     for source in sorted(files):
         name = relative(root, source)
         item = {"source": name, "sourceSha256": sha256(source), "status": "skipped", "reason": None}
@@ -91,29 +92,16 @@ def scan(adapter, inputs=None, output="assets/ninegrid_auto", min_saving=0.20, *
         if atlas:
             item["atlasConfigurations"] = atlas
             item["warnings"] = ["source_auto_atlas_present_originals_preserved"]
-        try:
-            rgba = read_rgba(source)
-            item["sourceSize"] = list(rgba.shape[1::-1])
-            if sha256(source) != item["sourceSha256"]:
-                raise ValueError("source_changed_during_scan")
-            if reason:
-                candidate, algorithm_reason = None, reason
-            elif mode == "visual":
-                candidate, diff = choose_visual_candidate(rgba, min_saving, quality, center_size, axis)
-                algorithm_reason = diff.get("reason")
-                item["cpuQuality"] = diff
-                item["qualityLimits"] = quality
-            else:
-                candidate, algorithm_reason = choose_candidate(rgba, min_saving)
-            item["reason"] = reason or algorithm_reason
-            if candidate:
-                item.update(candidate.fields(), status="candidate")
-                item["output"] = name if overwrite else relative(root, output_path / source.relative_to(adapter.project.assets))
-        except (OSError, ValueError) as exc:
-            item["reason"] = str(exc)
+        item["reason"] = reason
+        jobs.append((str(root), item, options))
+    items = pool.map(analyze_image, jobs, "图片分析")
+    for item in items:
+        if item["status"] == "candidate":
+            source = inside(root, item["source"])
+            item["output"] = item["source"] if overwrite else relative(root, output_path / source.relative_to(adapter.project.assets))
+        refs = adapter.for_source(inside(root, item["source"]))
         item["references"] = [ref.report(unsafe_reason(ref, item.get("sourceSize", []))) for ref in refs]
         item["safeReferences"] = sum(ref["eligible"] for ref in item["references"])
-        items.append(item)
     settings = {"output": relative(root, output_path), "inputs": list(map(str, inputs or ["assets"])), "minSaving": min_saving}
     if mode == "visual":
         settings.update(mode=mode, algorithmVersion=2, qualityLimits=quality, centerSize=center_size, axis=axis)
@@ -122,25 +110,35 @@ def scan(adapter, inputs=None, output="assets/ninegrid_auto", min_saving=0.20, *
             "items": items,
             "summary": {"scanned": len(items), "candidates": sum(i["status"] == "candidate" for i in items),
                         "safeReferences": sum(i["safeReferences"] for i in items)}}
+    if retired:
+        report["retiredSources"] = retired
     if overwrite:
         from .inplace import prepare_report
         report["settings"]["overwriteSource"] = True
-        prepare_report(adapter, report, old_manifest if old.exists() else {"items": []})
+        prepare_report(adapter, report, old_manifest if old.exists() else {"items": []}, pool=pool)
     return report
 
 
 def build(adapter, inputs=None, output="assets/ninegrid_auto", min_saving=0.20, dry_run=False, *,
-          mode="strict", quality=None, center_size=8, axis="auto"):
+          mode="strict", quality=None, center_size=8, axis="auto", workers=1, pool=None):
+    if pool is None:
+        with ImagePool(workers) as pool:
+            return build(adapter, inputs, output, min_saving, dry_run, mode=mode, quality=quality,
+                         center_size=center_size, axis=axis, pool=pool)
     root = adapter.project.root
-    report = scan(adapter, inputs, output, min_saving, mode=mode, quality=quality, center_size=center_size, axis=axis)
+    report = scan(adapter, inputs, output, min_saving, mode=mode, quality=quality, center_size=center_size, axis=axis, pool=pool)
     if report["settings"].get("overwriteSource"):
         from .inplace import build_inplace
-        return build_inplace(adapter, report, dry_run)
-    old = read_manifest(root) if inside(root, MANIFEST).exists() else {"items": []}
+        return build_inplace(adapter, report, dry_run, pool=pool)
+    old = read_active_manifest(adapter)[0] if inside(root, MANIFEST).exists() else {"items": []}
     previous = {item["source"]: item for item in old["items"]}
     manifest = {**copy.deepcopy(old), "schemaVersion": 1, "projectVersion": adapter.project.version,
                 "settings": report["settings"], "items": []}
     writes, expected = {}, {}
+    to_encode = [item for item in report["items"] if item["status"] == "candidate"
+                 and not any(r.get("applied") for r in previous.get(item["source"], {}).get("references", []))]
+    encoded = dict(zip((item["source"] for item in to_encode),
+                       pool.map(encode_image, [(str(root), i, False) for i in to_encode], "生成 PNG")))
     for item in report["items"]:
         prior = previous.get(item["source"])
         if prior and any(r.get("applied") for r in prior.get("references", [])):
@@ -152,19 +150,7 @@ def build(adapter, inputs=None, output="assets/ninegrid_auto", min_saving=0.20, 
         if item["status"] != "candidate":
             continue
         source = inside(root, item["source"])
-        rgba = read_rgba(source)
-        if mode == "visual":
-            candidate, diff = choose_visual_candidate(rgba, min_saving, item["qualityLimits"], center_size, axis)
-            reason = diff.get("reason")
-        else:
-            candidate, reason = choose_candidate(rgba, min_saving)
-        if candidate is None or sha256(source) != item["sourceSha256"]:
-            raise ValueError(f"Source changed during build: {item['source']}: {reason}")
-        cropped = candidate.crop(rgba)
-        content = png_bytes(cropped)
-        with Image.open(BytesIO(content)) as encoded:
-            if not np.array_equal(cropped, np.asarray(encoded.convert("RGBA"))):
-                raise ValueError("PNG roundtrip changed RGBA")
+        content, _ = encoded[item["source"]]
         meta = adapter.create_meta(item)
         item = copy.deepcopy(item)
         item.update(status="built", outputSha256=hashlib.sha256(content).hexdigest(), outputUuid=meta["uuid"])
@@ -197,13 +183,16 @@ def build(adapter, inputs=None, output="assets/ninegrid_auto", min_saving=0.20, 
     return {"status": "built", "runId": run_id, "manifest": MANIFEST, "report": report}
 
 
-def apply(adapter, dry_run=False, engine_dir=None, engine_validator=None):
+def apply(adapter, dry_run=False, engine_dir=None, engine_validator=None, workers=1, pool=None):
+    if pool is None:
+        with ImagePool(workers) as pool:
+            return apply(adapter, dry_run, engine_dir, engine_validator, pool=pool)
     root = adapter.project.root
-    manifest = read_manifest(root)
+    manifest, retired = read_active_manifest(adapter)
     if manifest["settings"].get("overwriteSource"):
         from .inplace import apply_inplace
-        return apply_inplace(adapter, manifest, dry_run, engine_dir, engine_validator)
-    verify_project(adapter, manifest)
+        return apply_inplace(adapter, manifest, dry_run, engine_dir, engine_validator, retired, pool=pool)
+    verify_project(adapter, manifest, pool=pool)
     scene_before = adapter.project.scene_hashes
     expected_state = {MANIFEST: sha256(inside(root, MANIFEST))}
     for item in manifest["items"]:
@@ -229,15 +218,23 @@ def apply(adapter, dry_run=False, engine_dir=None, engine_validator=None):
     writes = {name: json_bytes(data) for name, data in adapter.project.scenes.items() if data != original_scenes[name]}
     planned = {"status": "dry_run" if dry_run else "applied", "changes": changes,
                "files": sorted(writes), "engineValidationPending": bool(engine_items)}
+    if retired:
+        planned["retiredSources"] = retired
+        planned["files"] = sorted(set(planned["files"]) | {MANIFEST})
     if dry_run:
         return planned
     if not writes:
+        if retired and not dry_run:
+            from .manifest import cleanup_removed_sources
+            result = cleanup_removed_sources(adapter)
+            return {**planned, **result, "status": "retired_removed_sources"}
         return {**planned, "status": "already_applied_or_no_safe_references", "runId": None}
     # Validate all changed images on the actual Laya runtime before scene commit.
     if engine_validator is None:
         from .engine import validate_items
-        engine_validator = validate_items
-    proof = engine_validator(adapter, engine_items, engine_dir)
+        proof = validate_items(adapter, engine_items, engine_dir, pool)
+    else:
+        proof = engine_validator(adapter, engine_items, engine_dir)
     if not proof.get("valid"):
         raise ValueError(f"Engine pixel comparison failed; project scenes unchanged: {proof}")
     manifest["engineValidation"] = proof
@@ -246,8 +243,8 @@ def apply(adapter, dry_run=False, engine_dir=None, engine_validator=None):
                                                        "engineValidation": proof})
     expected = {**expected_state, **{name: scene_before[name] for name in writes if name in scene_before}}
     # Recheck source/output pixels after the asynchronous GPU probe.
+    pool.map(verify_image, [(str(root), i) for i in manifest["items"]], "提交前校验")
     for item in manifest["items"]:
-        verify_item(root, item)
         expected[item["source"]] = item["sourceSha256"]
         expected[item["output"]] = item["outputSha256"]
     # Every scene patch must still parse before starting the transaction.

@@ -3,16 +3,15 @@ import copy
 import hashlib
 import uuid
 
-from .candidate import choose_candidate
-from .crop import png_bytes
 from .laya.adapter import LayaProjectAdapter
 from .laya.patch import commit
 from .laya.references import Reference, unsafe_reason
-from .manifest import MANIFEST, read_manifest, markdown_report
+from .manifest import MANIFEST, read_active_manifest, markdown_report
 from .paths import inside, relative, sha256, load_json, json_bytes
 from .reconstruct import reconstruct_9slice, pixel_diff
 from .scan import read_rgba
-from .visual import choose_visual_candidate, visual_diff, accepted
+from .visual import visual_diff, accepted
+from .jobs import encode_image, verify_image
 
 
 def reference_plans(adapter, item):
@@ -42,16 +41,18 @@ def reference_plans(adapter, item):
     return plans
 
 
-def prepare_report(adapter, report, previous):
+def prepare_report(adapter, report, previous, pool=None):
     # A shared source texture cannot be changed using a partial scene inventory.
     full = LayaProjectAdapter(adapter.project.root)
     if full.project.scene_hashes != adapter.project.scene_hashes:
         raise ValueError("原地写回需要扫描全部场景，请去掉 --scene-root 限制。")
     old = {item["source"]: item for item in previous["items"]}
+    checked = [old[i["source"]] for i in report["items"] if i["source"] in old
+               and old[i["source"]].get("overwriteSource") and old[i["source"]].get("status") == "applied"]
+    pool.map(verify_image, [(str(adapter.project.root), i) for i in checked], "已有结果校验")
     for item in report["items"]:
         prior = old.get(item["source"])
         if prior and prior.get("overwriteSource") and prior.get("status") == "applied":
-            verify_inplace_item(adapter.project.root, prior)
             item.update(status="skipped", reason="already_optimized_in_place", safeReferences=0)
             continue
         if item["status"] != "candidate":
@@ -70,17 +71,24 @@ def prepare_report(adapter, report, previous):
                              safeReferences=sum(i["safeReferences"] for i in report["items"]))
 
 
-def build_inplace(adapter, report, dry_run=False):
+def build_inplace(adapter, report, dry_run=False, pool=None):
     root = adapter.project.root
-    old = read_manifest(root) if inside(root, MANIFEST).exists() else {"items": []}
+    old = read_active_manifest(adapter)[0] if inside(root, MANIFEST).exists() else {"items": []}
     previous = {item["source"]: item for item in old["items"]}
     manifest = {**copy.deepcopy(old), "schemaVersion": 1, "projectVersion": adapter.project.version,
                 "settings": report["settings"], "items": []}
     writes, expected = {}, {}
+    to_encode = [i for i in report["items"] if i["status"] == "candidate"
+                 and not (previous.get(i["source"], {}).get("overwriteSource")
+                          and previous.get(i["source"], {}).get("status") == "applied")]
+    encoded = dict(zip((i["source"] for i in to_encode),
+                       pool.map(encode_image, [(str(root), i, True) for i in to_encode], "生成 PNG")))
+    checked = [previous[i["source"]] for i in report["items"] if i["source"] in previous
+               and previous[i["source"]].get("overwriteSource") and previous[i["source"]].get("status") == "applied"]
+    pool.map(verify_image, [(str(root), i) for i in checked], "保留结果校验")
     for scanned in report["items"]:
         prior = previous.get(scanned["source"])
         if prior and prior.get("overwriteSource") and prior.get("status") == "applied":
-            verify_inplace_item(root, prior)
             manifest["items"].append(prior)
             continue
         if scanned["status"] != "candidate":
@@ -89,19 +97,7 @@ def build_inplace(adapter, report, dry_run=False):
         source = inside(root, item["source"])
         if sha256(source) != item["sourceSha256"]:
             raise ValueError(f"Source changed during build: {item['source']}")
-        rgba = read_rgba(source)
-        settings = report["settings"]
-        if item.get("mode") == "visual":
-            candidate, _ = choose_visual_candidate(rgba, settings["minSaving"], item["qualityLimits"],
-                                                   settings["centerSize"], settings["axis"])
-        else:
-            candidate, _ = choose_candidate(rgba, settings["minSaving"])
-        if candidate is None or candidate.fields()["layaSizeGrid"] != item["layaSizeGrid"]:
-            raise ValueError("Candidate changed during in-place build")
-        content = png_bytes(candidate.crop(rgba))
-        original = source.read_bytes()
-        if hashlib.sha256(original).hexdigest() != item["sourceSha256"]:
-            raise ValueError(f"Source changed during build: {item['source']}")
+        content, original = encoded[item["source"]]
         meta_path = inside(root, item["source"] + ".meta")
         meta = load_json(meta_path) if meta_path.exists() else {}
         if meta != item["sourceMetadata"]:
@@ -173,10 +169,10 @@ def verify_inplace_item(root, item):
     return {"source": item["source"], **result}
 
 
-def apply_inplace(adapter, manifest, dry_run=False, engine_dir=None, engine_validator=None):
+def apply_inplace(adapter, manifest, dry_run=False, engine_dir=None, engine_validator=None, retired=None, pool=None):
     from .verify import verify_project
     root = adapter.project.root
-    verify_project(adapter, manifest)
+    verify_project(adapter, manifest, pool=pool)
     snapshot = copy.deepcopy(adapter.project.scenes)
     expected = {MANIFEST: sha256(inside(root, MANIFEST)), **adapter.project.scene_hashes}
     writes, changes, entries = {}, [], []
@@ -204,21 +200,29 @@ def apply_inplace(adapter, manifest, dry_run=False, engine_dir=None, engine_vali
     writes.update({name: json_bytes(data) for name, data in adapter.project.scenes.items() if data != snapshot[name]})
     planned = {"status": "dry_run" if dry_run else "applied", "changes": changes,
                "files": sorted(writes), "engineValidationPending": bool(entries)}
+    if retired:
+        planned["retiredSources"] = retired
+        planned["files"] = sorted(set(planned["files"]) | {MANIFEST})
     if dry_run:
         return planned
     if not entries:
+        if retired:
+            from .manifest import cleanup_removed_sources
+            result = cleanup_removed_sources(adapter)
+            return {**planned, **result, "status": "retired_removed_sources"}
         return {**planned, "status": "already_applied_or_no_safe_references", "runId": None}
     if engine_validator is None:
         from .engine import validate_items
-        engine_validator = validate_items
-    proof = engine_validator(adapter, entries, engine_dir)
+        proof = validate_items(adapter, entries, engine_dir, pool)
+    else:
+        proof = engine_validator(adapter, entries, engine_dir)
     if not proof.get("valid"):
         raise ValueError("Engine pixel comparison failed; original PNGs and scenes unchanged")
     if LayaProjectAdapter(root).project.scene_hashes != adapter.project.scene_hashes:
         raise ValueError("Scene inventory changed during in-place validation")
+    pool.map(verify_image, [(str(root), entry["item"]) for entry in entries], "提交前校验")
     for entry in entries:
         item = entry["item"]
-        verify_inplace_item(root, item)
         expected[item["stagedOutput"]] = item["outputSha256"]
         expected[item["originalBackup"]] = item["sourceSha256"]
     for item in manifest["items"]:

@@ -1,4 +1,4 @@
-from .manifest import read_manifest
+from .manifest import read_active_manifest, reconcile_removed_sources
 from .paths import inside, sha256, load_json
 from .reconstruct import reconstruct_9slice, pixel_diff
 from .scan import read_rgba
@@ -51,12 +51,17 @@ def verify_item(root, item):
     return {"source": item["source"], **result}
 
 
-def verify_project(adapter, manifest=None):
+def verify_project(adapter, manifest=None, workers=1, pool=None):
+    if pool is None:
+        from .parallel import ImagePool
+        with ImagePool(workers) as pool:
+            return verify_project(adapter, manifest, pool=pool)
+    from .jobs import verify_image
     root = adapter.project.root
-    manifest = manifest or read_manifest(root)
-    results = []
+    manifest, retired = (reconcile_removed_sources(adapter, manifest) if manifest is not None
+                         else read_active_manifest(adapter))
+    results = pool.map(verify_image, [(str(root), i) for i in manifest["items"]], "CPU 重建校验")
     for item in manifest["items"]:
-        result = verify_item(root, item)
         for ref in item.get("references", []):
             if not ref.get("applied"):
                 continue
@@ -71,5 +76,5 @@ def verify_project(adapter, manifest=None):
                 raise ValueError("Applied node sizeGrid changed")
             if [node.get("width"), node.get("height")] != item["sourceSize"]:
                 raise ValueError("Applied display dimensions changed")
-        results.append(result)
-    return {"valid": True, "items": results, "engineValidation": "use --engine for GPU comparison"}
+    return {"valid": True, "items": results, "retiredSources": retired,
+            "engineValidation": "use --engine for GPU comparison"}

@@ -8,13 +8,13 @@ import {createHash} from 'node:crypto';
 
 const require = createRequire(import.meta.url);
 const here = dirname(fileURLToPath(import.meta.url));
-const modulePath = process.env.NINEGRID_PLAYWRIGHT_MODULE || require.resolve('playwright', {
-    paths: [process.cwd(), here, resolve(here, '../runtimes/layaair3')]
-});
-const {chromium} = require(modulePath);
 let input = '';
 for await (const chunk of process.stdin) input += chunk;
 const config = JSON.parse(input);
+const modulePath = process.env.NINEGRID_PLAYWRIGHT_MODULE || require.resolve('playwright', {
+    paths: [config.project, process.cwd(), here, resolve(here, '../../runtimes/layaair3')]
+});
+const {chromium} = require(modulePath);
 const libraries = ['laya.core.js', 'laya.webgl_2D.js', 'laya.ui.js', 'laya.ui2.js'];
 const server = createServer(async (req, res) => {
     const name = req.url.slice(1);

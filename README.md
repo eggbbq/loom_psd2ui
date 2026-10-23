@@ -4,6 +4,20 @@
 
 完整操作见 [使用手册](使用手册.md)。
 
+Python 实现统一放在 `src/`，PSD 导出和九宫格保持为两个独立包；根目录的 sh 文件用于配置参数和启动：
+
+```text
+├── run_export.sh
+├── run_9grid.sh
+└── src/
+    ├── psd2ui/
+    │   └── run_export.py
+    └── ninegrid/
+        └── run_9grid.py
+```
+
+直接运行 Python 文件时也会自动准备仓库 `.venv`，相对工程/PSD 路径继续以仓库根目录为基准。安装 `pip install -e .` 后，也可通过 `python -m psd2ui.run_export` 和 `python -m ninegrid.run_9grid` 启动。
+
 `test.psd` 使用 Git LFS 保存。首次克隆后，请安装 [Git LFS](https://git-lfs.com/)，运行 `git lfs install` 和 `git lfs pull`，确保下载到完整 PSD 后再执行导出。
 
 ## 导出并移入 Laya 工程（macOS / Linux）
@@ -26,21 +40,21 @@ psd2ui/laya-project/assets/ui/商城_给程序/
 
 PNG 与预制体共用一套资源，目录按 PSD 分组结构保存，没有额外的 `assets` 层。预制体文件名取 PSD 文件名（不含扩展名）。`run_export.sh` 最后移动整个目录到 Laya 工程，保留已有 `.meta`，重复运行不会嵌套同名目录。它不修改场景、工程设置，不构建或启动浏览器；无需安装 LayaAir CLI。首次安装 Python 依赖需要网络。
 
-`run_export.sh` 只保留 `args=(...)` 参数配置和对 `run_export.py` 的调用，环境准备、缓存、导出、生成预制体及移动目录均由 `run_export.py` 实现。`--flat-assets` 取消 `assets` 层，`--dedupe-images 0.99` 启用去重，注释去重行可关闭。修改参数、源 PSD、导出代码，或检测到布局被外部改写、图片缺失时，会自动重新导出；缓存保存在输出目录的 `.start-export.json` 中。
+`run_export.sh` 只保留 `args=(...)` 参数配置和对 `src/psd2ui/run_export.py` 的调用，环境准备、缓存、导出、生成预制体及移动目录均由 `src/psd2ui/run_export.py` 实现。`--flat-assets` 取消 `assets` 层，`--dedupe-images 0.99` 启用去重，注释去重行可关闭。修改参数、源 PSD、导出代码，或检测到布局被外部改写、图片缺失时，会自动重新导出；缓存保存在输出目录的 `.start-export.json` 中。
 
 可以在命令行覆盖参数，或直接使用 Python 入口。相对路径均基于仓库目录：
 
 ```bash
 ./run_export.sh --input test.psd --reexport
 ./run_export.sh --help
-python3 run_export.py --input test.psd --dedupe-images 0.99
+python3 src/psd2ui/run_export.py --input test.psd --dedupe-images 0.99
 ```
 
 在 IDE 中打开 `assets/ui/商城_给程序/商城_给程序.lh` 即可编辑。需要放入预览场景时，可手动拖入，或使用下面的同步脚本。
 
 ## 目录批量九宫格处理
 
-`run_9grid.sh` / `run_9grid.py` 是独立入口，不会启动 PSD 导出。修改 sh 中 `--search-dir` 配置即可递归处理目录内全部 PNG；默认生成优化资源、通过引擎验证后回写 Laya，再检查资源完整性。
+`run_9grid.sh` / `src/ninegrid/run_9grid.py` 是独立入口，不会启动 PSD 导出。修改 sh 中 `--search-dir` 配置即可递归处理目录内全部 PNG；默认生成优化资源、通过引擎验证后回写 Laya，再检查资源完整性。
 
 ```bash
 ./run_9grid.sh --search-dir assets/ui --dry-run  # 项目零写入预演
@@ -48,9 +62,46 @@ python3 run_export.py --input test.psd --dedupe-images 0.99
 ./run_9grid.sh --search-dir assets/ui --build-only  # 仅生成 PNG 和参数
 ```
 
-搜索路径以 `--project` 指定的 Laya 工程为基准，默认工程为 `laya-project`。**输入、输出目录相同会自动原地写回 PNG，保留路径与 UUID；不同目录则另存优化图。** 原地写回先备份和验证，支持撤销。sh 已配置视觉近似模式，允许预算内的少量像素变化；加 `--mode strict` 切回严格无损。Python / 底层 CLI 的默认模式仍为 strict。每张图都会被检查，不满足当前模式条件的图按原因跳过。详细参数、跳过规则与撤销方式见 [九宫格使用说明](ninegrid/README.md)。
+搜索路径以 `--project` 指定的 Laya 工程为基准，默认工程为 `laya-project`。**输入、输出目录相同会自动原地写回 PNG，保留路径与 UUID；不同目录则另存优化图。** 原地写回先备份和验证，支持撤销。sh 已配置视觉近似模式，允许预算内的少量像素变化；加 `--mode strict` 切回严格无损。Python / 底层 CLI 的默认模式仍为 strict。每张图都会被检查，不满足当前模式条件的图按原因跳过。详细参数、跳过规则与撤销方式见 [九宫格使用说明](src/ninegrid/README.md)。
+
+两个入口默认启用多进程：`--workers 0` 自动选择，`--workers 1` 单进程，或填写 `4` / `8`。九宫格并行分析/编码/校验；PSD 并行合成图片，并根据内存限制自动进程数。输出顺序、同名覆盖、资源 UUID 和误差规则保持不变。更改进程数不会使有效导出缓存失效。
 
 ## 安装与转换
+
+一个发行包 `psd2ui` 同时包含 `psd2ui`、`ninegrid` 两个独立 Python 库。支持 Python 3.11+，可以直接从 Git 安装，无需发布到 PyPI：
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install "psd2ui @ git+https://github.com/eggbbq/loom_psd2ui.git@main"
+
+psd2ui --help
+ninegrid --help
+psd2ui-export --help
+ninegrid-run --help
+```
+
+Git 安装需要 Git 客户端。更新时重复安装命令并加 `--upgrade`；需要固定版本时将 `@main` 替换为具体 commit SHA。若只安装工具、不需要仓库中的 PSD 大文件，可在安装前设置环境变量 `GIT_LFS_SKIP_SMUDGE=1`。安装后无需保留 Git 克隆目录或使用仓库的 sh。安装包中的入口使用当前 Python 环境，参数里的相对路径以当前工作目录为基准，不会在 site-packages 中创建虚拟环境或导出文件。
+
+```bash
+# 导出 PNG + layout.json，再在旁边生成同名预制体和 .meta。
+psd2ui export input.psd --output exported --flat-assets --dedupe-images 0.99 --workers 4
+psd2ui bundle exported/layout.json
+
+# 将布局生成到已有 Laya 工程。
+psd2ui prefab exported/layout.json --project /path/to/laya-project
+
+# 与仓库 run_export.sh 对应的完整流程：导出、生成预制体、移动到指定资源目录。
+psd2ui-export --input input.psd --laya-assets-dir /path/to/laya-project/assets/ui --dedupe-images 0.99
+
+# 与仓库 run_9grid.sh 对应的目录处理；先预演，或者只生成。
+ninegrid-run --project /path/to/laya-project --search-dir assets/ui --output assets/ui --mode visual --dry-run
+ninegrid-run --project /path/to/laya-project --search-dir assets/ui --output assets/optimized --build-only
+```
+
+`ninegrid` 提供分步的 `scan/build/apply/verify/rollback` 命令；`ninegrid-run` 按顺序执行目录处理。正式九宫格回写仍需 Node.js、Playwright、Chrome 和 LayaAir 3.4.1 引擎 JS。可在 Laya 项目目录安装 `npm install --save-dev playwright`，用 `--engine-dir /path/to/engine/libs` 指定引擎；也可通过 `NINEGRID_PLAYWRIGHT_MODULE` 指定已有 Playwright 模块入口。Python 包不包含 Laya 引擎或浏览器。
+
+从源码开发时，使用可编辑安装：
 
 ```bash
 python3 -m venv .venv
@@ -62,6 +113,8 @@ psd2ui export test.psd --output out/test --dedupe-images 0.99  # 可选图片去
 python -m psd2ui export test.psd --output out/test --strict --report out/test/diagnostics.json
 ```
 
+维护者可运行 `python scripts/verify_package.py`，在干净虚拟环境中通过临时 Git 仓库实际安装并验证两个库、四个命令、PNG/预制体和多进程九宫格。可追加 `--engine-dir` 和 `--playwright-module` 执行真实 GPU 校验。
+
 Windows 使用 `py -3 -m venv .venv` 和 `.venv\Scripts\Activate.ps1`，之后命令相同。Linux/macOS 使用以上命令。依赖由 pip 安装；导出阶段不需要网络。
 
 退出码 `0` 表示完整导出成功；结构、合成、路径、文件写入错误返回 `1`。普通模式允许带有明确保真警告的可用输出；`--strict` 遇到保真、样式或空层警告返回 `1`，仍保留有效输出便于检查。`DUPLICATE_ASSET_PATH` 按需求覆盖，严格模式也仅提示。
@@ -72,9 +125,15 @@ Windows 使用 `py -3 -m venv .venv` 和 `.venv\Scripts\Activate.ps1`，之后�
 
 导出命令增加 `--dedupe-images X`，`X` 是 `[0, 1]` 内的相似度阈值，默认关闭；`1` 只合并 RGBA 完全相同的图片。例如 `--dedupe-images 0.99` 允许每个像素的每个通道最多相差 2。Python API 对应 `export_psd(source, output, dedupe_images=0.99)`。
 
-在 PNG 合成、透明外边校正、同路径覆盖及布局计算完成后，按最终 `layout.json` 的深度优先顺序遍历 image 节点，包含隐藏节点和 GLoader 图片。只比较宽、高都相等的图片，解码成 8 位 RGBA 后计算：`相似度 = 1 - max(|A[p,c] - B[p,c]|) / 255`，其中 `p` 遍历所有像素，`c` 遍历 R/G/B/A。透明像素的 RGB 也参与比较；去重步骤不缩放、不另行裁剪、不使用平均差值。
+在像素合成、透明外边校正、同路径覆盖及布局计算完成后，按最终 `layout.json` 的深度优先顺序遍历 image 节点，包含隐藏节点和 GLoader 图片。启用去重时，只对保留的图片编码 PNG，避免重复图片的编码和重新解码。单进程最多在内存暂存 128 MiB 的原始 RGBA，超过后写入导出临时目录；多进程直接在临时目录交换像素，避免大量像素经进程间通信复制，并复用原有合成进程编码保留的图片。临时像素文件完成或失败后自动清理。
+
+只比较宽、高都相等的图片，使用 8 位 RGBA 计算：`相似度 = 1 - max(|A[p,c] - B[p,c]|) / 255`，其中 `p` 遍历所有像素，`c` 遍历 R/G/B/A。透明像素的 RGB 也参与比较；去重步骤不缩放、不另行裁剪、不使用平均差值。
+
+RGB PSD 的 ICC 色彩转换器按源配置及输入模式复用，每个进程最多缓存 8 个转换器；每张图仍执行原有色彩转换并保留 alpha。其他 PSD 色彩模式继续使用库原有流程。PNG 压缩级别保持不变，以上优化无需新增参数。
 
 满足阈值时引用最早保留的节点资源，更新所有同路径引用，并删除重复 PNG。节点名称、位置、尺寸、类型、可见性和层级不变；原生预制体生成器会自然复用同一纹理。相似性不传递：若 B 已合并到 A，后续 C 只和保留的 A 比较，避免连续合并使差异超过阈值。未被本轮 layout 引用的其他文件不参与比较或删除。启用去重不会增加严格模式警告。
+
+启用去重后，最后会递归删除输出目录内的空文件夹（包括纯文本分组对应的空目录），保留输出根目录、非空目录及布局中的所有节点；不会遍历符号链接指向的目录。
 
 `test.psd` 在透明外边校正及 `0.99` 去重阈值下，496 张资源减少到 164 张，删除 332 张重复 PNG，502 个图片节点全部保留。结果见 [去重布局](out/test/layout.json)、[重复导出验证](out/validation/export.json) 和 [图片边界复核记录](out/validation/png-bounds.json)。重复导出结果一致，源 PSD 未变；生成的预制体引用 164 张纹理。
 

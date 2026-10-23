@@ -6,7 +6,7 @@ import {resolve, extname, sep} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 const require = createRequire(import.meta.url);
-const repo = fileURLToPath(new URL('../../', import.meta.url));
+const repo = fileURLToPath(new URL('../../../', import.meta.url));
 const {chromium} = require(require.resolve('playwright', {paths: [resolve(repo, 'runtimes/layaair3')]}));
 const [projectArg, phase] = process.argv.slice(2);
 if (!projectArg || !['before', 'after'].includes(phase)) throw new Error('Usage: native_render.mjs project before|after');

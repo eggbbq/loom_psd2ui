@@ -24,7 +24,7 @@ def image_nodes(node):
         yield from image_nodes(child)
 
 
-def deduplicate_images(root, output, threshold):
+def deduplicate_images(root, output, threshold, *, rasters=None):
     """Update references and return redundant paths, without deleting files.
 
     Similarity is 1 - max(abs(a - b)) / 255 across every pixel and RGBA
@@ -38,8 +38,11 @@ def deduplicate_images(root, output, threshold):
         references.setdefault(node["asset"], []).append(node)
     buckets = defaultdict(list)
     for asset in references:
-        with Image.open(inside(output, asset)) as image:
-            buckets[image.size].append(asset)
+        if rasters is not None:
+            buckets[rasters.size(asset)].append(asset)
+        else:
+            with Image.open(inside(output, asset)) as image:
+                buckets[image.size].append(asset)
 
     replacements = {}
     for assets in buckets.values():
@@ -47,8 +50,11 @@ def deduplicate_images(root, output, threshold):
         with ExitStack() as images:
             retained = []
             for asset in assets:
-                with Image.open(inside(output, asset)) as source:
-                    image = source.convert("RGBA")
+                if rasters is not None:
+                    image = rasters.load(asset)
+                else:
+                    with Image.open(inside(output, asset)) as source:
+                        image = source.convert("RGBA")
                 match = None
                 keep = False
                 try:

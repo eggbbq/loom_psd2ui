@@ -63,7 +63,7 @@ def test_real_laya_native_image_and_new_ui_have_identical_pixels_and_rollback(tm
     assert main["outputSize"] == [33, 33]
     assert main["layaSizeGrid"] == "16,16,16,16,0"
     # Keep the full screenshots/report in a stable user-reviewable directory.
-    evidence = Path(__file__).resolve().parents[2] / "out/validation/ninegrid/gpu-tests"
+    evidence = Path(__file__).resolve().parents[3] / "out/validation/ninegrid/gpu-tests"
     import shutil
     shutil.copytree(project / ".ninegrid/validation", evidence, dirs_exist_ok=True)
     (evidence / "apply-result.json").write_text(json.dumps(result, indent=2) + "\n")
@@ -100,6 +100,6 @@ def test_visual_mode_real_user_images_pass_explicit_gpu_budget(tmp_path, name):
         with Image.open(project / case["before"]) as capture:
             assert capture.size == (original.shape[1], original.shape[0])
     assert verify_project(LayaProjectAdapter(project))["valid"]
-    evidence = Path(__file__).resolve().parents[2] / "out/validation/ninegrid/visual-gpu" / fixture.stem
+    evidence = Path(__file__).resolve().parents[3] / "out/validation/ninegrid/visual-gpu" / fixture.stem
     import shutil
     shutil.copytree(project / ".ninegrid/validation", evidence, dirs_exist_ok=True)

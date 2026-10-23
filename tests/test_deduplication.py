@@ -120,12 +120,59 @@ def test_dedupe_failure_preserves_previous_output(tmp_path, monkeypatch):
     output = tmp_path / "output"
     export_psd(source, output)
     before = {p.relative_to(output): p.read_bytes() for p in output.rglob("*") if p.is_file()}
-    def fail(*args):
+    def fail(*args, **kwargs):
         raise OSError("PNG read failed")
     monkeypatch.setattr("psd2ui.exporter.deduplicate_images", fail)
     with pytest.raises(OSError):
         export_psd(source, output, dedupe_images=.99)
     assert before == {p.relative_to(output): p.read_bytes() for p in output.rglob("*") if p.is_file()}
+
+
+@pytest.mark.parametrize("flat_assets", [False, True])
+@pytest.mark.parametrize("threshold", [None, 1])
+def test_dedupe_prunes_empty_directories_recursively(tmp_path, flat_assets, threshold):
+    psd = PSDImage.new("RGBA", (100, 100))
+    pixel(group(psd, "First"), "Original", "red")
+    pixel(group(group(psd, "Second"), "Nested"), "Duplicate", "red")
+    text(group(psd, "TextOnly"), "Caption", "Keep this node")
+    source = tmp_path / "input.psd"
+    psd.save(source)
+    output = tmp_path / "output"
+    baseline = export_psd(source, output, flat_assets=flat_assets)
+    first, duplicate = [output / node["asset"] for node in image_nodes(baseline)]
+    text_directory = first.parent.parent / "TextOnly"
+    assert text_directory.is_dir()
+    (output / "old/empty/nested").mkdir(parents=True)
+    (output / "keep").mkdir()
+    (output / "keep/.hidden").write_bytes(b"keep")
+    external = tmp_path / "external"
+    (external / "empty").mkdir(parents=True)
+    (output / "linked").symlink_to(external, target_is_directory=True)
+
+    for _ in range(2):
+        result = export_psd(source, output, dedupe_images=threshold, flat_assets=flat_assets)
+        assert first.is_file()
+        assert duplicate.exists() == (threshold is None)
+        assert duplicate.parent.parent.exists() == (threshold is None)
+        assert text_directory.exists() == (threshold is None)
+        assert (output / "old").exists() == (threshold is None)
+        assert (output / "keep/.hidden").read_bytes() == b"keep"
+        assert (output / "linked").is_symlink()
+        assert (external / "empty").is_dir()
+        assert any(node["name"] == "TextOnly" for node in result["children"])
+
+
+def test_dedupe_prunes_empty_directories_without_duplicate_images(tmp_path):
+    psd = PSDImage.new("RGBA", (100, 100))
+    text(group(psd, "TextOnly"), "Caption", "Keep this node")
+    source = tmp_path / "input.psd"
+    psd.save(source)
+    output = tmp_path / "output"
+    result = export_psd(source, output, dedupe_images=1)
+    assert output.is_dir()
+    assert (output / "layout.json").is_file()
+    assert not any(path.is_dir() for path in output.iterdir())
+    assert result["children"][0]["name"] == "TextOnly"
 
 
 def test_duplicate_symlink_is_removed_without_deleting_its_target(tmp_path):

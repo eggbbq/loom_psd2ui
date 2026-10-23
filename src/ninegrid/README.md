@@ -1,6 +1,6 @@
 # NineGrid Optimizer
 
-独立的 PNG 九宫格优化工具，提供严格无损和视觉近似两种模式。算法和项目适配代码位于 `ninegrid/`，便捷入口为仓库根目录的 `run_9grid.sh` / `run_9grid.py`。不导入 `psd2ui`，不修改 PSD 导出器、预制体生成器，也不接入 `run_export` 的默认流程。
+独立的 PNG 九宫格优化工具，提供严格无损和视觉近似两种模式。算法、项目适配代码及 Python 入口位于 `src/ninegrid/`，便捷 sh 入口为仓库根目录的 `run_9grid.sh`，Python 入口为 `src/ninegrid/run_9grid.py`。不导入 `psd2ui`，不修改 PSD 导出器、预制体生成器，也不接入 `run_export` 的默认流程。
 
 只处理已有 PNG 和磁盘上的 Laya 项目：寻找可收缩的行/列区间，生成较小的 RGBA PNG，验证原尺寸重建，然后回写真实 `.lh/.ls` 引用。支持横向三段、纵向三段和双向九宫格。不同目录另存优化图；同目录自动原地覆盖，原图保存在备份中。
 
@@ -14,11 +14,21 @@
 在仓库根目录运行，使用现有虚拟环境即可：
 
 ```bash
-.venv/bin/python -m pip install -r ninegrid/requirements.txt
+.venv/bin/python -m pip install -e .
 .venv/bin/python -m ninegrid --help
 ```
 
-整个 `ninegrid/` 目录也可单独复制到其他目录使用；不依赖 PSD、Photoshop 或原转换程序。所有相对输入/输出路径均基于 `--project`，不是当前工作目录。
+也可通过 Git 合并安装 PSD 导出器和九宫格，无需克隆后在仓库内运行：
+
+```bash
+python -m pip install "psd2ui @ git+https://github.com/eggbbq/loom_psd2ui.git@main"
+ninegrid --help
+ninegrid-run --project /path/to/laya-project --search-dir assets/ui --dry-run
+```
+
+pip 安装后，`ninegrid-run` 使用当前 Python 环境，工程和引擎的相对路径基于当前工作目录；仓库 sh 仍基于仓库根目录。`ninegrid` 底层命令和 Python API 的搜索/输出路径仍相对 `--project`。实际 GPU 校验使用随包安装的 `engine_probe.mjs`，Playwright 可安装在目标 Laya 项目目录的 `node_modules`，或通过 `NINEGRID_PLAYWRIGHT_MODULE` 指定模块入口。引擎 JS 和浏览器需单独准备。
+
+如只使用九宫格，可单独安装 `src/ninegrid/requirements.txt` 中的 NumPy/Pillow 依赖，并设置 `PYTHONPATH=src` 后使用 `python -m ninegrid`。整个 `src/ninegrid/` 包也可单独复制到其他目录使用；不依赖 PSD、Photoshop 或原转换程序。所有相对输入/输出路径均基于 `--project`，不是当前工作目录。
 
 ## 一键处理整个目录
 
@@ -30,7 +40,7 @@
 ./run_9grid.sh --search-dir assets/icons assets/backgrounds --build-only
 ```
 
-`run_9grid.sh` 仅保存参数数组并调用 `run_9grid.py`：
+`run_9grid.sh` 仅保存参数数组并调用 `src/ninegrid/run_9grid.py`：
 
 ```bash
 args=(
@@ -50,12 +60,12 @@ args=(
 
 默认按顺序执行递归扫描、生成优化图、引擎截图校验、回写安全引用、CPU 与引用完整性验证。逐张打印可优化/跳过及原因，并显示事务编号和报告位置。遍历所有子目录中的 PNG（包含 `.PNG`），输出目录自动排除；不满足当前模式误差限制或引用要求的图会跳过。sh 已显式配置视觉近似；Python 和底层 CLI 未指定模式时仍默认为严格无损。
 
-`run_9grid.py` 自动准备仓库 `.venv`，仅安装 NumPy/Pillow 依赖。项目路径以脚本所在仓库目录为基准；搜索、输出、场景目录以 Laya 项目为基准。搜索目录必须位于项目的 `assets/` 内，可使用绝对路径。此入口用于已存在的 Laya 项目，不调用 PSD 导出流程。
+`src/ninegrid/run_9grid.py` 自动准备仓库 `.venv`，仅安装 NumPy/Pillow 依赖。项目路径以仓库根目录为基准；搜索、输出、场景目录以 Laya 项目为基准。搜索目录必须位于项目的 `assets/` 内，可使用绝对路径。此入口用于已存在的 Laya 项目，不调用 PSD 导出流程。
 
 可直接运行 Python，也可追加参数覆盖 sh 中的配置：
 
 ```bash
-python3 run_9grid.py --project laya-project --search-dir assets/ui
+python3 src/ninegrid/run_9grid.py --project laya-project --search-dir assets/ui
 ./run_9grid.sh --scan-only             # 仅递归分析，零写入
 ./run_9grid.sh --build-only            # 生成 PNG 和参数，不写场景，不启动浏览器
 ./run_9grid.sh --dry-run               # 从首次运行也可预览 PNG 和节点回写，项目零写入
@@ -81,7 +91,23 @@ python3 run_9grid.py --project laya-project --search-dir assets/ui
 
 原地覆盖会影响所有共享引用，因此必须检查整个工程，不能限制 `--scene-root`。若同一张图存在不适合处理的引用，该图整体跳过。已有九宫格的图不重复缩小；工具生成的原地结果会校验备份和当前文件后跳过。之前另存模式产生的资源若仍被引用，会将安全引用转回原图的 UUID；之前生成的另存 PNG 保留，不自动删除。
 
+删除旧资源目录或切换到其他 PSD 后，程序会自动剔除“源 PNG 已删除且没有场景引用”的旧记录，将其转入 manifest 的 `retiredItems`，备份保留，不恢复已删除文件，也不影响当前待处理图片。若已删除的资源仍被场景引用，会明确列出引用文件，避免把真实缺图误当成过期记录。扫描和 dry-run 只预览，正式构建或回写时才保存记录清理。
+
 不同目录模式仍排除输出目录，避免重复优化。输出可以位于搜索目录内，例如搜索 `assets/ui`、输出 `assets/ui/optimized`；只排除该输出子目录。搜索路径位于输出目录内、但并未明确选择相同目录时仍给出配置提示。多个输入共用原地模式时，应全部位于该输出目录内。
+
+## 多核并行
+
+`src/ninegrid/run_9grid.py` 和 sh 默认 `--workers 0`，自动使用可用 CPU 核心；`--workers 1` 为单进程，`--workers 4` / `8` 可手动指定。sh 参数数组已注明用途和填写方法。
+
+```bash
+./run_9grid.sh --workers 0
+./run_9grid.sh --workers 4 --dry-run
+.venv/bin/python -m ninegrid build --project laya-project --workers 8
+```
+
+图片分析、PNG 编码、CPU 重建、渲染截图差异计算使用独立进程，并在一次运行中复用进程池。扫描到的候选直接用于裁图，不再次搜索。任务完成顺序可以不同，但输出按原资源顺序整理；备份、UUID/场景更新和事务提交仍在主进程中执行。浏览器 WebGL 截图按顺序采集，误差限制不变。运行时显示进度和各计算阶段耗时；进程数不写入导出设置，不影响图片内容或缓存有效性。
+
+核心 Python API 的 `scan/build/apply/verify_project` 支持 `workers=N`，默认 1 以兼容现有调用；命令行入口默认自动多核。`spawn` 启动方式兼容 macOS；从自己的 Python 脚本调用多进程 API 时，应放在 `if __name__ == "__main__":` 入口内。
 
 ## 模式与误差参数
 
@@ -205,10 +231,10 @@ Manifest 中 `columnBand/rowBand` 是候选区间的半开边界。严格模式�
 
 ```bash
 # CPU、项目回写、事务、路径保护与撤销
-.venv/bin/python -m pytest -q ninegrid/tests
+.venv/bin/python -m pytest -q src/ninegrid/tests
 
 # 必须实际运行的 GPU 测试：不使用渲染 mock
-NINEGRID_ENGINE_TESTS=1 .venv/bin/python -m pytest -q ninegrid/tests/test_engine.py ninegrid/tests/test_inplace.py
+NINEGRID_ENGINE_TESTS=1 .venv/bin/python -m pytest -q src/ninegrid/tests/test_engine.py src/ninegrid/tests/test_inplace.py
 
 # 原有功能回归测试
 .venv/bin/python -m pytest -q tests

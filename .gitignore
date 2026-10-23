@@ -2,6 +2,8 @@
 .DS_Store
 __pycache__/
 *.egg-info/
+build/
+dist/
 .pytest_cache/
 node_modules/
 runtimes/layaair3/example/vendor/

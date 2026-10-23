@@ -6,7 +6,7 @@ import numpy as np
 from PIL import Image
 import pytest
 
-import run_9grid
+from ninegrid import run_9grid
 from ninegrid.laya.adapter import LayaProjectAdapter
 from ninegrid.laya.patch import rollback
 from ninegrid.manifest import read_manifest

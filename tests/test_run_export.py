@@ -7,7 +7,7 @@ import sys
 import pytest
 from psd_tools import PSDImage
 
-import run_export
+from psd2ui import run_export
 from tests.fixture_factory import group, pixel
 
 
@@ -54,6 +54,18 @@ def test_pipeline_moves_bundle_and_reuses_cache_and_project_metadata(pipeline, c
         p: b for p, b in after.items() if not p.endswith(".meta")}
     assert not (root / source.stem).exists()
     assert not list((root / "out/validation").glob("start-move.*"))
+
+
+def test_changing_only_worker_count_keeps_valid_export_cache(pipeline, capsys):
+    root, args, source, target = pipeline
+    args.workers = 1
+    run_export.run(args, root)
+    capsys.readouterr()
+    before = (target / "layout.json").read_bytes()
+    args.workers = 4
+    run_export.run(args, root)
+    assert f"导出 {args.input}（" not in capsys.readouterr().out
+    assert (target / "layout.json").read_bytes() == before
 
 
 @pytest.mark.parametrize("change", ["missing_png", "layout", "parameters", "force"])

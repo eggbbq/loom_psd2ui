@@ -19,6 +19,10 @@ args=(
     # 示例：搜索 assets/ui、输出 assets/ui = 原地写回；输出 assets/ninegrid_auto = 另存。
     --output           "assets/ui"
 
+    # CPU 计算进程数：填非负整数；0 自动使用可用核心，1 单进程，4/8 指定进程数。
+    # 图片分析、PNG 编码和 CPU 校验并行；备份、引用修改和事务提交仍集中执行。
+    --workers          0
+
     # 最低纹理面积节省率：填 0～1 的小数，0.20 = 至少节省 20%；非 PNG 文件体积。
     --min-saving       0.20
 
@@ -67,4 +71,4 @@ args=(
 )
 
 # 复杂逻辑在 Python 中；命令行追加的同名参数覆盖上面的配置。
-exec python3 "$(dirname -- "$0")/run_9grid.py" "${args[@]}" "$@"
+exec python3 "$(dirname -- "$0")/src/ninegrid/run_9grid.py" "${args[@]}" "$@"

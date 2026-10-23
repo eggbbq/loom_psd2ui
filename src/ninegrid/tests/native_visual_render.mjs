@@ -4,7 +4,7 @@ import {readFile, stat, writeFile, mkdir} from 'node:fs/promises';
 import {resolve, extname, sep} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const require = createRequire(import.meta.url);
-const repo = fileURLToPath(new URL('../../', import.meta.url));
+const repo = fileURLToPath(new URL('../../../', import.meta.url));
 const {chromium} = require(require.resolve('playwright', {paths: [resolve(repo, 'runtimes/layaair3')]}));
 const [projectArg, phase, artifactsArg] = process.argv.slice(2);
 if (!projectArg || !['before', 'after'].includes(phase)) throw new Error('Expected project before|after');

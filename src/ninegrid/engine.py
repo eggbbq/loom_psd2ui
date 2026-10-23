@@ -5,12 +5,9 @@ from pathlib import Path
 import shutil
 import subprocess
 
-import numpy as np
-from PIL import Image
-
 from .paths import inside, load_json, relative, atomic_write, json_bytes
-from .reconstruct import pixel_diff
-from .visual import visual_diff, accepted
+from .parallel import ImagePool
+from .jobs import compare_render
 
 
 def engine_libraries(root, explicit=None):
@@ -25,7 +22,10 @@ def engine_libraries(root, explicit=None):
     raise ValueError("Laya 3.4.1 libraries unavailable; pass --engine-dir with core/webgl_2D/ui/ui2 JS libraries")
 
 
-def validate_items(adapter, entries, engine_dir=None):
+def validate_items(adapter, entries, engine_dir=None, pool=None, workers=1):
+    if pool is None:
+        with ImagePool(workers) as pool:
+            return validate_items(adapter, entries, engine_dir, pool)
     root = adapter.project.root
     if not entries:
         return {"valid": True, "cases": [], "reason": "no_changed_references"}
@@ -59,23 +59,11 @@ def validate_items(adapter, entries, engine_dir=None):
         raise ValueError(f"Laya engine validation unavailable/failed: {result.stderr[-3000:]}")
     records = json.loads(result.stdout)
     stats = []
-    for record in records:
-        before = inside(root, record["before"])
-        after = inside(root, record["after"])
-        with Image.open(before) as a, Image.open(after) as b:
-            original = np.asarray(a.convert("RGBA"))
-            optimized = np.asarray(b.convert("RGBA"))
-        if record.get("mode") == "visual":
-            diff = visual_diff(original, optimized, record["qualityLimits"]["pixelErrorThreshold"])
-            diff["accepted"] = accepted(diff, record["qualityLimits"])
-        else:
-            diff = pixel_diff(original, optimized)
-            diff["accepted"] = diff["equal"]
-        if not diff["equal"]:
-            delta = np.max(np.abs(original.astype(np.int16)-optimized.astype(np.int16)), axis=2)
-            Image.fromarray(np.where(delta[..., None], [255, 0, 0, 255], [0, 0, 0, 0]).astype(np.uint8)).save(
-                inside(root, record["after"] + ".diff.png"))
-        stats.append({**record, **diff})
+    comparisons = pool.map(compare_render, [(str(root), record) for record in records], "渲染截图比较")
+    for stat, diff_png in comparisons:
+        if diff_png is not None:
+            atomic_write(inside(root, stat["after"] + ".diff.png"), diff_png)
+        stats.append(stat)
     proof = {"valid": all(s["accepted"] for s in stats) and len(stats) == len(cases),
              "engine": "LayaAir 3.4.1", "renderer": "Chrome WebGL",
              "tolerance": "explicit_per_candidate_visual_budget" if any(c["mode"] == "visual" for c in cases) else 0,

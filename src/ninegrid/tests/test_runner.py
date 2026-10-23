@@ -7,7 +7,7 @@ import numpy as np
 from PIL import Image
 import pytest
 
-import run_9grid
+from ninegrid import run_9grid
 from ninegrid.manifest import read_manifest
 from .factory import hashes, make_project
 
@@ -131,7 +131,7 @@ def test_historical_output_cannot_be_explicitly_scanned_as_a_source(project):
 
 
 def test_shell_entry_bootstraps_from_another_working_directory(project, tmp_path):
-    script = Path(run_9grid.__file__).with_suffix(".sh")
+    script = run_9grid.ROOT / "run_9grid.sh"
     result = subprocess.run(["bash", str(script), "--project", str(project), "--search-dir", "assets/ui",
                              "--output", "assets/ninegrid_auto", "--dry-run"],
                             cwd=tmp_path, capture_output=True, text=True)

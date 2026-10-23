@@ -22,6 +22,7 @@ def main(argv=None):
         command = commands.add_parser(name)
         command.add_argument("--project", required=True)
         command.add_argument("--scene-root", action="append", help="Optional project-relative scene scope; repeatable")
+        command.add_argument("--workers", type=int, default=0, help="CPU processes: 0 auto, 1 serial")
         command.add_argument("--dry-run", action="store_true", help="Preview only; write no project files")
         if name in ("scan", "build"):
             command.add_argument("--input", action="append", help="Project-relative PNG or directory; default assets")
@@ -51,22 +52,22 @@ def main(argv=None):
             options = dict(inputs=args.input, output=args.output, min_saving=args.min_saving, mode=args.mode,
                            quality=quality_limits(args.max_mean_error, args.max_bad_pixel_ratio,
                                                   args.pixel_error_threshold, args.edge_tolerance),
-                           center_size=args.center_size, axis=args.axis)
+                           center_size=args.center_size, axis=args.axis, workers=args.workers)
             if args.command == "build":
                 options["dry_run"] = args.dry_run
             result = function(adapter, **options)
         elif args.command == "apply":
-            result = apply(adapter, args.dry_run, args.engine_dir)
+            result = apply(adapter, args.dry_run, args.engine_dir, workers=args.workers)
         else:
-            result = verify_project(adapter)
+            result = verify_project(adapter, workers=args.workers)
             if args.engine and not args.dry_run:
                 from .engine import validate_items
-                from .manifest import read_manifest
-                manifest = read_manifest(adapter.project.root)
+                from .manifest import read_active_manifest
+                manifest = read_active_manifest(adapter)[0]
                 entries = [{"item": item, "types": sorted({r["type"] for r in item["references"]
                                                             if r.get("applied") or r.get("eligible")})}
                            for item in manifest["items"]]
-                result["engineValidation"] = validate_items(adapter, [e for e in entries if e["types"]], args.engine_dir)
+                result["engineValidation"] = validate_items(adapter, [e for e in entries if e["types"]], args.engine_dir, workers=args.workers)
                 result["valid"] = result["engineValidation"]["valid"]
         print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False))
         return 1 if result.get("valid") is False else 0
