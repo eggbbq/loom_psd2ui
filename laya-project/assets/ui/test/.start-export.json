@@ -1,0 +1,14 @@
+{
+  "arguments": [
+    "export",
+    "test.psd",
+    "--output",
+    "test",
+    "--report",
+    "test/diagnostics.json",
+    "--flat-assets",
+    "--dedupe-images",
+    "0.99"
+  ],
+  "layoutSha256": "b7b6d9b0d363988a928b5103ab2a454f68674f8c2e9b4c4c2e2dda1bcb4f486b"
+}

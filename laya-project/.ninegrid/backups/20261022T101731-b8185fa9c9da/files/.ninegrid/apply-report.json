@@ -1,0 +1,333 @@
+{
+  "status": "applied",
+  "changes": [
+    {
+      "file": "assets/ui/商城_给程序/商城_给程序.lh",
+      "nodeId": "psd253d950f11ebd",
+      "pointer": [
+        "_$child",
+        1,
+        "_$child",
+        1
+      ],
+      "type": "GImage",
+      "property": "src",
+      "oldSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+      "oldSizeGrid": null,
+      "eligible": true,
+      "reason": null,
+      "newSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+      "newSizeGrid": "37,31,37,31,0",
+      "gridLocation": "texture.importer.sizeGrid",
+      "applied": true
+    },
+    {
+      "file": "assets/ui/商城_给程序/商城_给程序.lh",
+      "nodeId": "psdd939926f05444",
+      "pointer": [
+        "_$child",
+        1,
+        "_$child",
+        2
+      ],
+      "type": "GImage",
+      "property": "src",
+      "oldSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+      "oldSizeGrid": null,
+      "eligible": true,
+      "reason": null,
+      "newSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+      "newSizeGrid": "37,31,37,31,0",
+      "gridLocation": "texture.importer.sizeGrid",
+      "applied": true
+    },
+    {
+      "file": "assets/ui/商城_给程序/商城_给程序.lh",
+      "nodeId": "psd0d7f0e3361660",
+      "pointer": [
+        "_$child",
+        1,
+        "_$child",
+        3
+      ],
+      "type": "GImage",
+      "property": "src",
+      "oldSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+      "oldSizeGrid": null,
+      "eligible": true,
+      "reason": null,
+      "newSkin": "res://87a319ea-b9a3-59d2-8081-8bf7236c3111",
+      "newSizeGrid": "37,31,37,31,0",
+      "gridLocation": "texture.importer.sizeGrid",
+      "applied": true
+    },
+    {
+      "file": "assets/ui/商城_给程序/商城_给程序.lh",
+      "nodeId": "psd4471c4b2a2c82",
+      "pointer": [
+        "_$child",
+        1,
+        "_$child",
+        7,
+        "_$child",
+        0
+      ],
+      "type": "GImage",
+      "property": "src",
+      "oldSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+      "oldSizeGrid": null,
+      "eligible": true,
+      "reason": null,
+      "newSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+      "newSizeGrid": "19,43,19,56,0",
+      "gridLocation": "texture.importer.sizeGrid",
+      "applied": true
+    },
+    {
+      "file": "assets/ui/商城_给程序/商城_给程序.lh",
+      "nodeId": "psd642da2afc2bfe",
+      "pointer": [
+        "_$child",
+        1,
+        "_$child",
+        7,
+        "_$child",
+        1
+      ],
+      "type": "GImage",
+      "property": "src",
+      "oldSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+      "oldSizeGrid": null,
+      "eligible": true,
+      "reason": null,
+      "newSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+      "newSizeGrid": "19,43,19,56,0",
+      "gridLocation": "texture.importer.sizeGrid",
+      "applied": true
+    },
+    {
+      "file": "assets/ui/商城_给程序/商城_给程序.lh",
+      "nodeId": "psd4422af4114f85",
+      "pointer": [
+        "_$child",
+        1,
+        "_$child",
+        7,
+        "_$child",
+        2
+      ],
+      "type": "GImage",
+      "property": "src",
+      "oldSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+      "oldSizeGrid": null,
+      "eligible": true,
+      "reason": null,
+      "newSkin": "res://a32c8513-9aab-5ef6-90ad-cab79dc826ac",
+      "newSizeGrid": "19,43,19,56,0",
+      "gridLocation": "texture.importer.sizeGrid",
+      "applied": true
+    },
+    {
+      "file": "assets/ui/商城_给程序/商城_给程序.lh",
+      "nodeId": "psd18d6e1cac2a8a",
+      "pointer": [
+        "_$child",
+        1,
+        "_$child",
+        0
+      ],
+      "type": "GImage",
+      "property": "src",
+      "oldSkin": "res://dbe4a9e8-1564-587e-a479-fe51d8d0ea74",
+      "oldSizeGrid": null,
+      "eligible": true,
+      "reason": null,
+      "newSkin": "res://dbe4a9e8-1564-587e-a479-fe51d8d0ea74",
+      "newSizeGrid": "395,0,189,0,0",
+      "gridLocation": "texture.importer.sizeGrid",
+      "applied": true
+    }
+  ],
+  "files": [
+    "assets/ui/商城_给程序/切的/图层 68.png",
+    "assets/ui/商城_给程序/切的/图层 68.png.meta",
+    "assets/ui/商城_给程序/切的/组 24/组 23.png",
+    "assets/ui/商城_给程序/切的/组 24/组 23.png.meta",
+    "assets/ui/商城_给程序/切的/组 37.png",
+    "assets/ui/商城_给程序/切的/组 37.png.meta"
+  ],
+  "engineValidationPending": false,
+  "engineValidation": {
+    "valid": true,
+    "engine": "LayaAir 3.4.1",
+    "renderer": "Chrome WebGL",
+    "tolerance": "explicit_per_candidate_visual_budget",
+    "cases": [
+      {
+        "source": ".ninegrid/originals/dca45387a5ed8ddab48cf47c77de937f33788b7964f4decb14f6610c038b433b.png",
+        "type": "GImage",
+        "filterMode": 1,
+        "mode": "visual",
+        "qualityLimits": {
+          "maxMeanError": 1,
+          "maxBadPixelRatio": 0.01,
+          "pixelErrorThreshold": 32,
+          "edgeTolerancePixels": 2
+        },
+        "comparisonRegion": {
+          "width": 575,
+          "height": 172
+        },
+        "before": ".ninegrid/validation/3b5a8471d1d9cb05-before.png",
+        "beforeRuntime": {
+          "width": 575,
+          "height": 172,
+          "textureSize": [
+            575,
+            172
+          ],
+          "sizeGrid": null
+        },
+        "after": ".ninegrid/validation/3b5a8471d1d9cb05-after.png",
+        "afterRuntime": {
+          "width": 575,
+          "height": 172,
+          "textureSize": [
+            70,
+            82
+          ],
+          "sizeGrid": [
+            37,
+            31,
+            37,
+            31,
+            0
+          ]
+        },
+        "equal": false,
+        "differentPixels": 9374,
+        "firstDifferentPixel": [
+          30,
+          0
+        ],
+        "meanError": 0.40625378489494324,
+        "badPixelRatio": 0.000455005055611729,
+        "maxVisualChannelError": 59.0,
+        "maxRawChannelError": 59,
+        "pixelErrorThreshold": 32,
+        "metric": "premultiplied_rgba",
+        "accepted": true
+      },
+      {
+        "source": ".ninegrid/originals/df7ce9c2a42cfe58aad67926e60b455ed9abefe89c549fecc136de809db2f1ba.png",
+        "type": "GImage",
+        "filterMode": 1,
+        "mode": "visual",
+        "qualityLimits": {
+          "maxMeanError": 1,
+          "maxBadPixelRatio": 0.01,
+          "pixelErrorThreshold": 32,
+          "edgeTolerancePixels": 2
+        },
+        "comparisonRegion": {
+          "width": 141,
+          "height": 63
+        },
+        "before": ".ninegrid/validation/bcb2e57ff33e1e6b-before.png",
+        "beforeRuntime": {
+          "width": 141,
+          "height": 63,
+          "textureSize": [
+            141,
+            63
+          ],
+          "sizeGrid": null
+        },
+        "after": ".ninegrid/validation/bcb2e57ff33e1e6b-after.png",
+        "afterRuntime": {
+          "width": 141,
+          "height": 63,
+          "textureSize": [
+            107,
+            46
+          ],
+          "sizeGrid": [
+            19,
+            43,
+            19,
+            56,
+            0
+          ]
+        },
+        "equal": false,
+        "differentPixels": 289,
+        "firstDifferentPixel": [
+          94,
+          0
+        ],
+        "meanError": 0.4112630784511566,
+        "badPixelRatio": 0.008443093549476529,
+        "maxVisualChannelError": 86.0,
+        "maxRawChannelError": 86,
+        "pixelErrorThreshold": 32,
+        "metric": "premultiplied_rgba",
+        "accepted": true
+      },
+      {
+        "source": ".ninegrid/originals/27877066ed189eb354b91ff1519d7cfca210803d85db31f41b653394c1cf548e.png",
+        "type": "GImage",
+        "filterMode": 1,
+        "mode": "visual",
+        "qualityLimits": {
+          "maxMeanError": 1,
+          "maxBadPixelRatio": 0.01,
+          "pixelErrorThreshold": 32,
+          "edgeTolerancePixels": 2
+        },
+        "comparisonRegion": {
+          "width": 738,
+          "height": 1078
+        },
+        "before": ".ninegrid/validation/3f30a550ba9b0b82-before.png",
+        "beforeRuntime": {
+          "width": 738,
+          "height": 1078,
+          "textureSize": [
+            738,
+            1078
+          ],
+          "sizeGrid": null
+        },
+        "after": ".ninegrid/validation/3f30a550ba9b0b82-after.png",
+        "afterRuntime": {
+          "width": 738,
+          "height": 1078,
+          "textureSize": [
+            738,
+            592
+          ],
+          "sizeGrid": [
+            395,
+            0,
+            189,
+            0,
+            0
+          ]
+        },
+        "equal": false,
+        "differentPixels": 15135,
+        "firstDifferentPixel": [
+          10,
+          394
+        ],
+        "meanError": 0.09942568838596344,
+        "badPixelRatio": 0.0008999904470287746,
+        "maxVisualChannelError": 104.0,
+        "maxRawChannelError": 104,
+        "pixelErrorThreshold": 32,
+        "metric": "premultiplied_rgba",
+        "accepted": true
+      }
+    ]
+  }
+}

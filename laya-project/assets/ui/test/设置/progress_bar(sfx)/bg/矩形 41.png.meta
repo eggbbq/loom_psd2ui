@@ -1,0 +1,18 @@
+{
+  "uuid": "4f330a8d-694e-57ac-870c-2fd46b52e29d",
+  "importer": {
+    "textureType": 2,
+    "sRGB": true,
+    "generateMipmap": false,
+    "npot": 0,
+    "maxSize": 0,
+    "usePng8": false,
+    "sizeGrid": [
+      1,
+      1,
+      1,
+      1,
+      0
+    ]
+  }
+}

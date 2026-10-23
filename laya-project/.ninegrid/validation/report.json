@@ -5,7 +5,7 @@
   "tolerance": "explicit_per_candidate_visual_budget",
   "cases": [
     {
-      "source": ".ninegrid/originals/dca45387a5ed8ddab48cf47c77de937f33788b7964f4decb14f6610c038b433b.png",
+      "source": ".ninegrid/originals/e66cfa08617b5ac70b63255d834583943c2c4d4c33e515fd2f862c5f77084128.png",
       "type": "GImage",
       "filterMode": 1,
       "mode": "visual",
@@ -16,51 +16,48 @@
         "edgeTolerancePixels": 2
       },
       "comparisonRegion": {
-        "width": 575,
-        "height": 172
+        "width": 550,
+        "height": 110
       },
-      "before": ".ninegrid/validation/3b5a8471d1d9cb05-before.png",
+      "before": ".ninegrid/validation/a21f2322fdac5e81-before.png",
       "beforeRuntime": {
-        "width": 575,
-        "height": 172,
+        "width": 550,
+        "height": 110,
         "textureSize": [
-          575,
-          172
+          550,
+          110
         ],
         "sizeGrid": null
       },
-      "after": ".ninegrid/validation/3b5a8471d1d9cb05-after.png",
+      "after": ".ninegrid/validation/a21f2322fdac5e81-after.png",
       "afterRuntime": {
-        "width": 575,
-        "height": 172,
+        "width": 550,
+        "height": 110,
         "textureSize": [
-          70,
-          82
+          30,
+          30
         ],
         "sizeGrid": [
-          37,
-          31,
-          37,
-          31,
+          11,
+          11,
+          11,
+          11,
           0
         ]
       },
-      "equal": false,
-      "differentPixels": 9374,
-      "firstDifferentPixel": [
-        30,
-        0
-      ],
-      "meanError": 0.40625378489494324,
-      "badPixelRatio": 0.000455005055611729,
-      "maxVisualChannelError": 59.0,
-      "maxRawChannelError": 59,
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
       "pixelErrorThreshold": 32,
       "metric": "premultiplied_rgba",
       "accepted": true
     },
     {
-      "source": ".ninegrid/originals/df7ce9c2a42cfe58aad67926e60b455ed9abefe89c549fecc136de809db2f1ba.png",
+      "source": ".ninegrid/originals/cef7cace454885a3ff08b4412dd06b6627b4cad8e2c6664fdb96d248514bbbf3.png",
       "type": "GImage",
       "filterMode": 1,
       "mode": "visual",
@@ -71,51 +68,1222 @@
         "edgeTolerancePixels": 2
       },
       "comparisonRegion": {
-        "width": 141,
-        "height": 63
+        "width": 889,
+        "height": 1110
       },
-      "before": ".ninegrid/validation/bcb2e57ff33e1e6b-before.png",
+      "before": ".ninegrid/validation/f614e8d9284c63c2-before.png",
       "beforeRuntime": {
-        "width": 141,
-        "height": 63,
+        "width": 889,
+        "height": 1110,
         "textureSize": [
+          889,
+          1110
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/f614e8d9284c63c2-after.png",
+      "afterRuntime": {
+        "width": 889,
+        "height": 1110,
+        "textureSize": [
+          263,
+          414
+        ],
+        "sizeGrid": [
+          91,
+          124,
+          315,
+          131,
+          0
+        ]
+      },
+      "equal": false,
+      "differentPixels": 58606,
+      "firstDifferentPixel": [
+        130,
+        0
+      ],
+      "meanError": 0.26671329140663147,
+      "badPixelRatio": 0.0002574002574002574,
+      "maxVisualChannelError": 154.0,
+      "maxRawChannelError": 154,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/dbcd5094f6e9a3fdfcce5ae400bf60ba9ea6ed16adc6e08c7a5b4203787f257f.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 1092,
+        "height": 798
+      },
+      "before": ".ninegrid/validation/f21c196af24dabe6-before.png",
+      "beforeRuntime": {
+        "width": 1092,
+        "height": 798,
+        "textureSize": [
+          1092,
+          798
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/f21c196af24dabe6-after.png",
+      "afterRuntime": {
+        "width": 1092,
+        "height": 798,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/d0dc0e2f812783262dcaefc680f0e4d24bcab0cb7d26037166924a7dcc3ae083.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 629,
+        "height": 127
+      },
+      "before": ".ninegrid/validation/41ebec81447bae10-before.png",
+      "beforeRuntime": {
+        "width": 629,
+        "height": 127,
+        "textureSize": [
+          629,
+          127
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/41ebec81447bae10-after.png",
+      "afterRuntime": {
+        "width": 629,
+        "height": 127,
+        "textureSize": [
+          16,
+          23
+        ],
+        "sizeGrid": [
+          2,
+          4,
+          13,
+          4,
+          0
+        ]
+      },
+      "equal": false,
+      "differentPixels": 110,
+      "firstDifferentPixel": [
+        3,
+        0
+      ],
+      "meanError": 0.005601943004876375,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 8.0,
+      "maxRawChannelError": 8,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/83de8521cbc2935d52db540453106e8435c7d73b2830addade4252a0eed9f787.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 80,
+        "height": 80
+      },
+      "before": ".ninegrid/validation/a0afa5734eb68fab-before.png",
+      "beforeRuntime": {
+        "width": 80,
+        "height": 80,
+        "textureSize": [
+          80,
+          80
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/a0afa5734eb68fab-after.png",
+      "afterRuntime": {
+        "width": 80,
+        "height": 80,
+        "textureSize": [
+          14,
+          14
+        ],
+        "sizeGrid": [
+          3,
+          3,
+          3,
+          3,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/0b1dc280f87a6d9ab98274d3ee65e2924a345b0f5583c3ba910b18e32a2420e1.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 310,
+        "height": 24
+      },
+      "before": ".ninegrid/validation/194955a430c5577c-before.png",
+      "beforeRuntime": {
+        "width": 310,
+        "height": 24,
+        "textureSize": [
+          310,
+          24
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/194955a430c5577c-after.png",
+      "afterRuntime": {
+        "width": 310,
+        "height": 24,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/0575830a00c913d66715c33a740a8858120e824c36902422e78c241125ab85cd.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 304,
+        "height": 18
+      },
+      "before": ".ninegrid/validation/2f1499c848674328-before.png",
+      "beforeRuntime": {
+        "width": 304,
+        "height": 18,
+        "textureSize": [
+          304,
+          18
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/2f1499c848674328-after.png",
+      "afterRuntime": {
+        "width": 304,
+        "height": 18,
+        "textureSize": [
+          10,
+          18
+        ],
+        "sizeGrid": [
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/23effbb8961c1fbff82ec9cb29e8e5ba4aa3e6babb4473d0e90e4e71f3c37a33.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 80,
+        "height": 80
+      },
+      "before": ".ninegrid/validation/e4d5d963d537ab8f-before.png",
+      "beforeRuntime": {
+        "width": 80,
+        "height": 80,
+        "textureSize": [
+          80,
+          80
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/e4d5d963d537ab8f-after.png",
+      "afterRuntime": {
+        "width": 80,
+        "height": 80,
+        "textureSize": [
+          14,
+          14
+        ],
+        "sizeGrid": [
+          3,
+          3,
+          3,
+          3,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/7aef6d14af1723d7a65e8ee40bf225f68205d97d29f0f4754c5d4308bf53cefd.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 629,
+        "height": 128
+      },
+      "before": ".ninegrid/validation/520efbfd0c575160-before.png",
+      "beforeRuntime": {
+        "width": 629,
+        "height": 128,
+        "textureSize": [
+          629,
+          128
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/520efbfd0c575160-after.png",
+      "afterRuntime": {
+        "width": 629,
+        "height": 128,
+        "textureSize": [
+          16,
+          24
+        ],
+        "sizeGrid": [
+          3,
+          4,
+          13,
+          4,
+          0
+        ]
+      },
+      "equal": false,
+      "differentPixels": 110,
+      "firstDifferentPixel": [
+        3,
+        1
+      ],
+      "meanError": 0.005558177828788757,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 8.0,
+      "maxRawChannelError": 8,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/1b509b4e7b36707821b1f0ae98e5fb117742feb48e552ee0bd3cbd5f9dd465b0.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 304,
+        "height": 14
+      },
+      "before": ".ninegrid/validation/b8901b847be62f4b-before.png",
+      "beforeRuntime": {
+        "width": 304,
+        "height": 14,
+        "textureSize": [
+          304,
+          14
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/b8901b847be62f4b-after.png",
+      "afterRuntime": {
+        "width": 304,
+        "height": 14,
+        "textureSize": [
+          10,
+          14
+        ],
+        "sizeGrid": [
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/cfdcef78946de2f761dead628838d7da73c50145ed301e4bb2434af021d8fc56.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 304,
+        "height": 18
+      },
+      "before": ".ninegrid/validation/158ab4e3a8440735-before.png",
+      "beforeRuntime": {
+        "width": 304,
+        "height": 18,
+        "textureSize": [
+          304,
+          18
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/158ab4e3a8440735-after.png",
+      "afterRuntime": {
+        "width": 304,
+        "height": 18,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/427abf0f55ce125eec72124b0e2d78d706f55eee2332326955dc2a3a332944a6.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 150,
+        "height": 14
+      },
+      "before": ".ninegrid/validation/7fa6b42aa6243675-before.png",
+      "beforeRuntime": {
+        "width": 150,
+        "height": 14,
+        "textureSize": [
+          150,
+          14
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/7fa6b42aa6243675-after.png",
+      "afterRuntime": {
+        "width": 150,
+        "height": 14,
+        "textureSize": [
+          10,
+          14
+        ],
+        "sizeGrid": [
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/9b1e0ad4a203abf7b50b076046a9719e871037c7d9f9f2ad17e035e75e2a1ebe.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 77,
+        "height": 18
+      },
+      "before": ".ninegrid/validation/bb8037f7b2179d04-before.png",
+      "beforeRuntime": {
+        "width": 77,
+        "height": 18,
+        "textureSize": [
+          77,
+          18
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/bb8037f7b2179d04-after.png",
+      "afterRuntime": {
+        "width": 77,
+        "height": 18,
+        "textureSize": [
+          10,
+          18
+        ],
+        "sizeGrid": [
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/0bf26633a13975020a531a368163fe836165b68d000005efab838f525de73cf5.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 611,
+        "height": 197
+      },
+      "before": ".ninegrid/validation/b0bb0cfa72e61640-before.png",
+      "beforeRuntime": {
+        "width": 611,
+        "height": 197,
+        "textureSize": [
+          611,
+          197
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/b0bb0cfa72e61640-after.png",
+      "afterRuntime": {
+        "width": 611,
+        "height": 197,
+        "textureSize": [
+          489,
+          165
+        ],
+        "sizeGrid": [
+          82,
+          383,
+          75,
+          98,
+          0
+        ]
+      },
+      "equal": false,
+      "differentPixels": 21457,
+      "firstDifferentPixel": [
+        132,
+        14
+      ],
+      "meanError": 0.08491114526987076,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 3.0,
+      "maxRawChannelError": 3,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/919d4f6016411e3187c31e6176cca7cbcec83d2638f5cc145cbaa68f086c9ffb.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 889,
+        "height": 1300
+      },
+      "before": ".ninegrid/validation/90b8c26e449c7efa-before.png",
+      "beforeRuntime": {
+        "width": 889,
+        "height": 1300,
+        "textureSize": [
+          889,
+          1300
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/90b8c26e449c7efa-after.png",
+      "afterRuntime": {
+        "width": 889,
+        "height": 1300,
+        "textureSize": [
+          262,
+          774
+        ],
+        "sizeGrid": [
+          765,
+          123,
+          1,
+          131,
+          0
+        ]
+      },
+      "equal": false,
+      "differentPixels": 37734,
+      "firstDifferentPixel": [
+        130,
+        0
+      ],
+      "meanError": 0.072220079600811,
+      "badPixelRatio": 0.00023795102535260015,
+      "maxVisualChannelError": 154.0,
+      "maxRawChannelError": 154,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/306f0173ea7141139e07543835a15f6d422e45f736cd62679a29a2a22af64ed3.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 667,
+        "height": 329
+      },
+      "before": ".ninegrid/validation/422c1299d5fd996c-before.png",
+      "beforeRuntime": {
+        "width": 667,
+        "height": 329,
+        "textureSize": [
+          667,
+          329
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/422c1299d5fd996c-after.png",
+      "afterRuntime": {
+        "width": 667,
+        "height": 329,
+        "textureSize": [
+          581,
+          243
+        ],
+        "sizeGrid": [
+          117,
+          116,
+          118,
+          457,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/fdb67311a3f806d36819b63c8af752368885777b941619a0df0af221d4555552.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 889,
+        "height": 1300
+      },
+      "before": ".ninegrid/validation/e6e3d2109be312f3-before.png",
+      "beforeRuntime": {
+        "width": 889,
+        "height": 1300,
+        "textureSize": [
+          889,
+          1300
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/e6e3d2109be312f3-after.png",
+      "afterRuntime": {
+        "width": 889,
+        "height": 1300,
+        "textureSize": [
+          262,
+          664
+        ],
+        "sizeGrid": [
+          655,
+          123,
+          1,
+          131,
+          0
+        ]
+      },
+      "equal": false,
+      "differentPixels": 37734,
+      "firstDifferentPixel": [
+        130,
+        0
+      ],
+      "meanError": 0.072220079600811,
+      "badPixelRatio": 0.00023795102535260015,
+      "maxVisualChannelError": 154.0,
+      "maxRawChannelError": 154,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/3548b9cd5cdd962bf43c4d84a25b7ac5b3322c0d794240adbc892009e5765ef2.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 400,
+        "height": 90
+      },
+      "before": ".ninegrid/validation/0a120da448059ac0-before.png",
+      "beforeRuntime": {
+        "width": 400,
+        "height": 90,
+        "textureSize": [
+          400,
+          90
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/0a120da448059ac0-after.png",
+      "afterRuntime": {
+        "width": 400,
+        "height": 90,
+        "textureSize": [
+          30,
+          30
+        ],
+        "sizeGrid": [
+          11,
+          11,
+          11,
+          11,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/2945aae20544482ed851ebe468c8ef32179c318af4ce010714deaeb84f297924.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 110,
+        "height": 110
+      },
+      "before": ".ninegrid/validation/b52710955fbaee52-before.png",
+      "beforeRuntime": {
+        "width": 110,
+        "height": 110,
+        "textureSize": [
+          110,
+          110
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/b52710955fbaee52-after.png",
+      "afterRuntime": {
+        "width": 110,
+        "height": 110,
+        "textureSize": [
+          30,
+          30
+        ],
+        "sizeGrid": [
+          11,
+          11,
+          11,
+          11,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/e3ca8be2f729f766a98dc7e26fd8fa3e8254496903440077fd8f3224c7bf1e7f.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 280,
+        "height": 337
+      },
+      "before": ".ninegrid/validation/be079e9327f4fdcc-before.png",
+      "beforeRuntime": {
+        "width": 280,
+        "height": 337,
+        "textureSize": [
+          280,
+          337
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/be079e9327f4fdcc-after.png",
+      "afterRuntime": {
+        "width": 280,
+        "height": 337,
+        "textureSize": [
+          218,
+          270
+        ],
+        "sizeGrid": [
+          59,
+          1,
+          203,
+          209,
+          0
+        ]
+      },
+      "equal": false,
+      "differentPixels": 9703,
+      "firstDifferentPixel": [
+        29,
+        58
+      ],
+      "meanError": 0.24080118536949158,
+      "badPixelRatio": 0.0020559559135226793,
+      "maxVisualChannelError": 140.0,
+      "maxRawChannelError": 140,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/4383162360a8ca979578a9e36648b55561d0c829826dcff48a51ed6bec5f4da3.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 211,
+        "height": 110
+      },
+      "before": ".ninegrid/validation/4127b0ce2965220c-before.png",
+      "beforeRuntime": {
+        "width": 211,
+        "height": 110,
+        "textureSize": [
+          211,
+          110
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/4127b0ce2965220c-after.png",
+      "afterRuntime": {
+        "width": 211,
+        "height": 110,
+        "textureSize": [
+          30,
+          104
+        ],
+        "sizeGrid": [
+          15,
+          11,
+          81,
+          11,
+          0
+        ]
+      },
+      "equal": false,
+      "differentPixels": 88,
+      "firstDifferentPixel": [
+        6,
+        14
+      ],
+      "meanError": 0.04406505823135376,
+      "badPixelRatio": 0.0009047824213700991,
+      "maxVisualChannelError": 62.0,
+      "maxRawChannelError": 62,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/dd3359faf2653a4ed0cb6e4f00577cd89180d0b0a09ef171078190567737937b.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 889,
+        "height": 1110
+      },
+      "before": ".ninegrid/validation/69daf5b6f6ec8b9a-before.png",
+      "beforeRuntime": {
+        "width": 889,
+        "height": 1110,
+        "textureSize": [
+          889,
+          1110
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/69daf5b6f6ec8b9a-after.png",
+      "afterRuntime": {
+        "width": 889,
+        "height": 1110,
+        "textureSize": [
+          263,
+          618
+        ],
+        "sizeGrid": [
+          373,
+          124,
+          237,
+          131,
+          0
+        ]
+      },
+      "equal": false,
+      "differentPixels": 37654,
+      "firstDifferentPixel": [
+        130,
+        0
+      ],
+      "meanError": 0.08323908597230911,
+      "badPixelRatio": 0.0002574002574002574,
+      "maxVisualChannelError": 154.0,
+      "maxRawChannelError": 154,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/e9e6b0751fab1b5cea695762c326b9fcc513c66e366ac20e9ed58f438c1a3c36.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 750,
+        "height": 1623
+      },
+      "before": ".ninegrid/validation/4cb9466640acd747-before.png",
+      "beforeRuntime": {
+        "width": 750,
+        "height": 1623,
+        "textureSize": [
+          750,
+          1623
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/4cb9466640acd747-after.png",
+      "afterRuntime": {
+        "width": 750,
+        "height": 1623,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/546f77241870ffe195ad39206319101dd947b09ed3da72d5e9da2f29018570ed.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 750,
+        "height": 384
+      },
+      "before": ".ninegrid/validation/e50d89b27d4ecde6-before.png",
+      "beforeRuntime": {
+        "width": 750,
+        "height": 384,
+        "textureSize": [
+          750,
+          384
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/e50d89b27d4ecde6-after.png",
+      "afterRuntime": {
+        "width": 750,
+        "height": 384,
+        "textureSize": [
+          653,
+          283
+        ],
+        "sizeGrid": [
           141,
-          63
-        ],
-        "sizeGrid": null
-      },
-      "after": ".ninegrid/validation/bcb2e57ff33e1e6b-after.png",
-      "afterRuntime": {
-        "width": 141,
-        "height": 63,
-        "textureSize": [
-          107,
-          46
-        ],
-        "sizeGrid": [
-          19,
-          43,
-          19,
-          56,
+          312,
+          134,
+          333,
           0
         ]
       },
       "equal": false,
-      "differentPixels": 289,
+      "differentPixels": 42266,
       "firstDifferentPixel": [
-        94,
-        0
+        337,
+        13
       ],
-      "meanError": 0.4112630784511566,
-      "badPixelRatio": 0.008443093549476529,
-      "maxVisualChannelError": 86.0,
-      "maxRawChannelError": 86,
+      "meanError": 0.13401128351688385,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 6.0,
+      "maxRawChannelError": 6,
       "pixelErrorThreshold": 32,
       "metric": "premultiplied_rgba",
       "accepted": true
     },
     {
-      "source": ".ninegrid/originals/27877066ed189eb354b91ff1519d7cfca210803d85db31f41b653394c1cf548e.png",
+      "source": ".ninegrid/originals/221f43d7688df5fa802fa8cc80004cc311eeb9c043131e9816ed63b5d5ea0c92.png",
       "type": "GImage",
       "filterMode": 1,
       "mode": "visual",
@@ -126,45 +1294,1883 @@
         "edgeTolerancePixels": 2
       },
       "comparisonRegion": {
-        "width": 738,
-        "height": 1078
+        "width": 110,
+        "height": 110
       },
-      "before": ".ninegrid/validation/3f30a550ba9b0b82-before.png",
+      "before": ".ninegrid/validation/4d2bbfbcd80e03f0-before.png",
       "beforeRuntime": {
-        "width": 738,
-        "height": 1078,
+        "width": 110,
+        "height": 110,
         "textureSize": [
-          738,
-          1078
+          110,
+          110
         ],
         "sizeGrid": null
       },
-      "after": ".ninegrid/validation/3f30a550ba9b0b82-after.png",
+      "after": ".ninegrid/validation/4d2bbfbcd80e03f0-after.png",
       "afterRuntime": {
-        "width": 738,
-        "height": 1078,
+        "width": 110,
+        "height": 110,
         "textureSize": [
-          738,
-          592
+          14,
+          14
         ],
         "sizeGrid": [
-          395,
-          0,
-          189,
-          0,
+          3,
+          3,
+          3,
+          3,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/090c4c21785e0a50bea93afc02e652b7f5d4da5f3703dcb3979f9dd0dbee3732.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 750,
+        "height": 1623
+      },
+      "before": ".ninegrid/validation/db6ee7926b040b8e-before.png",
+      "beforeRuntime": {
+        "width": 750,
+        "height": 1623,
+        "textureSize": [
+          750,
+          1623
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/db6ee7926b040b8e-after.png",
+      "afterRuntime": {
+        "width": 750,
+        "height": 1623,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/c8e26ab4a88b6f538f0f342c34d3cfb6c7fa20966949bdf20e205784884c598c.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 280,
+        "height": 100
+      },
+      "before": ".ninegrid/validation/36b0591c9eeb1026-before.png",
+      "beforeRuntime": {
+        "width": 280,
+        "height": 100,
+        "textureSize": [
+          280,
+          100
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/36b0591c9eeb1026-after.png",
+      "afterRuntime": {
+        "width": 280,
+        "height": 100,
+        "textureSize": [
+          30,
+          30
+        ],
+        "sizeGrid": [
+          11,
+          11,
+          11,
+          11,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/437e8cfbcced90af5d107685ccaa7b131c7b42349ff76c4e48629eb1808a5516.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 750,
+        "height": 1624
+      },
+      "before": ".ninegrid/validation/2c449af6704c4482-before.png",
+      "beforeRuntime": {
+        "width": 750,
+        "height": 1624,
+        "textureSize": [
+          750,
+          1624
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/2c449af6704c4482-after.png",
+      "afterRuntime": {
+        "width": 750,
+        "height": 1624,
+        "textureSize": [
+          636,
+          1345
+        ],
+        "sizeGrid": [
+          661,
+          42,
+          676,
+          586,
           0
         ]
       },
       "equal": false,
-      "differentPixels": 15135,
+      "differentPixels": 27450,
       "firstDifferentPixel": [
-        10,
-        394
+        701,
+        117
       ],
-      "meanError": 0.09942568838596344,
-      "badPixelRatio": 0.0008999904470287746,
-      "maxVisualChannelError": 104.0,
-      "maxRawChannelError": 104,
+      "meanError": 0.03491133078932762,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 10.0,
+      "maxRawChannelError": 10,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/95481feab5ed8a66a2a67fe55875ceeb339c95fe7698a0fc89d9cb43636c1c2b.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 750,
+        "height": 1623
+      },
+      "before": ".ninegrid/validation/b293682a34f3b1cd-before.png",
+      "beforeRuntime": {
+        "width": 750,
+        "height": 1623,
+        "textureSize": [
+          750,
+          1623
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/b293682a34f3b1cd-after.png",
+      "afterRuntime": {
+        "width": 750,
+        "height": 1623,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/9c33536acd5db95608ee33bfcc664c0aaa7a74c56b55729a08978d295d8aae35.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 596,
+        "height": 320
+      },
+      "before": ".ninegrid/validation/a153ddc7fd7e21b9-before.png",
+      "beforeRuntime": {
+        "width": 596,
+        "height": 320,
+        "textureSize": [
+          596,
+          320
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/a153ddc7fd7e21b9-after.png",
+      "afterRuntime": {
+        "width": 596,
+        "height": 320,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/15f49051ea851054056fe9c2639083c3ea11eabffc37b5e64dedece7e1e42990.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 630,
+        "height": 160
+      },
+      "before": ".ninegrid/validation/f0174b129396edcf-before.png",
+      "beforeRuntime": {
+        "width": 630,
+        "height": 160,
+        "textureSize": [
+          630,
+          160
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/f0174b129396edcf-after.png",
+      "afterRuntime": {
+        "width": 630,
+        "height": 160,
+        "textureSize": [
+          30,
+          30
+        ],
+        "sizeGrid": [
+          11,
+          11,
+          11,
+          11,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/a51697cc0ed79a9aa6b0e130d09376c83e924f63e615e816af83f6b869ce9879.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 238,
+        "height": 240
+      },
+      "before": ".ninegrid/validation/6c083c4ac0c8265e-before.png",
+      "beforeRuntime": {
+        "width": 238,
+        "height": 240,
+        "textureSize": [
+          238,
+          240
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/6c083c4ac0c8265e-after.png",
+      "afterRuntime": {
+        "width": 238,
+        "height": 240,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/0db8c737f1ea9db64383cd11464c2b0725f6d4b758c1e5af4c877ae4d9e173e8.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 750,
+        "height": 1624
+      },
+      "before": ".ninegrid/validation/57df4f7f14fdf93b-before.png",
+      "beforeRuntime": {
+        "width": 750,
+        "height": 1624,
+        "textureSize": [
+          750,
+          1624
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/57df4f7f14fdf93b-after.png",
+      "afterRuntime": {
+        "width": 750,
+        "height": 1624,
+        "textureSize": [
+          370,
+          552
+        ],
+        "sizeGrid": [
+          543,
+          1,
+          1,
+          361,
+          0
+        ]
+      },
+      "equal": false,
+      "differentPixels": 30,
+      "firstDifferentPixel": [
+        360,
+        411
+      ],
+      "meanError": 0.0004749589425045997,
+      "badPixelRatio": 1.1494252873563218e-05,
+      "maxVisualChannelError": 43.0,
+      "maxRawChannelError": 43,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/23b13325b1998c61d6fb7a2fd469b2786fc1b6f4e762e17722796a8ab0c31f6c.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 514,
+        "height": 276
+      },
+      "before": ".ninegrid/validation/e98f76d356f9e9b3-before.png",
+      "beforeRuntime": {
+        "width": 514,
+        "height": 276,
+        "textureSize": [
+          514,
+          276
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/e98f76d356f9e9b3-after.png",
+      "afterRuntime": {
+        "width": 514,
+        "height": 276,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/bddc72c38709d52ddfdead95342cb008df78a6dbda849aa56814337a95f2550f.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 584,
+        "height": 519
+      },
+      "before": ".ninegrid/validation/33ff7da0716cf9d3-before.png",
+      "beforeRuntime": {
+        "width": 584,
+        "height": 519,
+        "textureSize": [
+          584,
+          519
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/33ff7da0716cf9d3-after.png",
+      "afterRuntime": {
+        "width": 584,
+        "height": 519,
+        "textureSize": [
+          62,
+          57
+        ],
+        "sizeGrid": [
+          25,
+          27,
+          24,
+          27,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/7a12ecd77739afc2e40a0da39ff75e2b2b6d9befdbb1f8cf8bb38d9912382a3a.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 784,
+        "height": 982
+      },
+      "before": ".ninegrid/validation/b48f6829c880de42-before.png",
+      "beforeRuntime": {
+        "width": 784,
+        "height": 982,
+        "textureSize": [
+          784,
+          982
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/b48f6829c880de42-after.png",
+      "afterRuntime": {
+        "width": 784,
+        "height": 982,
+        "textureSize": [
+          677,
+          896
+        ],
+        "sizeGrid": [
+          887,
+          667,
+          1,
+          2,
+          0
+        ]
+      },
+      "equal": false,
+      "differentPixels": 435,
+      "firstDifferentPixel": [
+        117,
+        279
+      ],
+      "meanError": 0.0014096206286922097,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 16.0,
+      "maxRawChannelError": 16,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/9f93002eac4b89b048029c1be890f3fb8b212ee4800817947c6dbcbdbddde590.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 827,
+        "height": 1742
+      },
+      "before": ".ninegrid/validation/d9aa28b8dcd7327e-before.png",
+      "beforeRuntime": {
+        "width": 827,
+        "height": 1742,
+        "textureSize": [
+          827,
+          1742
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/d9aa28b8dcd7327e-after.png",
+      "afterRuntime": {
+        "width": 827,
+        "height": 1742,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/f50b0f54dc292cf9c5d3f25ddbdc7ed1000c2542683ac874884f6d4c761e16e7.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 260,
+        "height": 24
+      },
+      "before": ".ninegrid/validation/cb96281f753302e8-before.png",
+      "beforeRuntime": {
+        "width": 260,
+        "height": 24,
+        "textureSize": [
+          260,
+          24
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/cb96281f753302e8-after.png",
+      "afterRuntime": {
+        "width": 260,
+        "height": 24,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/109bfc978507f7b360de2b97b51a92177fd054e5417073f4a8b2237b54eed060.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 250,
+        "height": 34
+      },
+      "before": ".ninegrid/validation/fd72c824bd047674-before.png",
+      "beforeRuntime": {
+        "width": 250,
+        "height": 34,
+        "textureSize": [
+          250,
+          34
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/fd72c824bd047674-after.png",
+      "afterRuntime": {
+        "width": 250,
+        "height": 34,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/da17ec50b5c1dc1adac3ff734aff78a52af1478dc54ead2775a97d83dfdf2789.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 168,
+        "height": 28
+      },
+      "before": ".ninegrid/validation/2fb11167b5f25add-before.png",
+      "beforeRuntime": {
+        "width": 168,
+        "height": 28,
+        "textureSize": [
+          168,
+          28
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/2fb11167b5f25add-after.png",
+      "afterRuntime": {
+        "width": 168,
+        "height": 28,
+        "textureSize": [
+          15,
+          28
+        ],
+        "sizeGrid": [
+          0,
+          1,
+          0,
+          6,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/2e32a4c51638cb693d07814fcdadd8dc4b478a518466f82901a4f7f2dd731a51.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 104,
+        "height": 104
+      },
+      "before": ".ninegrid/validation/3ff3be0321fbea43-before.png",
+      "beforeRuntime": {
+        "width": 104,
+        "height": 104,
+        "textureSize": [
+          104,
+          104
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/3ff3be0321fbea43-after.png",
+      "afterRuntime": {
+        "width": 104,
+        "height": 104,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/e410786e106c24efe02a8bcba1585a2fc07f715896b1b75d0f36b1621c9f61eb.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 667,
+        "height": 328
+      },
+      "before": ".ninegrid/validation/b2fa21e81ecde8ef-before.png",
+      "beforeRuntime": {
+        "width": 667,
+        "height": 328,
+        "textureSize": [
+          667,
+          328
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/b2fa21e81ecde8ef-after.png",
+      "afterRuntime": {
+        "width": 667,
+        "height": 328,
+        "textureSize": [
+          581,
+          242
+        ],
+        "sizeGrid": [
+          117,
+          230,
+          117,
+          343,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/830b87b00f15f9ffe7225d38869e45bf479bed68478efdc128a52bd1437e0a9d.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 103,
+        "height": 102
+      },
+      "before": ".ninegrid/validation/89f1e588d3212605-before.png",
+      "beforeRuntime": {
+        "width": 103,
+        "height": 102,
+        "textureSize": [
+          103,
+          102
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/89f1e588d3212605-after.png",
+      "afterRuntime": {
+        "width": 103,
+        "height": 102,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/e696f19aea2b9fd73e052352b18daebff3da34e667a378fab15a137fb6173eed.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 103,
+        "height": 103
+      },
+      "before": ".ninegrid/validation/e947b7ba25dd51b7-before.png",
+      "beforeRuntime": {
+        "width": 103,
+        "height": 103,
+        "textureSize": [
+          103,
+          103
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/e947b7ba25dd51b7-after.png",
+      "afterRuntime": {
+        "width": 103,
+        "height": 103,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/284cecb35269ed8d377cf7f6fe47b3d34bc9fab38c6f3936e3212379bf1713a3.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 100,
+        "height": 100
+      },
+      "before": ".ninegrid/validation/4ab7cfe29fcc6c41-before.png",
+      "beforeRuntime": {
+        "width": 100,
+        "height": 100,
+        "textureSize": [
+          100,
+          100
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/4ab7cfe29fcc6c41-after.png",
+      "afterRuntime": {
+        "width": 100,
+        "height": 100,
+        "textureSize": [
+          30,
+          30
+        ],
+        "sizeGrid": [
+          11,
+          11,
+          11,
+          11,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/eab9471b96944b9562b524c70dd0ce2afd9a1a076d4a307fe5fea9393a88577e.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 590,
+        "height": 150
+      },
+      "before": ".ninegrid/validation/b564978b7cca5ba7-before.png",
+      "beforeRuntime": {
+        "width": 590,
+        "height": 150,
+        "textureSize": [
+          590,
+          150
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/b564978b7cca5ba7-after.png",
+      "afterRuntime": {
+        "width": 590,
+        "height": 150,
+        "textureSize": [
+          30,
+          30
+        ],
+        "sizeGrid": [
+          11,
+          11,
+          11,
+          11,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/e503a8cea69588de928e777a22ba3e912cda178c2809125da36b37f77b917ffe.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 750,
+        "height": 1624
+      },
+      "before": ".ninegrid/validation/ffacff6f690fe3f2-before.png",
+      "beforeRuntime": {
+        "width": 750,
+        "height": 1624,
+        "textureSize": [
+          750,
+          1624
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/ffacff6f690fe3f2-after.png",
+      "afterRuntime": {
+        "width": 750,
+        "height": 1624,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/0fcc798e6d1f17d005d98dd06be9fca8f3b5c200675f9a3cc52907b476764b65.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 750,
+        "height": 1334
+      },
+      "before": ".ninegrid/validation/2dc0c2ef6d3289a2-before.png",
+      "beforeRuntime": {
+        "width": 750,
+        "height": 1334,
+        "textureSize": [
+          750,
+          1334
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/2dc0c2ef6d3289a2-after.png",
+      "afterRuntime": {
+        "width": 750,
+        "height": 1334,
+        "textureSize": [
+          16,
+          16
+        ],
+        "sizeGrid": [
+          4,
+          4,
+          4,
+          4,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/25f9d8ffa177a4d9b12089e624a9eca3014e030f7967ddc590418a26b16433d8.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 750,
+        "height": 1624
+      },
+      "before": ".ninegrid/validation/7d5469e1de413a5e-before.png",
+      "beforeRuntime": {
+        "width": 750,
+        "height": 1624,
+        "textureSize": [
+          750,
+          1624
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/7d5469e1de413a5e-after.png",
+      "afterRuntime": {
+        "width": 750,
+        "height": 1624,
+        "textureSize": [
+          84,
+          86
+        ],
+        "sizeGrid": [
+          39,
+          38,
+          39,
+          38,
+          0
+        ]
+      },
+      "equal": false,
+      "differentPixels": 608,
+      "firstDifferentPixel": [
+        37,
+        0
+      ],
+      "meanError": 0.014504104852676392,
+      "badPixelRatio": 0.00028735632183908046,
+      "maxVisualChannelError": 197.0,
+      "maxRawChannelError": 197,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/fb2c18b2ff5ae0d86e1d56bc0e7870d091814bba975decfaa3f44f1187d8ed9c.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 514,
+        "height": 326
+      },
+      "before": ".ninegrid/validation/5194da0e00d35899-before.png",
+      "beforeRuntime": {
+        "width": 514,
+        "height": 326,
+        "textureSize": [
+          514,
+          326
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/5194da0e00d35899-after.png",
+      "afterRuntime": {
+        "width": 514,
+        "height": 326,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/0a0a4af860758f7e706204fe7a10b2b0f68cda12de2c26507ee96d17befb4efc.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 584,
+        "height": 559
+      },
+      "before": ".ninegrid/validation/12df07e4986eeb33-before.png",
+      "beforeRuntime": {
+        "width": 584,
+        "height": 559,
+        "textureSize": [
+          584,
+          559
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/12df07e4986eeb33-after.png",
+      "afterRuntime": {
+        "width": 584,
+        "height": 559,
+        "textureSize": [
+          62,
+          59
+        ],
+        "sizeGrid": [
+          27,
+          27,
+          24,
+          27,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/afdba765ed5466d244934a983b9521452902f50c1ef42a65abfe7974a14cc1c0.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 408,
+        "height": 24
+      },
+      "before": ".ninegrid/validation/020d9e392747751d-before.png",
+      "beforeRuntime": {
+        "width": 408,
+        "height": 24,
+        "textureSize": [
+          408,
+          24
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/020d9e392747751d-after.png",
+      "afterRuntime": {
+        "width": 408,
+        "height": 24,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/00d1d9dae4f20be4a5b6e784f86c2457e829ace74c5e5b515f121a564f6a8053.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 398,
+        "height": 34
+      },
+      "before": ".ninegrid/validation/bbd67cc0c2cd80ad-before.png",
+      "beforeRuntime": {
+        "width": 398,
+        "height": 34,
+        "textureSize": [
+          398,
+          34
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/bbd67cc0c2cd80ad-after.png",
+      "afterRuntime": {
+        "width": 398,
+        "height": 34,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/3537b257466de399b8802c6a06997da3cca00388f1e00bf86c9aa1caa38c5faa.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 280,
+        "height": 28
+      },
+      "before": ".ninegrid/validation/7915bb63ec8b2ba4-before.png",
+      "beforeRuntime": {
+        "width": 280,
+        "height": 28,
+        "textureSize": [
+          280,
+          28
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/7915bb63ec8b2ba4-after.png",
+      "afterRuntime": {
+        "width": 280,
+        "height": 28,
+        "textureSize": [
+          15,
+          20
+        ],
+        "sizeGrid": [
+          5,
+          1,
+          7,
+          6,
+          0
+        ]
+      },
+      "equal": false,
+      "differentPixels": 20,
+      "firstDifferentPixel": [
+        0,
+        18
+      ],
+      "meanError": 0.03443877398967743,
+      "badPixelRatio": 0.002551020408163265,
+      "maxVisualChannelError": 47.0,
+      "maxRawChannelError": 47,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/a7aa238447fbdcf613ef5817263f6127f5ff1b0fc57ea164434912c77625146a.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 12,
+        "height": 43
+      },
+      "before": ".ninegrid/validation/5e240313cebe7a1b-before.png",
+      "beforeRuntime": {
+        "width": 12,
+        "height": 43,
+        "textureSize": [
+          12,
+          43
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/5e240313cebe7a1b-after.png",
+      "afterRuntime": {
+        "width": 12,
+        "height": 43,
+        "textureSize": [
+          12,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/29ea8d1faac53937f6833122f57a736a12c94ab43c70cce6b5db0c892345c631.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 407,
+        "height": 24
+      },
+      "before": ".ninegrid/validation/0209fcba6b6bd3bf-before.png",
+      "beforeRuntime": {
+        "width": 407,
+        "height": 24,
+        "textureSize": [
+          407,
+          24
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/0209fcba6b6bd3bf-after.png",
+      "afterRuntime": {
+        "width": 407,
+        "height": 24,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/a61c9db10051a61bb29d10193b2b14930cf5e966ac4ca3276c715e73c01d64d0.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 397,
+        "height": 34
+      },
+      "before": ".ninegrid/validation/1d92d43b75b8b217-before.png",
+      "beforeRuntime": {
+        "width": 397,
+        "height": 34,
+        "textureSize": [
+          397,
+          34
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/1d92d43b75b8b217-after.png",
+      "afterRuntime": {
+        "width": 397,
+        "height": 34,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/5a27ee300c5dfc15a33b2b7da5bac277329ffcf26d6bb93c75f02f820dab8748.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 312,
+        "height": 28
+      },
+      "before": ".ninegrid/validation/c48612bd30acfba7-before.png",
+      "beforeRuntime": {
+        "width": 312,
+        "height": 28,
+        "textureSize": [
+          312,
+          28
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/c48612bd30acfba7-after.png",
+      "afterRuntime": {
+        "width": 312,
+        "height": 28,
+        "textureSize": [
+          15,
+          20
+        ],
+        "sizeGrid": [
+          5,
+          1,
+          7,
+          6,
+          0
+        ]
+      },
+      "equal": false,
+      "differentPixels": 20,
+      "firstDifferentPixel": [
+        0,
+        18
+      ],
+      "meanError": 0.030906593427062035,
+      "badPixelRatio": 0.0022893772893772895,
+      "maxVisualChannelError": 47.0,
+      "maxRawChannelError": 47,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/ebbaf8de1b029546d1374ae5f8e22b4f38b1b0b00f8bbc3372ab779d86fdef67.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 750,
+        "height": 371
+      },
+      "before": ".ninegrid/validation/d12307e0cc467c27-before.png",
+      "beforeRuntime": {
+        "width": 750,
+        "height": 371,
+        "textureSize": [
+          750,
+          371
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/d12307e0cc467c27-after.png",
+      "afterRuntime": {
+        "width": 750,
+        "height": 371,
+        "textureSize": [
+          601,
+          322
+        ],
+        "sizeGrid": [
+          161,
+          357,
+          153,
+          236,
+          0
+        ]
+      },
+      "equal": false,
+      "differentPixels": 13095,
+      "firstDifferentPixel": [
+        262,
+        13
+      ],
+      "meanError": 0.017662174999713898,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 2.0,
+      "maxRawChannelError": 2,
+      "pixelErrorThreshold": 32,
+      "metric": "premultiplied_rgba",
+      "accepted": true
+    },
+    {
+      "source": ".ninegrid/originals/e009635ea4ff4c6f455ccd6c8e0f6bd09597093477149b178d41ea30e060315d.png",
+      "type": "GImage",
+      "filterMode": 1,
+      "mode": "visual",
+      "qualityLimits": {
+        "maxMeanError": 1,
+        "maxBadPixelRatio": 0.01,
+        "pixelErrorThreshold": 32,
+        "edgeTolerancePixels": 2
+      },
+      "comparisonRegion": {
+        "width": 853,
+        "height": 175
+      },
+      "before": ".ninegrid/validation/46c3edb4fc9000b1-before.png",
+      "beforeRuntime": {
+        "width": 853,
+        "height": 175,
+        "textureSize": [
+          853,
+          175
+        ],
+        "sizeGrid": null
+      },
+      "after": ".ninegrid/validation/46c3edb4fc9000b1-after.png",
+      "afterRuntime": {
+        "width": 853,
+        "height": 175,
+        "textureSize": [
+          10,
+          10
+        ],
+        "sizeGrid": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "equal": true,
+      "differentPixels": 0,
+      "firstDifferentPixel": null,
+      "meanError": 0.0,
+      "badPixelRatio": 0.0,
+      "maxVisualChannelError": 0.0,
+      "maxRawChannelError": 0,
       "pixelErrorThreshold": 32,
       "metric": "premultiplied_rgba",
       "accepted": true

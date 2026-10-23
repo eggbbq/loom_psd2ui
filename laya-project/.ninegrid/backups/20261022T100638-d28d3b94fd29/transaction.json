@@ -1,0 +1,747 @@
+{
+  "schemaVersion": 1,
+  "runId": "20261022T100638-d28d3b94fd29",
+  "kind": "build_inplace",
+  "status": "committed",
+  "files": [
+    {
+      "path": ".ninegrid/manifest.json",
+      "existed": true,
+      "beforeSha256": "0a76a295ba1a07c25c452b21383ebb37f5147bfd985a6d3afd9cdcb82324442f",
+      "afterSha256": "f6b165de8857bca731e54720a93ac874aabd43c6cc4540086899d8ae4f85c358"
+    },
+    {
+      "path": ".ninegrid/originals/00d1d9dae4f20be4a5b6e784f86c2457e829ace74c5e5b515f121a564f6a8053.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "00d1d9dae4f20be4a5b6e784f86c2457e829ace74c5e5b515f121a564f6a8053"
+    },
+    {
+      "path": ".ninegrid/originals/0575830a00c913d66715c33a740a8858120e824c36902422e78c241125ab85cd.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "0575830a00c913d66715c33a740a8858120e824c36902422e78c241125ab85cd"
+    },
+    {
+      "path": ".ninegrid/originals/090c4c21785e0a50bea93afc02e652b7f5d4da5f3703dcb3979f9dd0dbee3732.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "090c4c21785e0a50bea93afc02e652b7f5d4da5f3703dcb3979f9dd0dbee3732"
+    },
+    {
+      "path": ".ninegrid/originals/0a0a4af860758f7e706204fe7a10b2b0f68cda12de2c26507ee96d17befb4efc.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "0a0a4af860758f7e706204fe7a10b2b0f68cda12de2c26507ee96d17befb4efc"
+    },
+    {
+      "path": ".ninegrid/originals/0b1dc280f87a6d9ab98274d3ee65e2924a345b0f5583c3ba910b18e32a2420e1.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "0b1dc280f87a6d9ab98274d3ee65e2924a345b0f5583c3ba910b18e32a2420e1"
+    },
+    {
+      "path": ".ninegrid/originals/0bf26633a13975020a531a368163fe836165b68d000005efab838f525de73cf5.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "0bf26633a13975020a531a368163fe836165b68d000005efab838f525de73cf5"
+    },
+    {
+      "path": ".ninegrid/originals/0db8c737f1ea9db64383cd11464c2b0725f6d4b758c1e5af4c877ae4d9e173e8.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "0db8c737f1ea9db64383cd11464c2b0725f6d4b758c1e5af4c877ae4d9e173e8"
+    },
+    {
+      "path": ".ninegrid/originals/0fcc798e6d1f17d005d98dd06be9fca8f3b5c200675f9a3cc52907b476764b65.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "0fcc798e6d1f17d005d98dd06be9fca8f3b5c200675f9a3cc52907b476764b65"
+    },
+    {
+      "path": ".ninegrid/originals/109bfc978507f7b360de2b97b51a92177fd054e5417073f4a8b2237b54eed060.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "109bfc978507f7b360de2b97b51a92177fd054e5417073f4a8b2237b54eed060"
+    },
+    {
+      "path": ".ninegrid/originals/15f49051ea851054056fe9c2639083c3ea11eabffc37b5e64dedece7e1e42990.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "15f49051ea851054056fe9c2639083c3ea11eabffc37b5e64dedece7e1e42990"
+    },
+    {
+      "path": ".ninegrid/originals/1b509b4e7b36707821b1f0ae98e5fb117742feb48e552ee0bd3cbd5f9dd465b0.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "1b509b4e7b36707821b1f0ae98e5fb117742feb48e552ee0bd3cbd5f9dd465b0"
+    },
+    {
+      "path": ".ninegrid/originals/221f43d7688df5fa802fa8cc80004cc311eeb9c043131e9816ed63b5d5ea0c92.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "221f43d7688df5fa802fa8cc80004cc311eeb9c043131e9816ed63b5d5ea0c92"
+    },
+    {
+      "path": ".ninegrid/originals/23b13325b1998c61d6fb7a2fd469b2786fc1b6f4e762e17722796a8ab0c31f6c.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "23b13325b1998c61d6fb7a2fd469b2786fc1b6f4e762e17722796a8ab0c31f6c"
+    },
+    {
+      "path": ".ninegrid/originals/23effbb8961c1fbff82ec9cb29e8e5ba4aa3e6babb4473d0e90e4e71f3c37a33.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "23effbb8961c1fbff82ec9cb29e8e5ba4aa3e6babb4473d0e90e4e71f3c37a33"
+    },
+    {
+      "path": ".ninegrid/originals/25f9d8ffa177a4d9b12089e624a9eca3014e030f7967ddc590418a26b16433d8.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "25f9d8ffa177a4d9b12089e624a9eca3014e030f7967ddc590418a26b16433d8"
+    },
+    {
+      "path": ".ninegrid/originals/284cecb35269ed8d377cf7f6fe47b3d34bc9fab38c6f3936e3212379bf1713a3.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "284cecb35269ed8d377cf7f6fe47b3d34bc9fab38c6f3936e3212379bf1713a3"
+    },
+    {
+      "path": ".ninegrid/originals/2945aae20544482ed851ebe468c8ef32179c318af4ce010714deaeb84f297924.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "2945aae20544482ed851ebe468c8ef32179c318af4ce010714deaeb84f297924"
+    },
+    {
+      "path": ".ninegrid/originals/29ea8d1faac53937f6833122f57a736a12c94ab43c70cce6b5db0c892345c631.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "29ea8d1faac53937f6833122f57a736a12c94ab43c70cce6b5db0c892345c631"
+    },
+    {
+      "path": ".ninegrid/originals/2e32a4c51638cb693d07814fcdadd8dc4b478a518466f82901a4f7f2dd731a51.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "2e32a4c51638cb693d07814fcdadd8dc4b478a518466f82901a4f7f2dd731a51"
+    },
+    {
+      "path": ".ninegrid/originals/306f0173ea7141139e07543835a15f6d422e45f736cd62679a29a2a22af64ed3.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "306f0173ea7141139e07543835a15f6d422e45f736cd62679a29a2a22af64ed3"
+    },
+    {
+      "path": ".ninegrid/originals/3537b257466de399b8802c6a06997da3cca00388f1e00bf86c9aa1caa38c5faa.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "3537b257466de399b8802c6a06997da3cca00388f1e00bf86c9aa1caa38c5faa"
+    },
+    {
+      "path": ".ninegrid/originals/3548b9cd5cdd962bf43c4d84a25b7ac5b3322c0d794240adbc892009e5765ef2.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "3548b9cd5cdd962bf43c4d84a25b7ac5b3322c0d794240adbc892009e5765ef2"
+    },
+    {
+      "path": ".ninegrid/originals/427abf0f55ce125eec72124b0e2d78d706f55eee2332326955dc2a3a332944a6.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "427abf0f55ce125eec72124b0e2d78d706f55eee2332326955dc2a3a332944a6"
+    },
+    {
+      "path": ".ninegrid/originals/437e8cfbcced90af5d107685ccaa7b131c7b42349ff76c4e48629eb1808a5516.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "437e8cfbcced90af5d107685ccaa7b131c7b42349ff76c4e48629eb1808a5516"
+    },
+    {
+      "path": ".ninegrid/originals/4383162360a8ca979578a9e36648b55561d0c829826dcff48a51ed6bec5f4da3.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "4383162360a8ca979578a9e36648b55561d0c829826dcff48a51ed6bec5f4da3"
+    },
+    {
+      "path": ".ninegrid/originals/546f77241870ffe195ad39206319101dd947b09ed3da72d5e9da2f29018570ed.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "546f77241870ffe195ad39206319101dd947b09ed3da72d5e9da2f29018570ed"
+    },
+    {
+      "path": ".ninegrid/originals/5a27ee300c5dfc15a33b2b7da5bac277329ffcf26d6bb93c75f02f820dab8748.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "5a27ee300c5dfc15a33b2b7da5bac277329ffcf26d6bb93c75f02f820dab8748"
+    },
+    {
+      "path": ".ninegrid/originals/7a12ecd77739afc2e40a0da39ff75e2b2b6d9befdbb1f8cf8bb38d9912382a3a.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "7a12ecd77739afc2e40a0da39ff75e2b2b6d9befdbb1f8cf8bb38d9912382a3a"
+    },
+    {
+      "path": ".ninegrid/originals/7aef6d14af1723d7a65e8ee40bf225f68205d97d29f0f4754c5d4308bf53cefd.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "7aef6d14af1723d7a65e8ee40bf225f68205d97d29f0f4754c5d4308bf53cefd"
+    },
+    {
+      "path": ".ninegrid/originals/830b87b00f15f9ffe7225d38869e45bf479bed68478efdc128a52bd1437e0a9d.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "830b87b00f15f9ffe7225d38869e45bf479bed68478efdc128a52bd1437e0a9d"
+    },
+    {
+      "path": ".ninegrid/originals/83de8521cbc2935d52db540453106e8435c7d73b2830addade4252a0eed9f787.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "83de8521cbc2935d52db540453106e8435c7d73b2830addade4252a0eed9f787"
+    },
+    {
+      "path": ".ninegrid/originals/919d4f6016411e3187c31e6176cca7cbcec83d2638f5cc145cbaa68f086c9ffb.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "919d4f6016411e3187c31e6176cca7cbcec83d2638f5cc145cbaa68f086c9ffb"
+    },
+    {
+      "path": ".ninegrid/originals/95481feab5ed8a66a2a67fe55875ceeb339c95fe7698a0fc89d9cb43636c1c2b.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "95481feab5ed8a66a2a67fe55875ceeb339c95fe7698a0fc89d9cb43636c1c2b"
+    },
+    {
+      "path": ".ninegrid/originals/9b1e0ad4a203abf7b50b076046a9719e871037c7d9f9f2ad17e035e75e2a1ebe.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "9b1e0ad4a203abf7b50b076046a9719e871037c7d9f9f2ad17e035e75e2a1ebe"
+    },
+    {
+      "path": ".ninegrid/originals/9c33536acd5db95608ee33bfcc664c0aaa7a74c56b55729a08978d295d8aae35.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "9c33536acd5db95608ee33bfcc664c0aaa7a74c56b55729a08978d295d8aae35"
+    },
+    {
+      "path": ".ninegrid/originals/9f93002eac4b89b048029c1be890f3fb8b212ee4800817947c6dbcbdbddde590.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "9f93002eac4b89b048029c1be890f3fb8b212ee4800817947c6dbcbdbddde590"
+    },
+    {
+      "path": ".ninegrid/originals/a51697cc0ed79a9aa6b0e130d09376c83e924f63e615e816af83f6b869ce9879.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "a51697cc0ed79a9aa6b0e130d09376c83e924f63e615e816af83f6b869ce9879"
+    },
+    {
+      "path": ".ninegrid/originals/a61c9db10051a61bb29d10193b2b14930cf5e966ac4ca3276c715e73c01d64d0.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "a61c9db10051a61bb29d10193b2b14930cf5e966ac4ca3276c715e73c01d64d0"
+    },
+    {
+      "path": ".ninegrid/originals/a7aa238447fbdcf613ef5817263f6127f5ff1b0fc57ea164434912c77625146a.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "a7aa238447fbdcf613ef5817263f6127f5ff1b0fc57ea164434912c77625146a"
+    },
+    {
+      "path": ".ninegrid/originals/afdba765ed5466d244934a983b9521452902f50c1ef42a65abfe7974a14cc1c0.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "afdba765ed5466d244934a983b9521452902f50c1ef42a65abfe7974a14cc1c0"
+    },
+    {
+      "path": ".ninegrid/originals/bddc72c38709d52ddfdead95342cb008df78a6dbda849aa56814337a95f2550f.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "bddc72c38709d52ddfdead95342cb008df78a6dbda849aa56814337a95f2550f"
+    },
+    {
+      "path": ".ninegrid/originals/c8e26ab4a88b6f538f0f342c34d3cfb6c7fa20966949bdf20e205784884c598c.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "c8e26ab4a88b6f538f0f342c34d3cfb6c7fa20966949bdf20e205784884c598c"
+    },
+    {
+      "path": ".ninegrid/originals/cef7cace454885a3ff08b4412dd06b6627b4cad8e2c6664fdb96d248514bbbf3.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "cef7cace454885a3ff08b4412dd06b6627b4cad8e2c6664fdb96d248514bbbf3"
+    },
+    {
+      "path": ".ninegrid/originals/cfdcef78946de2f761dead628838d7da73c50145ed301e4bb2434af021d8fc56.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "cfdcef78946de2f761dead628838d7da73c50145ed301e4bb2434af021d8fc56"
+    },
+    {
+      "path": ".ninegrid/originals/d0dc0e2f812783262dcaefc680f0e4d24bcab0cb7d26037166924a7dcc3ae083.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "d0dc0e2f812783262dcaefc680f0e4d24bcab0cb7d26037166924a7dcc3ae083"
+    },
+    {
+      "path": ".ninegrid/originals/da17ec50b5c1dc1adac3ff734aff78a52af1478dc54ead2775a97d83dfdf2789.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "da17ec50b5c1dc1adac3ff734aff78a52af1478dc54ead2775a97d83dfdf2789"
+    },
+    {
+      "path": ".ninegrid/originals/dbcd5094f6e9a3fdfcce5ae400bf60ba9ea6ed16adc6e08c7a5b4203787f257f.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "dbcd5094f6e9a3fdfcce5ae400bf60ba9ea6ed16adc6e08c7a5b4203787f257f"
+    },
+    {
+      "path": ".ninegrid/originals/dd3359faf2653a4ed0cb6e4f00577cd89180d0b0a09ef171078190567737937b.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "dd3359faf2653a4ed0cb6e4f00577cd89180d0b0a09ef171078190567737937b"
+    },
+    {
+      "path": ".ninegrid/originals/e009635ea4ff4c6f455ccd6c8e0f6bd09597093477149b178d41ea30e060315d.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "e009635ea4ff4c6f455ccd6c8e0f6bd09597093477149b178d41ea30e060315d"
+    },
+    {
+      "path": ".ninegrid/originals/e3ca8be2f729f766a98dc7e26fd8fa3e8254496903440077fd8f3224c7bf1e7f.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "e3ca8be2f729f766a98dc7e26fd8fa3e8254496903440077fd8f3224c7bf1e7f"
+    },
+    {
+      "path": ".ninegrid/originals/e410786e106c24efe02a8bcba1585a2fc07f715896b1b75d0f36b1621c9f61eb.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "e410786e106c24efe02a8bcba1585a2fc07f715896b1b75d0f36b1621c9f61eb"
+    },
+    {
+      "path": ".ninegrid/originals/e503a8cea69588de928e777a22ba3e912cda178c2809125da36b37f77b917ffe.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "e503a8cea69588de928e777a22ba3e912cda178c2809125da36b37f77b917ffe"
+    },
+    {
+      "path": ".ninegrid/originals/e66cfa08617b5ac70b63255d834583943c2c4d4c33e515fd2f862c5f77084128.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "e66cfa08617b5ac70b63255d834583943c2c4d4c33e515fd2f862c5f77084128"
+    },
+    {
+      "path": ".ninegrid/originals/e696f19aea2b9fd73e052352b18daebff3da34e667a378fab15a137fb6173eed.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "e696f19aea2b9fd73e052352b18daebff3da34e667a378fab15a137fb6173eed"
+    },
+    {
+      "path": ".ninegrid/originals/e9e6b0751fab1b5cea695762c326b9fcc513c66e366ac20e9ed58f438c1a3c36.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "e9e6b0751fab1b5cea695762c326b9fcc513c66e366ac20e9ed58f438c1a3c36"
+    },
+    {
+      "path": ".ninegrid/originals/eab9471b96944b9562b524c70dd0ce2afd9a1a076d4a307fe5fea9393a88577e.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "eab9471b96944b9562b524c70dd0ce2afd9a1a076d4a307fe5fea9393a88577e"
+    },
+    {
+      "path": ".ninegrid/originals/ebbaf8de1b029546d1374ae5f8e22b4f38b1b0b00f8bbc3372ab779d86fdef67.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "ebbaf8de1b029546d1374ae5f8e22b4f38b1b0b00f8bbc3372ab779d86fdef67"
+    },
+    {
+      "path": ".ninegrid/originals/f50b0f54dc292cf9c5d3f25ddbdc7ed1000c2542683ac874884f6d4c761e16e7.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "f50b0f54dc292cf9c5d3f25ddbdc7ed1000c2542683ac874884f6d4c761e16e7"
+    },
+    {
+      "path": ".ninegrid/originals/fb2c18b2ff5ae0d86e1d56bc0e7870d091814bba975decfaa3f44f1187d8ed9c.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "fb2c18b2ff5ae0d86e1d56bc0e7870d091814bba975decfaa3f44f1187d8ed9c"
+    },
+    {
+      "path": ".ninegrid/originals/fdb67311a3f806d36819b63c8af752368885777b941619a0df0af221d4555552.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "fdb67311a3f806d36819b63c8af752368885777b941619a0df0af221d4555552"
+    },
+    {
+      "path": ".ninegrid/report.json",
+      "existed": true,
+      "beforeSha256": "ec8e030a00c679d8dd1bcd62688752b77cf9eadad2039b12359f8dfa753cf44d",
+      "afterSha256": "d64294deede52ea354393102ec520f0723852e1da536512e7cd09edbce54aa13"
+    },
+    {
+      "path": ".ninegrid/report.md",
+      "existed": true,
+      "beforeSha256": "d45afd00b0900568107d65e134308661bf8140792375e66654b944e6df7a3b94",
+      "afterSha256": "29ee3efd3c8416023dbd17b74535319f07bb701db038670a27d9ec57bccb68de"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/toasts/bg.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "a61a523480c62d3e98d736681134df55dd1f1cd7196b7ed51a305f055df36e06"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/任务/bg.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "d21d08effc51596461067a8c2c864d2db2b0cc0b3c639b54b90bbea6462a7a25"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/任务/矩形 1266.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "0639d2be9848b6cf788e5dfbd3921f6b4d21ab9e2475cc0a69f67784f6937399"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/任务/组 31/item 拷贝 10/item/bg_item.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "6f996730584586e7f0555418c2075559f117dfebd52743cd2bd5bec09974e682"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/任务/组 31/item 拷贝 7/bg.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "2cebca8997409374558fd411af656c7c7e161cbdb8e6f81523fe6adcf086344f"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/任务/组 31/item 拷贝 7/progress/progress_bar 拷贝/fill/矩形 43 拷贝 2.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "6377ddcbf65891fa4d03682f3ba9186e53041a15eea5acd2066566cabf35b5de"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/任务/组 31/item 拷贝 7/progress/progress_bar 拷贝/fill/矩形 43.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "6078771b944431d143dda50a9c8f7f9c5ec4d45eb6f9ab1bb369de01e2631ca4"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/任务/组 31/item 拷贝 8/progress/progress_bar 拷贝/bg/矩形 41.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "d3fffa7ad2c7746263f4cfcff0259237d9210002aca8c533d8660f68c37b3434"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/任务/组 31/item 拷贝 8/progress/progress_bar 拷贝/fill.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "a4430c10f246336264247acfa27b4aaa5e843d2e7b0780b70cc1df20ab3f6deb"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/任务/组 31/item/bg.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "7ac746beaea981627e66541900b84341c35b587cf4c1a4e7fd3977c4f242da1d"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/任务/组 31/item/item/bg_item.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "4fb32609379f399a698c32f0f5116250e69998031c95c25047a982c77e9860ee"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/任务/组 31/item/progress/progress_bar 拷贝/bg/矩形 42.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "b49e76f89d63f2277cf199564a339f3a75536f54f6b413c9cb80d978434228d3"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/任务/组 31/item/progress/progress_bar 拷贝/fill.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "a4430c10f246336264247acfa27b4aaa5e843d2e7b0780b70cc1df20ab3f6deb"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/场景/图层 1864.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "af0588308e17320f18893457e6815e123b0d356d5a66c5b69d951c6fc8980f63"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/存储 拷贝/bg.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "ef67cd73830bc2efade7bc089a75bf37df9eaddc19bd4458fe74995777fd874b"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/存储/bg.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "d6837458fab7ccee566268600a43d1b982abbaa187e1d49f1ee6b36eb1cbe87d"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/存储/背包.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "c037a8dc3bdb2cdb78a4b314dd4ee12d4d9afdb73e09475e782540e464f7780c"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/底部（流民.招募）/新手引导2 拷贝/toasts 拷贝 2/bg.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "a61a523480c62d3e98d736681134df55dd1f1cd7196b7ed51a305f055df36e06"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/底部（锁住的门）/materals/bg_item.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "a104c4c630596335c2892709127e1d9aba5b907d0a9c3b07d777c7974da26d5f"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/建造列表/列表/组 29 拷贝 9/item/bg_item.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "def263b464b8c1dabb6e16ec0b1fd6ca569203dac6505bf6b239d0f954491a94"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/建造列表/网格线/矩形 1428.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "8665010d72bcaad4c5f7273a9e29cd7522316355e4466f1166665d5a111e7688"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/建造列表/配方/底板.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "d711bbfa9fc68d0a09a7cb8d504a0838cac356a98445fdeb2af5d2e79c2a2fa7"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/弹窗遮罩.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "6ce318281896577e0938e58a2a53e4aad24bb632ad7f94229fb1ece9c63ee8d4"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/恭喜获得/bg_恭喜获得.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "06bdad1e2286e887d161e90912bc81bbc21aa71c4b6d9b9ee6375016ab4244a4"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/恭喜获得/item/bg_item.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "08d5fe5af99c79e3caed4c911f74a664cd8c034172cb0bbbbd44ae378fa87176"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/恭喜获得/弹窗遮罩 拷贝 2.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "232930732fcf41ae5a3e2a3c298a4a6443c00d37f4b6138f1dd06fe50e477b69"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/抽卡/卡牌属性/frame.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "d2121103fa6eae56921c02922875dd3a63fdbe93bef7189c02687eee16d9d895"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/抽卡/图层 21.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "f3f34433aabbc5da1b0d19fd2b94318355296ef4e1f754b78ddd18426b39f054"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/抽卡/弹窗遮罩 拷贝.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "e584b7afea9c341be21ac8a64e6e8b00d933ce35dcc19150b47698ce7deeb9b2"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/抽卡/矩形 49.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "8426ac1a1ecaff587f91a479bf8fcac773d1116b7efb3f0cc88106c0957ff7e5"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/新手引导/toasts 拷贝/bg.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "a61a523480c62d3e98d736681134df55dd1f1cd7196b7ed51a305f055df36e06"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/新手引导/椭圆 776.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "f2d3c2aa738f48b7b94e05e65f44de5c569553ece534864fb8a651b574ead0be"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/新手引导/矩形 775.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "f859f440a1cadbc902d089e76ce75bc121c03f2ff90737f62d995144dc99764c"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/暂停/bg_content/矩形 3 拷贝.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "5aedb273351bd017a64213ffebcbed3eae517b94d7eec87facb4627da069ef0a"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/暂停/bg_win.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "5ce9a251e50639fe4fe760209a1c4ab8d14a05062bce127018595e3ca040cbee"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/组 36/组 35/图层 1884.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "176252ae813d5c242cda571d6651725b4a6a45b0b87d949d8723634303e76c4e"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/组 36/组 35/矩形 1886.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "0639d2be9848b6cf788e5dfbd3921f6b4d21ab9e2475cc0a69f67784f6937399"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/组件/progress_bar/bg/矩形 41.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "ed9478264220c909bc0e0d6a745d2c8895bc1cdacc69ac3e9ba3b630ee66442d"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/组件/progress_bar/bg/矩形 42.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "ed9478264220c909bc0e0d6a745d2c8895bc1cdacc69ac3e9ba3b630ee66442d"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/组件/progress_bar/fill.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "7c866ce45dd427e11a75aac45e2c5403a0cb85cf5f23fde790d31cd9dd5965ad"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/背包/组 28/add/矩形 34 拷贝 2.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "f2d3c2aa738f48b7b94e05e65f44de5c569553ece534864fb8a651b574ead0be"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/背包/组 28/item_bg.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "0e6947f7088dc33e381d98696eb5862584dde35245d417f8240397089db3c35b"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/背包/组 28/items/item 拷贝 5/矩形 1188.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "f2d3c2aa738f48b7b94e05e65f44de5c569553ece534864fb8a651b574ead0be"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/背包/组 28/items/item/矩形 1188.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "f2d3c2aa738f48b7b94e05e65f44de5c569553ece534864fb8a651b574ead0be"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/背包/选中框 拷贝.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "546103504c3e02b6ae357dc419d75728c30096300b7e1feaa31db490040a3055"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/背包/长按提示 拷贝/bg_item 拷贝 2.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "8e9620761836c6c77a9f6e845c1845be61fa3e037ef6355b645d57dece1ae4bc"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/背景.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "5319ebae0d75c5c34339829e9311de1f5803a8abf83987978346d754f4ee9d0f"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/视频屏幕/750x1334.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "ad26fdf95c94ba5cd17a05ed39d025ec775d6f9d2c254e5c896fbebcea99cfb0"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/视频屏幕/750x1624.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "7039da43adf19eb3c0c05e4ecb28ce278e7e4f5378c7952cbfa720ea97833acb"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/设置/bg_content/矩形 3 拷贝.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "5aedb273351bd017a64213ffebcbed3eae517b94d7eec87facb4627da069ef0a"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/设置/bg_win.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "1aa8fcc0bd5beea2503f3e387f58259c15028cb7c1f8f57fb7f76e7d54330191"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/设置/progress_bar(bgm)/bg/矩形 41.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "84da2338eee40b30e94bd2707f7f24886893aabb06209decbbd2f9ce95cd9275"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/设置/progress_bar(bgm)/bg/矩形 42.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "84da2338eee40b30e94bd2707f7f24886893aabb06209decbbd2f9ce95cd9275"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/设置/progress_bar(bgm)/fill.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "e73c30bd2d5046d85863aee9b0101573d57e1f56fcba527bddedd33023e811bf"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/设置/progress_bar(bgm)/矩形 44.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "9ffa820212de8aec0c44df3d46dc1cf2a163bf0468e47a3c31facc37e53633a2"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/设置/progress_bar(sfx)/bg/矩形 41.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "84da2338eee40b30e94bd2707f7f24886893aabb06209decbbd2f9ce95cd9275"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/设置/progress_bar(sfx)/bg/矩形 42.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "84da2338eee40b30e94bd2707f7f24886893aabb06209decbbd2f9ce95cd9275"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/设置/progress_bar(sfx)/fill.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "e73c30bd2d5046d85863aee9b0101573d57e1f56fcba527bddedd33023e811bf"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/首次发现.提示/bg.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "922cf00168ce6bc9cacd069db76b36f5d55509438eb1ba9f8220ad2208562c2e"
+    },
+    {
+      "path": ".ninegrid/staged/ui/test/首次发现.提示/矩形 1866.png",
+      "existed": false,
+      "beforeSha256": null,
+      "afterSha256": "f2d3c2aa738f48b7b94e05e65f44de5c569553ece534864fb8a651b574ead0be"
+    }
+  ],
+  "details": {}
+}

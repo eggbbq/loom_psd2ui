@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "runId": "20261022T101324-7c4814a164cb",
+  "kind": "retire_removed_sources",
+  "status": "committed",
+  "files": [
+    {
+      "path": ".ninegrid/manifest.json",
+      "existed": true,
+      "beforeSha256": "f6b165de8857bca731e54720a93ac874aabd43c6cc4540086899d8ae4f85c358",
+      "afterSha256": "68d5c6208ba01b6b95b853b5fffc78c9910a93de02dd192d1a767eec3d6baa31"
+    }
+  ],
+  "details": {
+    "retiredSources": [
+      "assets/ui/商城_给程序/切的/图层 68.png",
+      "assets/ui/商城_给程序/切的/组 24/组 23.png",
+      "assets/ui/商城_给程序/切的/组 37.png"
+    ]
+  }
+}
