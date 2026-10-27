@@ -69,6 +69,8 @@ psd2ui-export --help
 ninegrid-run --help
 ```
 
+`loom-image9grid` 依赖直接从 [独立 Git 仓库](https://github.com/eggbbq/loom_image9grid) 安装，固定到 Release 对应的标签 `v1.1.1`，无需从 PyPI 查找该包。
+
 Git 安装需要 Git 客户端。更新时重复安装命令并加 `--upgrade`；需要固定版本时将 `@main` 替换为具体 commit SHA。若只安装工具、不需要仓库中的 PSD 大文件，可在安装前设置环境变量 `GIT_LFS_SKIP_SMUDGE=1`。安装后无需保留 Git 克隆目录或使用仓库的 sh。安装包中的入口使用当前 Python 环境，参数里的相对路径以当前工作目录为基准，不会在 site-packages 中创建虚拟环境或导出文件。
 
 ```bash
