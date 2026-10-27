@@ -2,6 +2,8 @@
 from pathlib import Path
 import subprocess
 import sys
+import os
+from importlib.metadata import packages_distributions
 
 import pytest
 from psd_tools import PSDImage
@@ -16,7 +18,6 @@ ROOT = Path(__file__).resolve().parents[1]
 
 @pytest.mark.parametrize("module,script", [
     (run_export, "src/psd2ui/run_export.py"),
-    (run_9grid, "src/ninegrid/run_9grid.py"),
 ])
 def test_direct_source_entrypoint_help_without_site_packages(module, script, tmp_path):
     assert module.ROOT == ROOT
@@ -50,3 +51,12 @@ def test_export_shell_runs_moved_source_entrypoint_from_another_directory(tmp_pa
     assert (bundle / "Example.png").is_file()
     assert (bundle / (source.stem + ".lh")).is_file()
     assert not (tmp_path / "staged").exists()
+
+
+def test_ninegrid_entrypoint_is_from_installed_independent_distribution(tmp_path):
+    import ninegrid
+    assert not Path(ninegrid.__file__).resolve().is_relative_to(ROOT/'src')
+    assert packages_distributions()['ninegrid']==['loom-image9grid']
+    result=subprocess.run([sys.executable,'-I','-m','ninegrid.run_9grid','--help'],cwd=tmp_path,capture_output=True,text=True)
+    assert result.returncode==0,result.stderr
+    assert '--workers' in result.stdout

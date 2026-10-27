@@ -1,0 +1,9 @@
+include run_export.sh run_9grid.sh 使用手册.md
+recursive-include scripts *.py
+recursive-include tests *.py
+exclude *.psd *.psb *.xlsx
+include tests/fixtures/rules.psd
+recursive-include src/psd2ui/ui/runtime *.ts
+prune out
+prune .venv
+global-exclude *.py[cod] .DS_Store

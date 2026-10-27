@@ -1,22 +1,10 @@
 # PSD2UI V1
 
-直接读取 PSD / PSB，输出 PNG + `layout.json`，再生成 LayaAir **3.4.1** 原生 `.lh` 预制体。当前 Laya 工程直接引用预制体，panel 层级在 IDE 中可编辑，运行时不读取布局 JSON。Python 3.11+；不安装、不启动、不调用 Photoshop。原始导出协议依据 [开发规格](PSD2UI_V1_Codex_Development_Spec.md)，原生预制体是后续追加的功能。
+直接读取PSD/PSB，提供旧标签式入口与新增规范化组件流程：旧入口保留原3.4.1映射，组件式流程面向3.4.2 UI2，独立九宫格适配3.4.1/3.4.2引擎版本。本轮真实验收使用3.4.2。输出PNG、布局记录与可编辑原生`.lh`预制体。当前 Laya 工程直接引用预制体，panel 层级在 IDE 中可编辑，运行时不读取布局 JSON。Python 3.11+；不安装、不启动、不调用 Photoshop。原始导出协议依据 [开发规格](PSD2UI_V1_Codex_Development_Spec.md)，原生预制体是后续追加的功能。
 
 完整操作见 [使用手册](使用手册.md)。
 
-Python 实现统一放在 `src/`，PSD 导出和九宫格保持为两个独立包；根目录的 sh 文件用于配置参数和启动：
-
-```text
-├── run_export.sh
-├── run_9grid.sh
-└── src/
-    ├── psd2ui/
-    │   └── run_export.py
-    └── ninegrid/
-        └── run_9grid.py
-```
-
-直接运行 Python 文件时也会自动准备仓库 `.venv`，相对工程/PSD 路径继续以仓库根目录为基准。安装 `pip install -e .` 后，也可通过 `python -m psd2ui.run_export` 和 `python -m ninegrid.run_9grid` 启动。
+Python实现只维护`src/psd2ui`；九宫格统一由已安装的独立`loom-image9grid==1.1.1`提供。旧`src/ninegrid`（含用户未提交改动）已完整归档到任务的工程外迁移证据，不再参与导入、测试或打包。根`run_9grid.sh`仅调用已安装的`python -m ninegrid.run_9grid`，可用`PSD2UI_PYTHON`显式选择解释器，不包含本地算法。
 
 `test.psd` 使用 Git LFS 保存。首次克隆后，请安装 [Git LFS](https://git-lfs.com/)，运行 `git lfs install` 和 `git lfs pull`，确保下载到完整 PSD 后再执行导出。
 
@@ -54,7 +42,7 @@ python3 src/psd2ui/run_export.py --input test.psd --dedupe-images 0.99
 
 ## 目录批量九宫格处理
 
-`run_9grid.sh` / `src/ninegrid/run_9grid.py` 是独立入口，不会启动 PSD 导出。修改 sh 中 `--search-dir` 配置即可递归处理目录内全部 PNG；默认生成优化资源、通过引擎验证后回写 Laya，再检查资源完整性。
+`run_9grid.sh` / `python -m ninegrid.run_9grid` 是独立入口，不会启动 PSD 导出。修改 sh 中 `--search-dir` 配置即可递归处理目录内全部 PNG；默认生成优化资源、通过引擎验证后回写 Laya，再检查资源完整性。
 
 ```bash
 ./run_9grid.sh --search-dir assets/ui --dry-run  # 项目零写入预演
@@ -62,13 +50,13 @@ python3 src/psd2ui/run_export.py --input test.psd --dedupe-images 0.99
 ./run_9grid.sh --search-dir assets/ui --build-only  # 仅生成 PNG 和参数
 ```
 
-搜索路径以 `--project` 指定的 Laya 工程为基准，默认工程为 `laya-project`。**输入、输出目录相同会自动原地写回 PNG，保留路径与 UUID；不同目录则另存优化图。** 原地写回先备份和验证，支持撤销。sh 已配置视觉近似模式，允许预算内的少量像素变化；加 `--mode strict` 切回严格无损。Python / 底层 CLI 的默认模式仍为 strict。每张图都会被检查，不满足当前模式条件的图按原因跳过。详细参数、跳过规则与撤销方式见 [九宫格使用说明](src/ninegrid/README.md)。
+搜索路径以 `--project` 指定的 Laya 工程为基准，默认工程为 `laya-project`。**输入、输出目录相同会自动原地写回 PNG，保留路径与 UUID；不同目录则另存优化图。** 原地写回先备份和验证，支持撤销。sh 已配置视觉近似模式，允许预算内的少量像素变化；加 `--mode strict` 切回严格无损。Python / 底层 CLI 的默认模式仍为 strict。每张图都会被检查，不满足当前模式条件的图按原因跳过。详细参数、跳过规则与撤销方式见 [独立九宫格使用说明](https://github.com/eggbbq/loom_image9grid/blob/main/docs/usage.md)。
 
 两个入口默认启用多进程：`--workers 0` 自动选择，`--workers 1` 单进程，或填写 `4` / `8`。九宫格并行分析/编码/校验；PSD 并行合成图片，并根据内存限制自动进程数。输出顺序、同名覆盖、资源 UUID 和误差规则保持不变。更改进程数不会使有效导出缓存失效。
 
 ## 安装与转换
 
-一个发行包 `psd2ui` 同时包含 `psd2ui`、`ninegrid` 两个独立 Python 库。支持 Python 3.11+，可以直接从 Git 安装，无需发布到 PyPI：
+`psd2ui`发行包只拥有PSD与UI导出命名空间，依赖独立`loom-image9grid`，不能安装旧版内置ninegrid的psd2ui与独立库覆盖同名文件。支持 Python 3.11+，可以直接从 Git 安装，无需发布到 PyPI：
 
 ```bash
 python3 -m venv .venv
@@ -99,7 +87,7 @@ ninegrid-run --project /path/to/laya-project --search-dir assets/ui --output ass
 ninegrid-run --project /path/to/laya-project --search-dir assets/ui --output assets/optimized --build-only
 ```
 
-`ninegrid` 提供分步的 `scan/build/apply/verify/rollback` 命令；`ninegrid-run` 按顺序执行目录处理。正式九宫格回写仍需 Node.js、Playwright、Chrome 和 LayaAir 3.4.1 引擎 JS。可在 Laya 项目目录安装 `npm install --save-dev playwright`，用 `--engine-dir /path/to/engine/libs` 指定引擎；也可通过 `NINEGRID_PLAYWRIGHT_MODULE` 指定已有 Playwright 模块入口。Python 包不包含 Laya 引擎或浏览器。
+`ninegrid` 提供分步的 `scan/build/apply/verify/rollback` 命令；`ninegrid-run` 按顺序执行目录处理。正式九宫格回写仍需 Node.js、Playwright、Chrome 和匹配工程的LayaAir 3.4.1/3.4.2引擎JS。可在 Laya 项目目录安装 `npm install --save-dev playwright`，用 `--engine-dir /path/to/engine/libs` 指定引擎；也可通过 `NINEGRID_PLAYWRIGHT_MODULE` 指定已有 Playwright 模块入口。Python 包不包含 Laya 引擎或浏览器。
 
 从源码开发时，使用可编辑安装：
 
@@ -113,7 +101,7 @@ psd2ui export test.psd --output out/test --dedupe-images 0.99  # 可选图片去
 python -m psd2ui export test.psd --output out/test --strict --report out/test/diagnostics.json
 ```
 
-维护者可运行 `python scripts/verify_package.py`，在干净虚拟环境中通过临时 Git 仓库实际安装并验证两个库、四个命令、PNG/预制体和多进程九宫格。可追加 `--engine-dir` 和 `--playwright-module` 执行真实 GPU 校验。
+维护者可运行`python scripts/verify_package.py --wheel /path/to/psd2ui.whl --ninegrid-wheel /path/to/loom_image9grid.whl --report /path/to/report.json`，从两个wheel在干净虚拟环境与外部cwd验证公开API/CLI、独立namespace、组件PNG/预制体和TS资源。不会创建临时Git提交或editable安装；追加`--engine-dir`与`--playwright-module`执行真实GPU校验。
 
 Windows 使用 `py -3 -m venv .venv` 和 `.venv\Scripts\Activate.ps1`，之后命令相同。Linux/macOS 使用以上命令。依赖由 pip 安装；导出阶段不需要网络。
 
@@ -333,3 +321,65 @@ psd-tools 不等于 Photoshop 渲染器。当前锁定 `psd-tools[composite]==1.
 - 用户样例包含大量上述效果、7 处多样式文本、6 次同名路径覆盖。因此普通导出可用，严格导出应失败，画面有明确记录的差异；完整视觉保真验收未通过。
 
 PSD 导出器本身未接入九宫格、Atlas、压缩或响应式布局；九宫格优化通过上面的独立入口运行。
+
+## 独立loom-image9grid Automatic API（历史接口说明）
+
+The installed package now exposes the bounded automatic optimizer independently of PSD export:
+
+```python
+from ninegrid.automatic import optimize_project
+report = optimize_project(
+    "/path/to/laya-project", "assets/ui/images",
+    mode="visual",  # strict is CPU/GPU exact; visual has explicit bounded proofs
+    playwright_module="/path/to/node_modules/playwright/index.js",
+)
+print(report["recordsDirectory"], report["summary"])
+```
+
+Equivalent installed CLI, from any working directory:
+
+```sh
+ninegrid auto --project /path/to/laya-project --input assets/ui/images
+# Also available as: ninegrid-auto ...
+```
+
+Node.js, Chrome, Playwright and matching LayaAir 3.4.1/3.4.2 libraries are required for actual GPU verification. Pass `--engine-dir` and `--playwright-module` when they cannot be discovered; `NINEGRID_ENGINE_DIR` / `NINEGRID_PLAYWRIGHT_MODULE` are equivalent explicit environment settings. No source checkout or exporter runtime is searched. A unique proof directory is created outside the project by default, so repeating the same command needs no new configuration. Existing gridded resources are skipped rather than recompressed without their originals.
+
+The automatic profile derives repeated/smooth regions from pixels, retains sampled centers and guard bands, and tests at most eight compressed candidates before safe original-PNG fallback. Exact two-axis repeated regions and transparent single-axis regions can use native tiled grids. Visual smooth-center resampling is separately labeled (`candidateCoding=linear`, `cpuExact=false`): CPU and GPU maximum channel error ≤1/255 and mean ≤0.02. Strict never generates bounded-linear candidates and retains CPU/GPU zero-error requirements. Native pose, actual width/height, collapsed-center fractional phases, progress/slider value changes and fixed caps are verified with real Laya. Sprite2D effective sampling follows the IDE importer (anisotropy 1, PMA, no mipmaps), not raw WebGL texture defaults.
+
+PNG/meta UUIDs and native node interfaces are retained. Resource/legacy-Image changes are journaled only after all proof archives are prepared; postcommit report failures roll back assets. Concurrent scene/atlas edits block publication. `report["transactionRunId"]` identifies the resource transaction. Keep the generated original backups and proofs.
+
+Public CPU/record APIs are `pixel_candidates`, `decode_candidate`, `reconstruct_candidate`, and `restore_original` in `ninegrid.automatic`. The decoder reads legacy strict/visual, guarded/tiled, geometry-only and bounded-linear records. `restore_original` returns original bytes only when archived SHA, metadata grid and current encoded pixels agree; it never edits files. Native graph policies are exposed by `LayaProjectAdapter(..., reference_policy="native", allowed_component_types=...)` and the scoped `ninegrid.laya.policy.native_ui_policy`; there are no exporter-specific component identifiers in the library.
+
+Legacy `scan/build/apply/verify/rollback` and `ninegrid-run` retain their existing API and visual-profile semantics. The new bounded automatic profile is explicitly selected by `ninegrid auto` or `optimize_project`; it does not silently reinterpret historical legacy quality settings.
+
+## PSD与规范化组件发行边界（1.3.0）
+
+本发行包只安装`psd2ui`命名空间、旧PSD命令和新的规范化组件导出命令，依赖正式独立`loom-image9grid==1.1.1`。NineGrid唯一维护入口为https://github.com/eggbbq/loom_image9grid；旧`src/ninegrid`与未提交测试素材已归档到工程外备份，不再存在于活跃源码树或wheel，禁止与旧版内置ninegrid的psd2ui混装。升级先卸载旧psd2ui，再安装PSD-only后端和独立包。
+
+## 规范化组件式UI API / CLI（1.3.0）
+
+旧`psd2ui export`/`psd2ui-export`保留标签式图层协议与原始layout转换。遵循`PagePanel/content/bg`及btn/list/tabs等接口的组件式稿件，选择新`psd2ui-ui`或`python -m psd2ui.ui`，不会自动改名、包装或保存PSD。两者不混用命名规则。
+
+```python
+from pathlib import Path
+from psd2ui.ui.api import PSDSource, run_export
+root = Path.cwd()
+result = run_export(root, [root / "Example.psd"], root / "client",
+                    root / "client/assets/ui", root / "out/psd-records",
+                    workers=1,
+                    playwright_module="/path/to/node_modules/playwright/index.js")
+assert result["valid"]
+```
+
+```sh
+psd2ui-ui Example.psd --project client --records-dir out/psd-records \
+  --playwright-module /path/to/node_modules/playwright/index.js
+psd2ui-ui-batch --config project-ui.toml
+psd2ui-check-design Example.psd --report out/design.json
+psd2ui-shared-images --project client --state-dir out/shared-images
+```
+
+`--export-only`只做源/组件/图片/引用/事务，跳过九宫格与WebGL，不能以此声称引擎通过。默认完整流程需要匹配工程的3.4.1/3.4.2 SDK与Chrome。Playwright由显式参数、环境变量或已安装的Node模块提供，wheel不携带node_modules；列表装饰TS作为package_data提供，保留已生成脚本UUID。
+
+源读取/文本/像素位于`psd2ui.psd`，规范化组件/布局/验证/事务位于`psd2ui.ui`，共享依赖/去重位于`psd2ui.shared_images`；九宫格识别、压缩、还原、真实引擎探针只调用独立loom-image9grid。工程位置、记录目录、配置文件及组件输入由调用者传入，库不调用任何业务工程脚本。维护命名迁移CLI为`psd2ui-migrate-images`。

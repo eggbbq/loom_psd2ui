@@ -55,7 +55,7 @@ args=(
     # --scene-root     "assets/ui" "assets/Scene.ls"
 
     # 可选引擎 JS 目录：相对本脚本目录或绝对路径，需含 core/webgl_2D/ui/ui2 库。
-    # 默认查找工程 engine/libs 或已安装的 LayaAir IDE；正式回写需 LayaAir 3.4.1。
+    # 默认查找工程 engine/libs 或已安装的 LayaAir IDE；正式回写需与工程版本一致的 LayaAir 3.4.1/3.4.2。
     # --engine-dir     "/Applications/LayaAirIDE.app/Contents/Resources/engine/libs"
 
     # 可选开关：预演生成和引用回写，不写项目、不启动引擎校验。
@@ -71,4 +71,17 @@ args=(
 )
 
 # 复杂逻辑在 Python 中；命令行追加的同名参数覆盖上面的配置。
-exec python3 "$(dirname -- "$0")/src/ninegrid/run_9grid.py" "${args[@]}" "$@"
+root="$(cd -- "$(dirname -- "$0")" && pwd)"
+cd "$root"
+if [[ -n "${PSD2UI_PYTHON:-}" ]]; then
+    python="$PSD2UI_PYTHON"
+elif [[ -x "$root/.venv/bin/python" ]]; then
+    python="$root/.venv/bin/python"
+else
+    python=python3
+fi
+if ! "$python" -c 'from importlib.metadata import version; import ninegrid; version("loom-image9grid")' >/dev/null 2>&1; then
+    echo "请在所选Python环境安装独立loom-image9grid；本入口不会安装或执行旧源码。" >&2
+    exit 1
+fi
+exec "$python" -m ninegrid.run_9grid "${args[@]}" "$@"

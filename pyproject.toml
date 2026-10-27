@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "psd2ui"
-version = "1.0.0"
+version = "1.3.0"
 description = "Photoshop-free layered PSD/PSB exporter for LayaAir 3"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = ["psd-tools[composite]==1.17.4", "Pillow>=10.3,<14", "numpy>=1.26,<3"]
+dependencies = ["psd-tools[composite]==1.17.4", "Pillow>=10.3,<14", "numpy>=1.26,<3", "loom-image9grid==1.1.1"]
 
 [project.urls]
 Repository = "https://github.com/eggbbq/loom_psd2ui"
@@ -18,19 +18,21 @@ dev = ["pytest>=8,<10"]
 
 [project.scripts]
 psd2ui = "psd2ui.cli:main"
-ninegrid = "ninegrid.__main__:main"
 psd2ui-export = "psd2ui.run_export:main"
-ninegrid-run = "ninegrid.run_9grid:main"
+psd2ui-ui = "psd2ui.ui.cli:main"
+psd2ui-ui-batch = "psd2ui.ui.batch_cli:main"
+psd2ui-check-design = "psd2ui.ui.maintenance_cli:check_design_main"
+psd2ui-migrate-images = "psd2ui.ui.maintenance_cli:migrate_names_main"
+psd2ui-shared-images = "psd2ui.shared_images.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["psd2ui*", "ninegrid*"]
-exclude = ["ninegrid.tests*"]
+include = ["psd2ui*"]
 namespaces = false
 
 [tool.setuptools.package-data]
-ninegrid = ["engine_probe.mjs", "requirements.txt"]
+psd2ui = ["ui/runtime/*.ts"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "src/ninegrid/tests"]
+testpaths = ["tests"]
 
